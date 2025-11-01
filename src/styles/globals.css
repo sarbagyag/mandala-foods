@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+:root {
+  /* Color Tokens */
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #2d5016;
+  --primary-hover: #234010;
+  --secondary: #e8f4e0;
+  --accent: #f97316;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+
+  /* Typography Scale */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Shadow Scale */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #4ade80;
+    --primary-hover: #22c55e;
+    --secondary: #1e293b;
+    --accent: #fb923c;
+    --muted: #94a3b8;
+    --border: #334155;
+  }
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--foreground);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+}
+
+h5 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+}
+
+h6 {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+p {
+  margin: 0 0 1rem 0;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.75;
+}
+
+.lead {
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.small {
+  font-size: clamp(0.875rem, 1vw, 1rem);
+  line-height: 1.6;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Focus Styles for Accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Skip to Content Link */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Section Spacing */
+section {
+  padding-top: var(--spacing-3xl);
+  padding-bottom: var(--spacing-3xl);
+}
+
+@media (min-width: 768px) {
+  section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
