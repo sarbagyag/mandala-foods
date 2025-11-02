@@ -41,7 +41,7 @@ export function BlogsSection({ data }: BlogsSectionProps) {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
-              <CardContent padding="lg">
+              <CardContent className="p-6">
                 {blog.category && (
                   <div className="mb-3">
                     <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
@@ -63,7 +63,7 @@ export function BlogsSection({ data }: BlogsSectionProps) {
                   )}
                 </div>
               </CardContent>
-              <CardFooter padding="lg" className="pt-0">
+              <CardFooter className="p-6 pt-0">
                 <Button
                   href={`/stories/${blog.slug}`}
                   variant="ghost"

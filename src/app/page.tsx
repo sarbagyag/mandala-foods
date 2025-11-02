@@ -22,8 +22,8 @@ export default async function HomePage() {
             return <MissionSection key={section.id} data={section} />;
           case "impact":
             return <ImpactSection key={section.id} data={section} />;
-          case "blogs":
-            return <BlogsSection key={section.id} data={section} />;
+          // case "blogs":
+          //   return <BlogsSection key={section.id} data={section} />;
           default:
             return null;
         }

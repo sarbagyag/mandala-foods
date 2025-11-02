@@ -15,77 +15,95 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
     subheading,
     cta,
     secondaryCta,
-    overlayOpacity = 0.5,
+    overlayOpacity = 0.4,
   } = data;
 
   return (
-    <section id={id} className="relative h-screen w-full overflow-hidden">
+    <section
+      id={id}
+      className="relative h-screen w-full overflow-hidden bg-black"
+    >
       {/* Video Background */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover opacity-90"
         aria-hidden="true"
       >
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Overlay */}
+      {/* Gradient Overlay - Darker at bottom for better text contrast */}
       <div
-        className="absolute inset-0 bg-black"
-        style={{ opacity: overlayOpacity }}
+        className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"
         aria-hidden="true"
       />
 
       {/* Content */}
-      <div className="relative z-10 flex h-full items-center">
+      <div className="relative z-10 flex h-full items-end pb-20 md:pb-28 lg:pb-32">
         <Container>
-          <div className="max-w-4xl space-y-15 text-white">
-            {/* Heading with styled text similar to CommonWealth Kitchen */}
-            <h1 className="text-6xl font-bold leading-tight text-white md:text-7xl lg:text-8xl">
-              {heading.split(",").map((line, index) => (
-                <React.Fragment key={index}>
-                  {index === 0 && (
-                    <>
-                      <span className="text-orange-400">
-                        {line.split(" ")[0]}
-                      </span>
-                      <span className="text-white">
-                        {" "}
-                        {line.split(" ").slice(1).join(" ")}
-                      </span>
-                    </>
-                  )}
-                  {index > 0 && (
-                    <>
-                      <br />
-                      <span className="text-white">{line.trim()}</span>
-                    </>
-                  )}
-                </React.Fragment>
-              ))}
+          <div className="max-w-5xl space-y-8 animate-fade-in">
+            {/* Heading with elegant typography */}
+            <h1 className="font-bold leading-[1.1] tracking-tight">
+              {heading.split(" ").map((word, index) => {
+                // Highlight first word in orange
+                if (index === 0) {
+                  return (
+                    <span
+                      key={index}
+                      className="block text-6xl md:text-7xl lg:text-8xl text-orange-500 mb-2"
+                    >
+                      {word}
+                    </span>
+                  );
+                }
+                return (
+                  <span
+                    key={index}
+                    className="text-5xl md:text-6xl lg:text-7xl text-white"
+                  >
+                    {word}{" "}
+                  </span>
+                );
+              })}
             </h1>
 
-            {/* Description text */}
+            {/* Description text with elegant spacing */}
             {subheading && (
-              <p className="max-w-3xl text-xl leading-relaxed text-white md:text-2xl">
+              <p
+                style={{ color: "white" }}
+                className="max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed text-white font-light"
+              >
                 {subheading}
               </p>
             )}
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
+            {/* CTA Buttons with refined styling */}
+            <div className="flex flex-wrap gap-4 pt-6">
               {cta && (
                 <Button
                   href={cta.href}
                   variant={cta.variant || "primary"}
                   size="lg"
-                  className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3"
+                  className="group bg-orange-600 hover:bg-orange-700 text-white font-semibold px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-base border-2 border-orange-600 hover:scale-105"
                 >
                   {cta.text}
+                  <svg
+                    className="inline-block ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
                 </Button>
               )}
               {secondaryCta && (
@@ -93,7 +111,7 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
                   href={secondaryCta.href}
                   variant="outline"
                   size="lg"
-                  className="border-2 border-white bg-white text-gray-900 hover:bg-white/90 font-semibold px-8 py-3"
+                  className="group border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900 font-semibold px-10 py-4 rounded-full transition-all duration-300 text-base hover:scale-105"
                 >
                   {secondaryCta.text}
                 </Button>
@@ -103,21 +121,26 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
         </Container>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce">
-        <svg
-          className="h-6 w-6 text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
+      {/* Elegant Scroll Indicator */}
+      <div className="absolute bottom-12 left-1/2 z-10 -translate-x-1/2">
+        <div className="flex flex-col items-center gap-2 animate-bounce">
+          <span className="text-white/70 text-xs uppercase tracking-widest font-semibold">
+            Scroll
+          </span>
+          <svg
+            className="h-6 w-6 text-white/70"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </div>
       </div>
     </section>
   );

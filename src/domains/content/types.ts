@@ -40,8 +40,10 @@ export interface Product {
   id: string;
   title: string;
   description: string;
+  headline: string; // Overlay headline
   image: Image;
   link?: string;
+  cta?: CTA; // CTA button
 }
 
 export interface StorySection {
@@ -51,6 +53,7 @@ export interface StorySection {
   subheading?: string;
   content: string;
   image?: Image;
+  videoUrl?: string; // YouTube video URL
   cta?: CTA;
 }
 
@@ -68,6 +71,7 @@ export interface Mission {
   description: string;
   icon?: string;
   image?: Image;
+  cta?: CTA;
 }
 
 export interface ImpactSection {
@@ -76,6 +80,7 @@ export interface ImpactSection {
   heading: string;
   subheading?: string;
   metrics: ImpactMetric[];
+  cta?: CTA;
 }
 
 export interface ImpactMetric {
