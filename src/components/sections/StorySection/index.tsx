@@ -15,7 +15,8 @@ export function StorySection({ data }: StorySectionProps) {
 
   // Extract YouTube video ID from URL
   const getYouTubeEmbedUrl = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
     const videoId = match && match[2].length === 11 ? match[2] : null;
     return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
@@ -24,7 +25,10 @@ export function StorySection({ data }: StorySectionProps) {
   const embedUrl = videoUrl ? getYouTubeEmbedUrl(videoUrl) : null;
 
   return (
-    <section id={id} className="bg-white py-20 md:py-32 relative overflow-hidden">
+    <section
+      id={id}
+      className="bg-white py-20 md:py-32 relative overflow-hidden"
+    >
       {/* Subtle background decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none" />
 
@@ -36,7 +40,10 @@ export function StorySection({ data }: StorySectionProps) {
                 {heading}
               </Heading>
               {subheading && (
-                <Text variant="lead" className="text-orange-600 font-medium text-xl mb-8">
+                <Text
+                  variant="lead"
+                  className="text-orange-600 font-medium text-xl mb-8"
+                >
                   {subheading}
                 </Text>
               )}
@@ -52,8 +59,8 @@ export function StorySection({ data }: StorySectionProps) {
               <div className="pt-4">
                 <Button
                   href={cta.href}
-                  variant={cta.variant || "primary"}
-                  className="group bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 hover:scale-105"
+                  variant={"accent"}
+                  className="group text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 hover:scale-105"
                 >
                   {cta.text}
                   <svg

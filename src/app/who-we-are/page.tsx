@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Heading } from "@/components/ui/Heading";
 import { Text } from "@/components/ui/Text";
 import { getWhoWeAreMetadata } from "@/domains/seo/metadata";
+import { OurStorySection } from "./_components/OurStorySection";
 
 export const metadata: Metadata = getWhoWeAreMetadata();
 
@@ -23,33 +24,8 @@ export default function WhoWeArePage() {
         </Container>
       </section>
 
-      {/* Our Story */}
-      <section id="our-story" className="bg-white">
-        <Container>
-          <Heading level={2} className="mb-6">
-            Our Story
-          </Heading>
-          <div className="prose prose-lg max-w-none">
-            <Text className="mb-4">
-              Mandala Foods was founded with a bold vision: to transform Nepal's food system
-              into a circular economy that benefits farmers, processors, and consumers alike.
-              We saw the challenges facing small-scale farmers - limited market access,
-              unfair pricing, and food waste - and knew there had to be a better way.
-            </Text>
-            <Text className="mb-4">
-              Starting in rural communities, we built relationships with farmers who shared
-              our commitment to sustainable agriculture. We helped them transition to organic
-              practices, provided training on modern farming techniques, and guaranteed fair
-              prices for their produce.
-            </Text>
-            <Text>
-              Today, Mandala Foods connects over 500 farmers with markets across Nepal,
-              operates processing facilities that add value to locally-sourced ingredients,
-              and distributes nutritious food products to communities throughout the country.
-            </Text>
-          </div>
-        </Container>
-      </section>
+      {/* Our Story - New Detailed Section */}
+      <OurStorySection />
 
       {/* Mission and Values */}
       <section id="mission-values" className="bg-secondary/30">

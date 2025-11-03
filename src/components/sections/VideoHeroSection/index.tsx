@@ -47,14 +47,21 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
         <Container>
           <div className="max-w-5xl space-y-8 animate-fade-in">
             {/* Heading with elegant typography */}
-            <h1 className="font-bold leading-[1.1] tracking-tight">
+            <h1 className="font-extrabold leading-[1.1] tracking-tight">
               {heading.split(" ").map((word, index) => {
-                // Highlight first word in orange
+                // Highlight first word in Carrot Orange (Mandala Foods brand color)
                 if (index === 0) {
                   return (
                     <span
                       key={index}
-                      className="block text-6xl md:text-7xl lg:text-8xl text-orange-500 mb-2"
+                      className="block text-6xl md:text-7xl lg:text-8xl mb-2"
+                      style={{
+                        background: "linear-gradient(90deg, #ff8a00, #ff5e62)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                        color: "transparent",
+                      }}
                     >
                       {word}
                     </span>
@@ -86,9 +93,9 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
               {cta && (
                 <Button
                   href={cta.href}
-                  variant={cta.variant || "primary"}
+                  variant="accent"
                   size="lg"
-                  className="group bg-orange-600 hover:bg-orange-700 text-white font-semibold px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-base border-2 border-orange-600 hover:scale-105"
+                  className="group text-white font-bold px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-base hover:scale-105"
                 >
                   {cta.text}
                   <svg

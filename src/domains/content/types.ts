@@ -13,7 +13,7 @@ export interface Link {
 }
 
 export interface CTA extends Link {
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "accent";
 }
 
 // Section Types

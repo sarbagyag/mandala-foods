@@ -14,7 +14,10 @@ export function ProductsGrid({ data }: ProductsGridSectionProps) {
   const { id, heading, subheading, products } = data;
 
   return (
-    <section id={id} className="bg-gradient-to-b from-white to-gray-50 py-20 md:py-32">
+    <section
+      id={id}
+      className="bg-gradient-to-b from-white to-gray-50 py-20 md:py-32"
+    >
       <Container>
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <Heading level={2} className="mb-6 text-gray-900">
@@ -57,9 +60,12 @@ export function ProductsGrid({ data }: ProductsGridSectionProps) {
                   <div className="mt-auto pt-2">
                     <Button
                       href={product.cta.href}
-                      variant={product.cta.variant || "primary"}
+                      variant={"accent"}
                       size="md"
-                      className="group/btn bg-orange-600 hover:bg-orange-700 text-white font-semibold px-7 py-3 text-sm rounded-full transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg inline-flex items-center gap-2"
+                      className="group/btn text-white font-bold px-7 py-3 text-sm rounded-full transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg inline-flex items-center gap-2"
+                      style={{
+                        backgroundColor: "#e5790e",
+                      }}
                       external={product.cta.external}
                     >
                       {product.cta.text}

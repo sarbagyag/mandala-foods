@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { NavItemWithChildren } from "@/domains/navigation/types";
 import { cn } from "@/lib/utils";
@@ -12,9 +12,31 @@ interface NavDropdownProps {
 
 export function NavDropdown({ item, isScrolled = false }: NavDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMouseEnter = () => setIsOpen(true);
-  const handleMouseLeave = () => setIsOpen(false);
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    // Add a delay before closing to allow users to move to the dropdown
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 30);
+  };
 
   if (!item.items || item.items.length === 0) {
     return (
@@ -68,19 +90,25 @@ export function NavDropdown({ item, isScrolled = false }: NavDropdownProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-border bg-white py-2 shadow-xl">
-          {item.items.map((subItem) => (
-            <Link
-              key={subItem.href}
-              href={subItem.href}
-              className="block px-4 py-3 text-sm transition-colors hover:bg-secondary"
-            >
-              <div className="font-medium text-foreground">{subItem.title}</div>
-              {subItem.description && (
-                <div className="mt-1 text-xs text-muted">{subItem.description}</div>
-              )}
-            </Link>
-          ))}
+        <div className="absolute left-0 top-full z-50 pt-2">
+          <div className="w-64 rounded-lg border border-border bg-white py-2 shadow-xl">
+            {item.items.map((subItem) => (
+              <Link
+                key={subItem.href}
+                href={subItem.href}
+                className="block px-4 py-3 text-sm transition-colors hover:bg-secondary"
+              >
+                <div className="font-medium text-foreground">
+                  {subItem.title}
+                </div>
+                {subItem.description && (
+                  <div className="mt-1 text-xs text-muted">
+                    {subItem.description}
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
