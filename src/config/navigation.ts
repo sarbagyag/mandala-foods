@@ -7,19 +7,19 @@ export const navigationConfig: NavigationConfig = {
       href: "/who-we-are",
       items: [
         {
-          title: "Our Story",
-          href: "/who-we-are#our-story",
-          description: "Learn about our journey and mission",
+          title: "Our Journey",
+          href: "/who-we-are#our-journey",
+          description: "From overlooked harvests to reimagined nutrition",
         },
         {
-          title: "Mission and Values",
-          href: "/who-we-are#mission-values",
-          description: "Our core values and guiding principles",
+          title: "Mission & Vision",
+          href: "/who-we-are#mission-vision",
+          description: "Our belief, mission, and vision for the future",
         },
         {
-          title: "Staff and Board",
+          title: "Staff & Board",
           href: "/who-we-are#staff-board",
-          description: "Meet our team and leadership",
+          description: "Meet the team turning waste into worth",
         },
       ],
     },

@@ -1,6 +1,5 @@
 import React from "react";
 import { VideoHeroSection as VideoHeroSectionType } from "@/domains/content/types";
-import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
 interface VideoHeroSectionProps {
@@ -43,24 +42,23 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex h-full items-end pb-20 md:pb-28 lg:pb-32">
-        <Container>
-          <div className="max-w-5xl space-y-8 animate-fade-in">
+      <div className="relative z-10 top-25 left-0 flex h-full items-end pb-20 md:pb-28 lg:pb-32 px-6 md:px-12 lg:px-16">
+        <div className="max-w-5xl space-y-8 animate-fade-in">
             {/* Heading with elegant typography */}
             <h1 className="font-extrabold leading-[1.1] tracking-tight">
               {heading.split(" ").map((word, index) => {
-                // Highlight first word in Carrot Orange (Mandala Foods brand color)
+                // Highlight first word in Carrot Orange gradient (Mandala Foods brand color)
                 if (index === 0) {
                   return (
                     <span
                       key={index}
                       className="block text-6xl md:text-7xl lg:text-8xl mb-2"
                       style={{
-                        background: "linear-gradient(90deg, #ff8a00, #ff5e62)",
+                        background:
+                          "linear-gradient(135deg, #ff9a3c 0%, #e5790e 50%, #c85a00 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
-                        color: "transparent",
                       }}
                     >
                       {word}
@@ -84,7 +82,17 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
                 style={{ color: "white" }}
                 className="max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed text-white font-light"
               >
-                {subheading}
+                {/* {subheading} */}
+                “Good nutrition should be accessible to all—and no nourishing
+                food should ever go to waste.” This belief is the heart of
+                Mandala Foods. We don’t just process fruits—we upcycle abundance
+                into dignity, equity, and opportunity. Our circular food model
+                reimagines surplus as a catalyst for nutrition, livelihood, and
+                climate resilience.
+                <br />
+                <br />
+                Every product, message, and partnership reflects our commitment
+                to build a just and nourishing food future.
               </p>
             )}
 
@@ -93,9 +101,12 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
               {cta && (
                 <Button
                   href={cta.href}
-                  variant="accent"
                   size="lg"
                   className="group text-white font-bold px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-base hover:scale-105"
+                  style={{
+                    backgroundColor: "#e5790e",
+                    borderColor: "#e5790e",
+                  }}
                 >
                   {cta.text}
                   <svg
@@ -125,7 +136,6 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
               )}
             </div>
           </div>
-        </Container>
       </div>
 
       {/* Elegant Scroll Indicator */}

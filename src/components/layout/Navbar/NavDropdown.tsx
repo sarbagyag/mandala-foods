@@ -43,7 +43,7 @@ export function NavDropdown({ item, isScrolled = false }: NavDropdownProps) {
       <Link
         href={item.href}
         className={cn(
-          "px-4 py-2 text-sm font-semibold transition-colors",
+          "px-6 py-2 text-lg font-semibold transition-colors",
           isScrolled
             ? "text-gray-900 hover:text-primary"
             : "text-white hover:text-white/80"
@@ -62,7 +62,7 @@ export function NavDropdown({ item, isScrolled = false }: NavDropdownProps) {
     >
       <button
         className={cn(
-          "flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-colors",
+          "flex items-center gap-1 px-6 py-2 text-lg font-semibold transition-colors",
           isScrolled
             ? "text-gray-900 hover:text-primary"
             : "text-white hover:text-white/80"
@@ -73,7 +73,7 @@ export function NavDropdown({ item, isScrolled = false }: NavDropdownProps) {
         {item.title}
         <svg
           className={cn(
-            "h-4 w-4 transition-transform duration-200",
+            "h-5 w-5 transition-transform duration-200",
             isOpen && "rotate-180"
           )}
           fill="none"
@@ -91,18 +91,18 @@ export function NavDropdown({ item, isScrolled = false }: NavDropdownProps) {
 
       {isOpen && (
         <div className="absolute left-0 top-full z-50 pt-2">
-          <div className="w-64 rounded-lg border border-border bg-white py-2 shadow-xl">
+          <div className="w-72 rounded-lg border border-gray-200 bg-white py-2 shadow-xl">
             {item.items.map((subItem) => (
               <Link
                 key={subItem.href}
                 href={subItem.href}
-                className="block px-4 py-3 text-sm transition-colors hover:bg-secondary"
+                className="block px-5 py-3 text-sm transition-colors hover:bg-[#e5790e]/10 hover:border-l-4 hover:border-[#e5790e]"
               >
-                <div className="font-medium text-foreground">
+                <div className="font-semibold text-gray-900">
                   {subItem.title}
                 </div>
                 {subItem.description && (
-                  <div className="mt-1 text-xs text-muted">
+                  <div className="mt-1 text-xs text-gray-600">
                     {subItem.description}
                   </div>
                 )}
