@@ -11,11 +11,11 @@ export const homepageContent: HomePageContent = {
     type: "video-hero",
     id: SECTION_IDS.HERO,
     videoUrl: "/videos/mandala-compressed.mp4",
-    heading: "MandalaFoods Turning Local Surplus into Global Solutions",
+    heading: "Mandala Foods Turning Local Surplus into Global Solutions",
     subheading: "We upcycle surplus and cosmetically imperfect fruits into reduced-sugar, high-fiber products — real taste, trusted nutrition, and a story of second chances in every pouch.",
     cta: {
       text: "Discover Our Products",
-      href: "https://eatsmashfoods.com/",
+      href: "/",
       variant: "primary",
     },
     secondaryCta: {

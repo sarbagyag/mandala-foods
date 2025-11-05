@@ -44,98 +44,86 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
       {/* Content */}
       <div className="relative z-10 top-25 left-0 flex h-full items-end pb-20 md:pb-28 lg:pb-32 px-6 md:px-12 lg:px-16">
         <div className="max-w-5xl space-y-8 animate-fade-in">
-            {/* Heading with elegant typography */}
-            <h1 className="font-extrabold leading-[1.1] tracking-tight">
-              {heading.split(" ").map((word, index) => {
-                // Highlight first word in Carrot Orange gradient (Mandala Foods brand color)
-                if (index === 0) {
-                  return (
-                    <span
-                      key={index}
-                      className="block text-6xl md:text-7xl lg:text-8xl mb-2"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #ff9a3c 0%, #e5790e 50%, #c85a00 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                      }}
-                    >
-                      {word}
-                    </span>
-                  );
-                }
-                return (
-                  <span
-                    key={index}
-                    className="text-5xl md:text-6xl lg:text-7xl text-white"
-                  >
-                    {word}{" "}
-                  </span>
-                );
-              })}
-            </h1>
+          {/* Heading with elegant typography */}
+          <h1 className="font-extrabold leading-[1.1] tracking-tight">
+            <span
+              className="block text-6xl md:text-7xl lg:text-8xl mb-2"
+              style={{
+                background:
+                  "linear-gradient(135deg, #ff9a3c 0%, #e5790e 50%, #c85a00 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              {heading.split(" ").slice(0, 2).join(" ")}
+            </span>
+            <span className="block text-5xl md:text-6xl lg:text-7xl text-white">
+              {heading.split(" ").slice(2).join(" ")}
+            </span>
+          </h1>
 
-            {/* Description text with elegant spacing */}
-            {subheading && (
-              <p
-                style={{ color: "white" }}
-                className="max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed text-white font-light"
+          {/* Description text with elegant spacing */}
+          {subheading && (
+            <p
+              style={{ color: "white" }}
+              className="max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed text-white font-light"
+            >
+              {/* {subheading} */}
+              <br />
+              “Good nutrition should be accessible to all—and no nourishing food
+              should ever go to waste.” This belief is the heart of Mandala
+              Foods. We don’t just process fruits—we upcycle abundance into
+              dignity, equity, and opportunity. Our circular food model
+              reimagines surplus as a catalyst for nutrition, livelihood, and
+              climate resilience.
+              <br />
+              <br />
+              Every product, message, and partnership reflects our commitment to
+              build a just and nourishing food future.
+            </p>
+          )}
+
+          {/* CTA Buttons with refined styling */}
+          <div className="flex flex-wrap gap-4 pt-6">
+            {cta && (
+              <Button
+                href={cta.href}
+                size="lg"
+                className="group text-white font-bold px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-base hover:scale-105"
+                style={{
+                  backgroundColor: "#e5790e",
+                  borderColor: "#e5790e",
+                }}
               >
-                {/* {subheading} */}
-                “Good nutrition should be accessible to all—and no nourishing
-                food should ever go to waste.” This belief is the heart of
-                Mandala Foods. We don’t just process fruits—we upcycle abundance
-                into dignity, equity, and opportunity. Our circular food model
-                reimagines surplus as a catalyst for nutrition, livelihood, and
-                climate resilience.
-                <br />
-                <br />
-                Every product, message, and partnership reflects our commitment
-                to build a just and nourishing food future.
-              </p>
+                {cta.text}
+                <svg
+                  className="inline-block ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </Button>
             )}
-
-            {/* CTA Buttons with refined styling */}
-            <div className="flex flex-wrap gap-4 pt-6">
-              {cta && (
-                <Button
-                  href={cta.href}
-                  size="lg"
-                  className="group text-white font-bold px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-base hover:scale-105"
-                  style={{
-                    backgroundColor: "#e5790e",
-                    borderColor: "#e5790e",
-                  }}
-                >
-                  {cta.text}
-                  <svg
-                    className="inline-block ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </Button>
-              )}
-              {secondaryCta && (
-                <Button
-                  href={secondaryCta.href}
-                  variant="outline"
-                  size="lg"
-                  className="group border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900 font-semibold px-10 py-4 rounded-full transition-all duration-300 text-base hover:scale-105"
-                >
-                  {secondaryCta.text}
-                </Button>
-              )}
-            </div>
+            {secondaryCta && (
+              <Button
+                href={secondaryCta.href}
+                variant="outline"
+                size="lg"
+                className="group border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900 font-semibold px-10 py-4 rounded-full transition-all duration-300 text-base hover:scale-105"
+              >
+                {secondaryCta.text}
+              </Button>
+            )}
           </div>
+        </div>
       </div>
 
       {/* Elegant Scroll Indicator */}

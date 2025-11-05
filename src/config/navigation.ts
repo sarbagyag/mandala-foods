@@ -25,7 +25,7 @@ export const navigationConfig: NavigationConfig = {
     },
     {
       title: "Products",
-      href: "https://eatsmashfoods.com/",
+      href: "/",
       external: true,
     },
     {
@@ -76,24 +76,24 @@ export const navigationConfig: NavigationConfig = {
       ],
     },
     {
-      title: "Our Stories",
+      title: "Our Story",
       href: "/our-stories",
       items: [
-        {
-          title: "Overview",
-          href: "/our-stories#overview",
-          description: "Stories from our community",
-        },
-        {
-          title: "Farmers",
-          href: "/our-stories#farmers",
-          description: "Meet the farmers we work with",
-        },
-        {
-          title: "HORECA",
-          href: "/our-stories#horeca",
-          description: "Hotel, restaurant, and cafe partners",
-        },
+        // {
+        //   title: "Overview",
+        //   href: "/our-stories#overview",
+        //   description: "Stories from our community",
+        // },
+        // {
+        //   title: "Farmers",
+        //   href: "/our-stories#farmers",
+        //   description: "Meet the farmers we work with",
+        // },
+        // {
+        //   title: "HORECA",
+        //   href: "/our-stories#horeca",
+        //   description: "Hotel, restaurant, and cafe partners",
+        // },
       ],
     },
   ],

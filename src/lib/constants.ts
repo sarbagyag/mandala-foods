@@ -7,7 +7,7 @@ export const ROUTES = {
   WHO_WE_ARE: "/who-we-are",
   OUR_APPROACH: "/our-approach",
   OUR_STORIES: "/our-stories",
-  PRODUCTS: "https://eatsmashfoods.com/",
+  PRODUCTS: "/products",
   RECIPE_CORNER: "/recipe-corner",
 } as const;
 
