@@ -12,7 +12,7 @@ export const homepageContent: HomePageContent = {
     id: SECTION_IDS.HERO,
     videoUrl: "/videos/mandala-compressed.mp4",
     heading: "Mandala Foods Turning Local Surplus into Global Solutions",
-    subheading: "We upcycle surplus and cosmetically imperfect fruits into reduced-sugar, high-fiber products — real taste, trusted nutrition, and a story of second chances in every pouch.",
+    subheading: "We upcycle surplus and overlooked fruits into nutritious foods — real taste, trusted nutrition, and second chances for fruits, farmers, and families.",
     cta: {
       text: "Discover Our Products",
       href: "/",
@@ -29,15 +29,15 @@ export const homepageContent: HomePageContent = {
     {
       type: "products-grid",
       id: SECTION_IDS.PRODUCTS,
-      heading: "Our Products",
-      subheading: "Sustainably sourced, lovingly crafted",
+      heading: "Nutrition made easy",
+      subheading:"because healthy choices should never have been difficult",
       products: [
         {
           id: "schools",
           title: "Schools",
           description:
             "Nutrition for Learning - Providing healthy, delicious food options for schools",
-          headline: "Nutrition for Learning",
+          headline: "Fuel for Learning",
           image: {
             src: "/images/products/schools.jpg",
             alt: "Kids in a classroom, enjoying Fruit Smash pouches",
@@ -55,7 +55,7 @@ export const homepageContent: HomePageContent = {
           title: "Families (Retail)",
           description:
             "Nutritious Goodness On the Go - Perfect for lunchboxes and busy lifestyles",
-          headline: "Nutritious Goodness On the Go",
+          headline: "Nutrition Made Easy",
           image: {
             src: "/images/products/families.jpg",
             alt: "Someone squeezing a pouch directly, lunchbox or on-the-go",
@@ -110,7 +110,7 @@ export const homepageContent: HomePageContent = {
           id: "mandala-foods",
           title: "Mandala Foods",
           description:
-            "We give surplus fruits a second chance — turning them into reduced-sugar, high-fiber foods that nourish families and empower farmers. Each product is crafted from local produce, carrying real taste, trusted nutrition, and a story worth sharing.",
+            "We upcycle local fruits into low-sugar, fiber-rich foods that nourish families, empower farmers, and deliver taste, trust, and purpose to every meal.",
           image: {
             src: "/images/mission/mandala-foods.jpg",
             alt: "Mandala Foods products made from surplus fruits",
@@ -175,18 +175,18 @@ export const homepageContent: HomePageContent = {
           id: "dignity-for-farmers",
           value: "",
           label: "Dignity for Farmers",
-          description: "By sourcing locally and rescuing imperfect harvests, we create steady markets that value farmers' work and strengthen rural livelihoods.",
+          description: "By sourcing locally and rescuing overlooked harvests, we create steady markets that value farmers' work and strengthen rural livelihoods.",
         },
         {
           id: "fighting-food-loss",
           value: "",
-          label: "Fighting Food Loss & Waste",
+          label: "Turning Food Loss into Nutrition",
           description: "Every fruit we upcycle reduces waste and methane emissions — turning climate costs into nourishment and dignity.",
         },
         {
           id: "changing-food-systems",
           value: "",
-          label: "Changing Food Systems",
+          label: "Building Circular Food Economy",
           description: "We make healthy choices easy to adopt at every level — helping schools, families, and partners shift toward lasting nutrition behaviors.",
         },
       ],

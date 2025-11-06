@@ -69,18 +69,8 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
               style={{ color: "white" }}
               className="max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed text-white font-light"
             >
-              {/* {subheading} */}
               <br />
-              “Good nutrition should be accessible to all—and no nourishing food
-              should ever go to waste.” This belief is the heart of Mandala
-              Foods. We don’t just process fruits—we upcycle abundance into
-              dignity, equity, and opportunity. Our circular food model
-              reimagines surplus as a catalyst for nutrition, livelihood, and
-              climate resilience.
-              <br />
-              <br />
-              Every product, message, and partnership reflects our commitment to
-              build a just and nourishing food future.
+              {subheading}
             </p>
           )}
 
