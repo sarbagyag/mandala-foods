@@ -11,7 +11,7 @@ export default function OurApproachPage() {
   return (
     <>
       {/* Hero Section - Premium Storytelling */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-32 pt-24">
+      <section id="unique-approach" className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-32 pt-24">
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
         <Container>
@@ -43,7 +43,7 @@ export default function OurApproachPage() {
       </section>
 
       {/* Why It Matters - The Challenge */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-24">
+      <section id="why-it-matters" className="bg-gradient-to-b from-gray-50 to-white py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
@@ -119,7 +119,7 @@ export default function OurApproachPage() {
       </section>
 
       {/* Our Circular Model - The Solution */}
-      <section className="relative bg-white py-24">
+      <section id="circular-model" className="relative bg-white py-24">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="mb-20 text-center">
@@ -233,7 +233,7 @@ export default function OurApproachPage() {
       </section>
 
       {/* What Makes Us Different - Differentiation */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-24">
+      <section id="what-makes-us-different" className="bg-gradient-to-b from-gray-50 to-white py-24">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="mb-16 text-center">
@@ -314,7 +314,7 @@ export default function OurApproachPage() {
       </section>
 
       {/* Real Outcomes, Real Impact - Results */}
-      <section className="relative overflow-hidden bg-white py-24">
+      <section id="real-outcomes-real-impact" className="relative overflow-hidden bg-white py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-white to-primary/5"></div>
         <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
         <div className="absolute bottom-1/4 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
@@ -406,7 +406,7 @@ export default function OurApproachPage() {
       </section>
 
       {/* Evidence-Based, Field-Tested - Validation */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-24">
+      <section id="evidence-based-field-tested" className="bg-gradient-to-b from-gray-50 to-white py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
@@ -473,7 +473,7 @@ export default function OurApproachPage() {
       </section>
 
       {/* Built for Scale - Vision */}
-      <section className="relative overflow-hidden bg-white py-24">
+      <section id="built-for-scale" className="relative overflow-hidden bg-white py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
