@@ -41,7 +41,7 @@ export function StaffBoardSection() {
       image: "/images/team/staff/pragya-khanal.jpg",
     },
     {
-      name: "Mr. Sarbagya Shrestha",
+      name: "Er. Sarbagya Shrestha",
       role: "Integrated Communications and AI Strategy Lead Consultant",
       image: "/images/team/staff/sarbagya-shrestha.jpg",
     },
