@@ -86,7 +86,7 @@ export function StaffBoardSection() {
       name: "Dr. Shibani Ghosh",
       role: "Nutrition Expert",
       organization: "Cornell University (Global), I2I",
-      image: "/images/team/experts/shibani.jpg",
+      image: "/images/team/experts/shibanii.jpg",
     },
     {
       name: "Dr. Ahmed Kablan",
