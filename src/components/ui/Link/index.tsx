@@ -7,6 +7,7 @@ export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
   external?: boolean;
   underline?: boolean;
   variant?: "default" | "primary" | "muted";
+  disabled?: boolean;
 }
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
@@ -17,7 +18,9 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       external = false,
       underline = false,
       variant = "default",
+      disabled = false,
       children,
+      onClick,
       ...props
     },
     ref
@@ -34,10 +37,31 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 
     const classes = cn(
       "transition-colors duration-200",
-      variantStyles[variant],
-      underlineStyles,
+      disabled ? "cursor-not-allowed opacity-50 pointer-events-none" : variantStyles[variant],
+      !disabled && underlineStyles,
       className
     );
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (disabled) {
+        e.preventDefault();
+        return;
+      }
+      onClick?.(e);
+    };
+
+    if (disabled) {
+      return (
+        <span
+          ref={ref as React.Ref<HTMLSpanElement>}
+          className={classes}
+          aria-disabled="true"
+          {...(props as React.HTMLAttributes<HTMLSpanElement>)}
+        >
+          {children}
+        </span>
+      );
+    }
 
     if (external) {
       return (
@@ -47,6 +71,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
           target="_blank"
           rel="noopener noreferrer"
           className={classes}
+          onClick={handleClick}
           {...props}
         >
           {children}
@@ -55,7 +80,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     }
 
     return (
-      <NextLink ref={ref} href={href} className={classes} {...props}>
+      <NextLink ref={ref} href={href} className={classes} onClick={handleClick} {...props}>
         {children}
       </NextLink>
     );

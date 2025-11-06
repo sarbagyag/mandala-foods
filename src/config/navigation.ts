@@ -31,17 +31,18 @@ export const navigationConfig: NavigationConfig = {
     {
       title: "Recipe Corner",
       href: "/recipe-corner",
+      disabled: true,
       items: [
-        {
-          title: "Recipes for Home",
-          href: "/recipe-corner#home-recipes",
-          description: "Delicious recipes for everyday cooking",
-        },
-        {
-          title: "Recipes for Foodservice",
-          href: "/recipe-corner#foodservice-recipes",
-          description: "Professional recipes for restaurants and cafes",
-        },
+        // {
+        //   title: "Recipes for Home",
+        //   href: "/recipe-corner#home-recipes",
+        //   description: "Delicious recipes for everyday cooking",
+        // },
+        // {
+        //   title: "Recipes for Foodservice",
+        //   href: "/recipe-corner#foodservice-recipes",
+        //   description: "Professional recipes for restaurants and cafes",
+        // },
       ],
     },
     {
@@ -76,7 +77,7 @@ export const navigationConfig: NavigationConfig = {
       ],
     },
     {
-      title: "Our Story",
+      title: "Our Stories",
       href: "/our-stories",
       items: [
         // {

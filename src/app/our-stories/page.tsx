@@ -19,19 +19,21 @@ export default function OurStoryPage() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Our Story
+              Our Stories
             </h1>
-            <p
-              className="mx-auto max-w-3xl text-xl font-light leading-relaxed text-gray-600 md:text-2xl"
-              style={{
-                fontFamily: "Gilroy, sans-serif",
-                letterSpacing: "-0.01em",
-              }}
-            >
-              What began as a mission to help farmers reduce food loss has grown
-              into something more, a circular food model that transforms waste
-              into nourishment.
-            </p>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <p
+                className="mx-auto max-w-3xl text-xl font-light leading-relaxed text-gray-600 md:text-2xl"
+                style={{
+                  fontFamily: "Gilroy, sans-serif",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                What began as a mission to help farmers reduce food loss has
+                grown into something more, a circular food model that transforms
+                waste into nourishment.
+              </p>
+            </div>
           </div>
         </Container>
       </section>

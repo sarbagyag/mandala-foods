@@ -41,7 +41,7 @@ export function NavDropdown({ item, isScrolled = false }: NavDropdownProps) {
   if (!item.items || item.items.length === 0) {
     return (
       <Link
-        href={item.href}
+        href={item.disabled ? "/" : item.href}
         className={cn(
           "px-6 py-2 text-lg font-semibold transition-colors",
           isScrolled
