@@ -43,7 +43,7 @@ export function StaffBoardSection() {
     {
       name: "Er. Sarbagya Shrestha",
       role: "Integrated Communications and AI Strategy Lead Consultant",
-      image: "/images/team/staff/sarbagya-shrestha.jpg",
+      image: "/images/team/staff/sarbagya.jpg",
     },
     {
       name: "Mr. Abhitosh Dhungel",
@@ -62,31 +62,43 @@ export function StaffBoardSection() {
       name: "Dr. Atul Upadhyay",
       role: "Food and Nutrition Scientist",
       organization: "Vertex Foods (Nepal)",
-      image: "/images/team/experts/atul-upadhyay.jpg",
+      image: "/images/team/experts/atul.jpeg",
     },
     {
       name: "Ms. Lauran Shamie",
       role: "Registered Dietitian, Nutrition Advisor",
       organization: "Global",
-      image: "/images/team/experts/lauran-shamie.jpg",
+      image: "/images/team/experts/lauran.jpg",
     },
     {
       name: "Dr. Patrick Webb",
       role: "Nutrition Expert",
-      organization: "Tufts University (Global)",
-      image: "/images/team/experts/patrick-webb.jpg",
+      organization: "Tufts University (Global), I2I",
+      image: "/images/team/experts/patrick.jpg",
+    },
+    {
+      name: "Sapna Adhikari",
+      role: "Nutrition Expert",
+      organization: "Tufts University (Global), I2I",
+      image: "/images/team/experts/sapna.jpg",
     },
     {
       name: "Dr. Shibani Ghosh",
       role: "Nutrition Expert",
-      organization: "Cornell University (Global)",
-      image: "/images/team/experts/shibani-ghosh.jpg",
+      organization: "Cornell University (Global), I2I",
+      image: "/images/team/experts/shibani.jpg",
     },
     {
       name: "Dr. Ahmed Kablan",
       role: "Expert",
       organization: "WICE (Global)",
-      image: "/images/team/experts/ahmed-kablan.jpg",
+      image: "/images/team/experts/ahmed.jpeg",
+    },
+    {
+      name: "Giacomo Zanello",
+      role: "Policy and Development",
+      organization: "University of Reading",
+      image: "/images/team/experts/giacomo.jpg",
     },
   ];
 
