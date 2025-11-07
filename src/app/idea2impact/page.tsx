@@ -191,9 +191,9 @@ export default function Idea2ImpactPage() {
                   className="mx-auto max-w-4xl text-center text-2xl font-medium leading-relaxed text-gray-700"
                   style={{ fontFamily: "Gilroy, sans-serif" }}
                 >
-                  By uniting circular enterprises under one governance, I2I turns
-                  food loss and waste into nutrition, livelihoods, and climate
-                  action.
+                  By uniting circular enterprises under one governance, I2I
+                  turns food loss and waste into nutrition, livelihoods, and
+                  climate action.
                 </p>
               </div>
             </div>
@@ -580,10 +580,10 @@ export default function Idea2ImpactPage() {
                 className="text-center text-2xl font-light leading-relaxed text-gray-700 md:text-3xl"
                 style={{ fontFamily: "Gilroy, sans-serif" }}
               >
-                Fragmented enterprises struggle to scale alone. I2I aligns actors,
-                incentives, and rules so women‑led businesses can grow faster,
-                prove value, and compete on quality, price, and trust— while
-                advancing public‑good outcomes.
+                Fragmented enterprises struggle to scale alone. I2I aligns
+                actors, incentives, and rules so women‑led businesses can grow
+                faster, prove value, and compete on quality, price, and trust—
+                while advancing public‑good outcomes.
               </p>
             </div>
           </div>
@@ -736,7 +736,7 @@ export default function Idea2ImpactPage() {
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               <a
-                href="/contact"
+                href="/who-we-are#staff-board"
                 className="inline-block rounded-full bg-white px-12 py-5 text-lg font-bold text-[#1d6f8f] shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-gray-50 hover:shadow-xl"
                 style={{ fontFamily: "Gilroy, sans-serif" }}
               >

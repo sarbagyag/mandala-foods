@@ -9,23 +9,23 @@ export const navigationConfig: NavigationConfig = {
         {
           title: "Our Journey",
           href: "/who-we-are#our-journey",
-          description: "From overlooked harvests to reimagined nutrition",
+          // description: "From overlooked harvests to reimagined nutrition",
         },
         {
           title: "Mission & Vision",
           href: "/who-we-are#mission-vision",
-          description: "Our belief, mission, and vision for the future",
+          // description: "Our belief, mission, and vision for the future",
         },
         {
           title: "Staff & Board",
           href: "/who-we-are#staff-board",
-          description: "Meet the team turning waste into worth",
+          // description: "Meet the team turning waste into worth",
         },
       ],
     },
     {
       title: "Products",
-      href: "/",
+      href: "/products",
       external: false,
     },
     {
@@ -52,37 +52,42 @@ export const navigationConfig: NavigationConfig = {
         {
           title: "Our Unique Approach",
           href: "/our-approach#unique-approach",
-          description: "What makes us different",
+          // description: "What makes us different",
         },
         {
           title: "Why it matters?",
           href: "/our-approach#why-it-matters",
-          description: "The food challenges we address",
+          // description: "The food challenges we address",
         },
         {
           title: "Our Circular Model",
           href: "/our-approach#circular-model",
-          description: "Measuring our circular impact",
+          // description: "Measuring our circular impact",
         },
         {
           title: "What makes us different?",
           href: "/our-approach#what-makes-us-different",
-          description: "What sets our approach apart",
+          // description: "What sets our approach apart",
         },
         {
           title: "Real Outcomes, Real Impact",
           href: "/our-approach#real-outcomes-real-impact",
-          description: "The difference we are making",
+          // description: "The difference we are making",
         },
         {
           title: "Evidence-Based, Field-Tested",
           href: "/our-approach#evidence-based-field-tested",
-          description: "Proven strategies driving success",
+          // description: "Proven strategies driving success",
         },
         {
           title: "Built for Scale",
           href: "/our-approach#built-for-scale",
-          description: "Scaling solutions for greater reach",
+          // description: "Scaling solutions for greater reach",
+        },
+        {
+          title: "Idea to Impact (I2I)",
+          href: "/idea2impact",
+          // description: "Our governance platform for circular food enterprises",
         },
       ],
     },
