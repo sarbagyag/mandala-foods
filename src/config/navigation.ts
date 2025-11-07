@@ -30,7 +30,7 @@ export const navigationConfig: NavigationConfig = {
     },
     {
       title: "Recipe Corner",
-      href: "/recipe-corner",
+      href: "/",
       disabled: true,
       items: [
         // {
