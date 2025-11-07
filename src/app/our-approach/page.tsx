@@ -11,7 +11,10 @@ export default function OurApproachPage() {
   return (
     <>
       {/* Hero Section - Premium Storytelling */}
-      <section id="unique-approach" className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-32 pt-24">
+      <section
+        id="unique-approach"
+        className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-32 pt-24"
+      >
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
         <Container>
@@ -21,7 +24,10 @@ export default function OurApproachPage() {
                 CIRCULAR INNOVATION
               </Text>
             </div>
-            <Heading level={1} className="mb-8 text-balance bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <Heading
+              level={1}
+              className="mb-8 text-balance bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
+            >
               Our Approach
             </Heading>
             <div className="mb-8 h-1 w-24 bg-gradient-to-r from-accent via-primary to-accent"></div>
@@ -43,7 +49,10 @@ export default function OurApproachPage() {
       </section>
 
       {/* Why It Matters - The Challenge */}
-      <section id="why-it-matters" className="bg-gradient-to-b from-gray-50 to-white py-24">
+      <section
+        id="why-it-matters"
+        className="bg-gradient-to-b from-gray-50 to-white py-24"
+      >
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
@@ -184,9 +193,21 @@ export default function OurApproachPage() {
                 },
               ].map((step, index) => {
                 const colors = [
-                  { bg: 'bg-gradient-to-br from-accent to-accent-hover', border: 'border-accent', text: 'text-accent' },
-                  { bg: 'bg-gradient-to-br from-primary to-primary-hover', border: 'border-primary', text: 'text-primary' },
-                  { bg: 'bg-gradient-to-br from-accent to-primary', border: 'border-accent', text: 'text-accent' }
+                  {
+                    bg: "bg-gradient-to-br from-accent to-accent-hover",
+                    border: "border-accent",
+                    text: "text-accent",
+                  },
+                  {
+                    bg: "bg-gradient-to-br from-primary to-primary-hover",
+                    border: "border-primary",
+                    text: "text-primary",
+                  },
+                  {
+                    bg: "bg-gradient-to-br from-accent to-primary",
+                    border: "border-accent",
+                    text: "text-accent",
+                  },
                 ];
                 const color = colors[index];
                 return (
@@ -194,9 +215,13 @@ export default function OurApproachPage() {
                     key={index}
                     className="group relative bg-gray-50 p-8 transition-all duration-300 hover:bg-white hover:shadow-2xl lg:p-10"
                   >
-                    <div className={`absolute left-0 top-0 h-full w-1 ${color.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}></div>
+                    <div
+                      className={`absolute left-0 top-0 h-full w-1 ${color.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                    ></div>
                     <div className="mb-6">
-                      <div className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ${color.bg} text-2xl font-bold text-white shadow-lg`}>
+                      <div
+                        className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ${color.bg} text-2xl font-bold text-white shadow-lg`}
+                      >
                         {step.number}
                       </div>
                       <Heading
@@ -209,7 +234,9 @@ export default function OurApproachPage() {
                         {step.subtitle}
                       </Text>
                     </div>
-                    <ul className={`mb-6 space-y-3 border-l-2 ${color.border}/30 pl-4`}>
+                    <ul
+                      className={`mb-6 space-y-3 border-l-2 ${color.border}/30 pl-4`}
+                    >
                       {step.details.map((detail, i) => (
                         <li
                           key={i}
@@ -220,7 +247,9 @@ export default function OurApproachPage() {
                       ))}
                     </ul>
                     <div className={`mt-6 border-t ${color.border}/10 pt-6`}>
-                      <Text className={`text-sm font-semibold leading-relaxed ${color.text}`}>
+                      <Text
+                        className={`text-sm font-semibold leading-relaxed ${color.text}`}
+                      >
                         {step.outcome}
                       </Text>
                     </div>
@@ -233,7 +262,10 @@ export default function OurApproachPage() {
       </section>
 
       {/* What Makes Us Different - Differentiation */}
-      <section id="what-makes-us-different" className="bg-gradient-to-b from-gray-50 to-white py-24">
+      <section
+        id="what-makes-us-different"
+        className="bg-gradient-to-b from-gray-50 to-white py-24"
+      >
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="mb-16 text-center">
@@ -282,18 +314,40 @@ export default function OurApproachPage() {
                 },
               ].map((pillar, index) => {
                 const badgeColors = [
-                  { bg: 'bg-accent/10', text: 'text-accent', glow: 'from-accent/20 to-accent/10' },
-                  { bg: 'bg-primary/10', text: 'text-primary', glow: 'from-primary/20 to-primary/10' },
-                  { bg: 'bg-accent/10', text: 'text-accent', glow: 'from-accent/20 to-primary/10' },
-                  { bg: 'bg-primary/10', text: 'text-primary', glow: 'from-primary/20 to-accent/10' }
+                  {
+                    bg: "bg-accent/10",
+                    text: "text-accent",
+                    glow: "from-accent/20 to-accent/10",
+                  },
+                  {
+                    bg: "bg-primary/10",
+                    text: "text-primary",
+                    glow: "from-primary/20 to-primary/10",
+                  },
+                  {
+                    bg: "bg-accent/10",
+                    text: "text-accent",
+                    glow: "from-accent/20 to-primary/10",
+                  },
+                  {
+                    bg: "bg-primary/10",
+                    text: "text-primary",
+                    glow: "from-primary/20 to-accent/10",
+                  },
                 ];
                 const badgeColor = badgeColors[index];
                 return (
                   <div key={index} className="group relative">
-                    <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-r ${badgeColor.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}></div>
+                    <div
+                      className={`absolute -inset-1 rounded-2xl bg-gradient-to-r ${badgeColor.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}
+                    ></div>
                     <div className="relative rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-accent/30 hover:shadow-xl">
-                      <div className={`mb-4 inline-block rounded-full ${badgeColor.bg} px-3 py-1`}>
-                        <Text className={`text-xs font-bold tracking-wider ${badgeColor.text}`}>
+                      <div
+                        className={`mb-4 inline-block rounded-full ${badgeColor.bg} px-3 py-1`}
+                      >
+                        <Text
+                          className={`text-xs font-bold tracking-wider ${badgeColor.text}`}
+                        >
                           {pillar.badge}
                         </Text>
                       </div>
@@ -314,7 +368,10 @@ export default function OurApproachPage() {
       </section>
 
       {/* Real Outcomes, Real Impact - Results */}
-      <section id="real-outcomes-real-impact" className="relative overflow-hidden bg-white py-24">
+      <section
+        id="real-outcomes-real-impact"
+        className="relative overflow-hidden bg-white py-24"
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-white to-primary/5"></div>
         <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
         <div className="absolute bottom-1/4 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
@@ -334,7 +391,8 @@ export default function OurApproachPage() {
                 }}
               >
                 <Text className="mx-auto max-w-3xl text-xl text-muted">
-                  Measurable results that transform lives and communities
+                  Our target include measurable results that transform lives and
+                  communities
                 </Text>
               </div>
             </div>
@@ -372,22 +430,50 @@ export default function OurApproachPage() {
                 },
               ].map((metric, index) => {
                 const colors = [
-                  { gradient: 'from-accent to-primary', text: 'text-accent', line: 'bg-accent' },
-                  { gradient: 'from-primary to-accent', text: 'text-primary', line: 'bg-primary' },
-                  { gradient: 'from-accent to-accent-hover', text: 'text-accent', line: 'bg-gradient-to-r from-accent to-primary' },
-                  { gradient: 'from-primary to-primary-hover', text: 'text-primary', line: 'bg-gradient-to-r from-primary to-accent' },
-                  { gradient: 'from-accent to-primary', text: 'text-accent', line: 'bg-accent' },
-                  { gradient: 'from-primary to-secondary', text: 'text-primary', line: 'bg-primary' }
+                  {
+                    gradient: "from-accent to-primary",
+                    text: "text-accent",
+                    line: "bg-accent",
+                  },
+                  {
+                    gradient: "from-primary to-accent",
+                    text: "text-primary",
+                    line: "bg-primary",
+                  },
+                  {
+                    gradient: "from-accent to-accent-hover",
+                    text: "text-accent",
+                    line: "bg-gradient-to-r from-accent to-primary",
+                  },
+                  {
+                    gradient: "from-primary to-primary-hover",
+                    text: "text-primary",
+                    line: "bg-gradient-to-r from-primary to-accent",
+                  },
+                  {
+                    gradient: "from-accent to-primary",
+                    text: "text-accent",
+                    line: "bg-accent",
+                  },
+                  {
+                    gradient: "from-primary to-secondary",
+                    text: "text-primary",
+                    line: "bg-primary",
+                  },
                 ];
                 const color = colors[index];
                 return (
                   <div key={index} className="group relative">
-                    <div className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${color.gradient} opacity-0 blur transition duration-500 group-hover:opacity-30`}></div>
+                    <div
+                      className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${color.gradient} opacity-0 blur transition duration-500 group-hover:opacity-30`}
+                    ></div>
                     <div className="relative rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-lg transition-all duration-300 hover:shadow-2xl">
-                      <div className={`mb-4 text-5xl font-bold ${color.text}`}>
+                      <div className={`mb-4 text-4xl font-bold ${color.text}`}>
                         {metric.value}
                       </div>
-                      <div className={`mx-auto mb-3 h-1 w-12 ${color.line}`}></div>
+                      <div
+                        className={`mx-auto mb-3 h-1 w-12 ${color.line}`}
+                      ></div>
                       <Text className="font-semibold text-foreground">
                         {metric.label}
                       </Text>
@@ -406,7 +492,10 @@ export default function OurApproachPage() {
       </section>
 
       {/* Evidence-Based, Field-Tested - Validation */}
-      <section id="evidence-based-field-tested" className="bg-gradient-to-b from-gray-50 to-white py-24">
+      <section
+        id="evidence-based-field-tested"
+        className="bg-gradient-to-b from-gray-50 to-white py-24"
+      >
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
@@ -444,22 +533,43 @@ export default function OurApproachPage() {
                 },
               ].map((item, index) => {
                 const colors = [
-                  { bg: 'bg-gradient-to-br from-accent to-accent-hover', line: 'bg-gradient-to-r from-accent to-primary', text: 'text-accent', glow: 'from-accent/10 to-accent/5' },
-                  { bg: 'bg-gradient-to-br from-primary to-primary-hover', line: 'bg-gradient-to-r from-primary to-accent', text: 'text-primary', glow: 'from-primary/10 to-primary/5' },
-                  { bg: 'bg-gradient-to-br from-accent to-primary', line: 'bg-gradient-to-r from-accent to-primary', text: 'text-accent', glow: 'from-accent/10 to-primary/5' }
+                  {
+                    bg: "bg-gradient-to-br from-accent to-accent-hover",
+                    line: "bg-gradient-to-r from-accent to-primary",
+                    text: "text-accent",
+                    glow: "from-accent/10 to-accent/5",
+                  },
+                  {
+                    bg: "bg-gradient-to-br from-primary to-primary-hover",
+                    line: "bg-gradient-to-r from-primary to-accent",
+                    text: "text-primary",
+                    glow: "from-primary/10 to-primary/5",
+                  },
+                  {
+                    bg: "bg-gradient-to-br from-accent to-primary",
+                    line: "bg-gradient-to-r from-accent to-primary",
+                    text: "text-accent",
+                    glow: "from-accent/10 to-primary/5",
+                  },
                 ];
                 const color = colors[index];
                 return (
                   <div key={index} className="group relative">
-                    <div className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-b ${color.glow} opacity-0 transition duration-300 group-hover:opacity-100`}></div>
+                    <div
+                      className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-b ${color.glow} opacity-0 transition duration-300 group-hover:opacity-100`}
+                    ></div>
                     <div className="relative rounded-2xl border border-gray-200 bg-white p-8 text-center transition-all duration-300 hover:shadow-xl">
-                      <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full ${color.bg} mx-auto text-2xl font-bold text-white shadow-lg`}>
+                      <div
+                        className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full ${color.bg} mx-auto text-2xl font-bold text-white shadow-lg`}
+                      >
                         ✓
                       </div>
                       <Text className="mb-4 text-lg font-semibold text-foreground">
                         {item.finding}
                       </Text>
-                      <div className={`mx-auto my-4 h-1 w-16 ${color.line}`}></div>
+                      <div
+                        className={`mx-auto my-4 h-1 w-16 ${color.line}`}
+                      ></div>
                       <Text className={`font-medium ${color.text}`}>
                         {item.result}
                       </Text>
@@ -473,7 +583,10 @@ export default function OurApproachPage() {
       </section>
 
       {/* Built for Scale - Vision */}
-      <section id="built-for-scale" className="relative overflow-hidden bg-white py-24">
+      <section
+        id="built-for-scale"
+        className="relative overflow-hidden bg-white py-24"
+      >
         <Container>
           <div className="mx-auto max-w-6xl">
             <div className="mb-16 text-center">
@@ -499,7 +612,7 @@ export default function OurApproachPage() {
               </div>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   target: "2M children",
@@ -510,27 +623,67 @@ export default function OurApproachPage() {
                   description: "Thrive through upcycled value chains",
                 },
                 {
-                  target: "New standard",
-                  description: "Circular food systems across the Global South",
+                  target: "Circular Model",
+                  description: "A regenerative approach to food systems",
+                },
+                {
+                  target: "New standard for global south",
+                  description: "Affordable, nutritious food at scale",
                 },
               ].map((vision, index) => {
                 const colors = [
-                  { bg: 'bg-gradient-to-br from-accent to-primary', border: 'hover:border-accent', text: 'text-accent', glow: 'from-accent/20 to-primary/20', line: 'bg-gradient-to-r from-accent to-primary' },
-                  { bg: 'bg-gradient-to-br from-primary to-accent', border: 'hover:border-primary', text: 'text-primary', glow: 'from-primary/20 to-accent/20', line: 'bg-gradient-to-r from-primary to-accent' },
-                  { bg: 'bg-gradient-to-br from-accent via-primary to-accent', border: 'hover:border-accent', text: 'text-accent', glow: 'from-accent/20 to-accent/10', line: 'bg-gradient-to-r from-accent to-primary' }
+                  {
+                    bg: "bg-gradient-to-br from-accent to-primary",
+                    border: "hover:border-accent",
+                    text: "text-accent",
+                    glow: "from-accent/20 to-primary/20",
+                    line: "bg-gradient-to-r from-accent to-primary",
+                  },
+                  {
+                    bg: "bg-gradient-to-br from-primary to-accent",
+                    border: "hover:border-primary",
+                    text: "text-primary",
+                    glow: "from-primary/20 to-accent/20",
+                    line: "bg-gradient-to-r from-primary to-accent",
+                  },
+                  {
+                    bg: "bg-gradient-to-br from-accent via-primary to-accent",
+                    border: "hover:border-accent",
+                    text: "text-accent",
+                    glow: "from-accent/20 to-accent/10",
+                    line: "bg-gradient-to-r from-accent to-primary",
+                  },
+                  {
+                    bg: "bg-gradient-to-br from-primary to-primary-hover",
+                    border: "hover:border-primary",
+                    text: "text-primary",
+                    glow: "from-primary/20 to-primary/10",
+                    line: "bg-gradient-to-r from-primary to-accent",
+                  },
                 ];
                 const color = colors[index];
                 return (
-                  <div key={index} className="group relative">
-                    <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${color.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}></div>
-                    <div className={`relative rounded-2xl border-2 border-gray-200 bg-white p-8 text-center transition-all duration-300 ${color.border} hover:shadow-2xl`}>
-                      <div className={`mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full ${color.bg} text-3xl font-bold text-white shadow-lg`}>
+                  <div key={index} className="group relative h-full">
+                    <div
+                      className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${color.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}
+                    ></div>
+                    <div
+                      className={`relative flex h-full flex-col rounded-2xl border-2 border-gray-200 bg-white p-8 text-center transition-all duration-300 ${color.border} hover:shadow-2xl`}
+                    >
+                      <div
+                        className={`mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full ${color.bg} text-3xl font-bold text-white shadow-lg`}
+                      >
                         {index + 1}
                       </div>
-                      <Heading level={4} className={`mb-3 text-2xl ${color.text}`}>
+                      <Heading
+                        level={4}
+                        className={`mb-3 text-2xl ${color.text}`}
+                      >
                         {vision.target}
                       </Heading>
-                      <div className={`mx-auto mb-4 h-1 w-12 ${color.line}`}></div>
+                      <div
+                        className={`mx-auto mb-4 h-1 w-12 ${color.line}`}
+                      ></div>
                       <Text className="leading-relaxed text-muted">
                         {vision.description}
                       </Text>
