@@ -116,7 +116,7 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
         </div>
       </div>
 
-      {/* Elegant Scroll Indicator */}
+      {/* Elegant Scroll Indicator
       <div className="absolute bottom-12 left-1/2 z-10 -translate-x-1/2">
         <div className="flex flex-col items-center gap-2 animate-bounce">
           <span className="text-white/70 text-xs uppercase tracking-widest font-semibold">
@@ -136,7 +136,7 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
             />
           </svg>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

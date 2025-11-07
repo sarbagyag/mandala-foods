@@ -26,7 +26,7 @@ export const navigationConfig: NavigationConfig = {
     {
       title: "Products",
       href: "/",
-      external: true,
+      external: false,
     },
     {
       title: "Recipe Corner",
