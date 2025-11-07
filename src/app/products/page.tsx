@@ -32,11 +32,10 @@ export default function ProductsPage() {
               className="text-lg text-gray-600 md:text-xl"
               style={{ fontFamily: "Gilroy, sans-serif" }}
             >
-              At Mandala Foods, we turn local Nepali fruits — the ones
-              markets overlook but nature made perfect — into delicious,
-              fruit-based foods. Made from real fruit and sourced directly
-              from farmers, our products are minimally processed and packed
-              with natural goodness.
+              At Mandala Foods, we turn local Nepali fruits — the ones markets
+              overlook but nature made perfect — into delicious, fruit-based
+              foods. Made from real fruit and sourced directly from farmers, our
+              products are minimally processed and packed with natural goodness.
             </p>
           </div>
         </Container>
@@ -395,10 +394,10 @@ export default function ProductsPage() {
                     style={{ fontFamily: "Gilroy, sans-serif" }}
                   >
                     Made from rich fruit purée — not thin juice concentrate —
-                    Fruit Splash captures the fiber, flavor, and freshness nature
-                    intended. Pulpy, bright, and refreshingly honest, it&apos;s
-                    crafted from locally grown fruits — often overlooked, yet
-                    full of the fresh, honest taste of Nepal.
+                    Fruit Splash captures the fiber, flavor, and freshness
+                    nature intended. Pulpy, bright, and refreshingly honest,
+                    it&apos;s crafted from locally grown fruits — often
+                    overlooked, yet full of the fresh, honest taste of Nepal.
                   </p>
 
                   <div className="space-y-6 rounded-3xl border-l-4 border-[#1acf1b] bg-white p-10 shadow-lg">
@@ -499,7 +498,12 @@ export default function ProductsPage() {
                   <div className="relative aspect-square">
                     {/* Placeholder - replace with actual Fruit Splash product image */}
                     <div className="flex items-center justify-center h-full text-gray-400">
-                      <p className="text-2xl" style={{ fontFamily: "Gilroy, sans-serif" }}>Fruit Splash Product Image</p>
+                      <p
+                        className="text-2xl"
+                        style={{ fontFamily: "Gilroy, sans-serif" }}
+                      >
+                        Fruit Splash Product Image
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -515,25 +519,18 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-4xl text-center">
             <h2
               className="mb-6 text-4xl text-white md:text-5xl"
-              style={{ fontFamily: "Gilroy, sans-serif" }}
+              style={{ fontFamily: "Gilroy, sans-serif", color: "white" }}
             >
               Thick, Delicious, and Guilt-Free
             </h2>
             <p
               className="mb-12 text-lg text-white md:text-xl"
-              style={{ fontFamily: "Gilroy, sans-serif" }}
+              style={{ fontFamily: "Gilroy, sans-serif", color: "white" }}
             >
               Fruit that does more — supporting Nepali farmers, reducing food
               waste, and bringing honest nutrition to every home.
             </p>
-            <div className="flex flex-wrap justify-center gap-6">
-              <Link
-                href="/who-we-are#staff-board"
-                className="inline-block rounded-full bg-white px-10 py-4 text-lg text-[#00a54f] transition-all hover:bg-gray-50"
-                style={{ fontFamily: "Gilroy, sans-serif" }}
-              >
-                Get in Touch
-              </Link>
+            <div className="flex flex-wrap justify-center gap-6 mt-1">
               <Link
                 href="/our-approach"
                 className="inline-block rounded-full border-2 border-white px-10 py-4 text-lg text-white transition-all hover:bg-white/10"
