@@ -3,7 +3,7 @@ import { NavigationConfig } from "@/domains/navigation/types";
 export const navigationConfig: NavigationConfig = {
   mainNav: [
     {
-      title: "Who we are?",
+      title: "Who we are",
       href: "/who-we-are",
       items: [
         {

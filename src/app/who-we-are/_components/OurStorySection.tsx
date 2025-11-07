@@ -20,14 +20,9 @@ export function OurStorySection() {
               Our Story
             </h2>
             <div>
-              <p
-                className="mx-auto max-w-3xl text-xl font-light leading-relaxed text-gray-700 md:text-2xl"
-                style={{ fontFamily: "Gilroy, sans-serif" }}
-              >
-                What began as a mission to help farmers reduce food loss has
-                grown into something more, a circular food model that transforms
-                waste into nourishment.
-              </p>
+              What began as a mission to help farmers reduce food loss has grown
+              into something more, a circular food model that transforms waste
+              into nourishment.
             </div>
           </div>
         </Container>
@@ -38,23 +33,23 @@ export function OurStorySection() {
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="order-2 lg:order-1">
-              <div className="mb-4 inline-block rounded-full bg-[#e5790e]/10 px-4 py-2">
+              <div className="mb-6">
                 <span
-                  className="text-sm font-bold tracking-wide text-[#e5790e]"
+                  className="text-sm text-[#e5790e]"
                   style={{ fontFamily: "Gilroy, sans-serif" }}
                 >
                   2020—2024
                 </span>
               </div>
               <h3
-                className="mb-6 text-4xl font-black text-gray-900 md:text-5xl"
+                className="mb-6 text-3xl text-gray-900 md:text-4xl"
                 style={{ fontFamily: "Gilroy, sans-serif" }}
               >
                 A Broken System
               </h3>
               <div
-                className="space-y-4 text-lg leading-relaxed text-gray-700"
-                style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                className="space-y-4 text-lg text-gray-700"
+                style={{ fontFamily: "Gilroy, sans-serif" }}
               >
                 <p>
                   In Nepal, nearly half of all fruits and vegetables never reach
@@ -67,9 +62,7 @@ export function OurStorySection() {
                   markets, and even in kitchens. Farmers lose income. Families
                   lose nutrition.
                 </p>
-                <p className="font-medium text-gray-900">
-                  That is where our journey began.
-                </p>
+                <p>That is where our journey began.</p>
               </div>
             </div>
             <div className="order-1 lg:order-2">
