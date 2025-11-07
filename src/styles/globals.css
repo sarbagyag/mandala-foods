@@ -283,3 +283,38 @@ section {
 .animate-fade-in {
   animation: fade-in 1.2s ease-out forwards;
 }
+
+/* Professional Card Hover Effects */
+.card-hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Typography Refinements for Fortune 500 Standards */
+.heading-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Consistent Border Radius Scale */
+.rounded-card {
+  border-radius: 1rem; /* 16px */
+}
+
+.rounded-card-lg {
+  border-radius: 1.5rem; /* 24px */
+}
+
+/* Professional Shadow Scale */
+.shadow-card {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}

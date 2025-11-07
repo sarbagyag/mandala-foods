@@ -65,17 +65,18 @@ export function StaffBoardSection() {
       image: "/images/team/experts/atul.jpeg",
     },
     {
-      name: "Ms. Lauran Shamie",
-      role: "Registered Dietitian, Nutrition Advisor",
-      organization: "Global",
-      image: "/images/team/experts/lauran.jpg",
-    },
-    {
       name: "Dr. Patrick Webb",
       role: "Nutrition Expert",
       organization: "Tufts University (Global), I2I",
       image: "/images/team/experts/patrick.jpg",
     },
+    {
+      name: "Ms. Lauran Shamie",
+      role: "Nutrition Advisor",
+      organization: "Global",
+      image: "/images/team/experts/lauran.jpg",
+    },
+
     {
       name: "Sapna Adhikari",
       role: "Nutrition Expert",
@@ -287,7 +288,15 @@ export function StaffBoardSection() {
                 </div>
               </div>
 
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap", // allow multiple rows
+                  justifyContent: "center",
+                  gap: "30px",
+                }}
+                className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+              >
                 {experts.map((expert, index) => (
                   <div key={index} className="group relative h-full">
                     {/* Hover effect */}

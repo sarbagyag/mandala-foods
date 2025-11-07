@@ -13,31 +13,31 @@ export default function OurApproachPage() {
       {/* Hero Section - Premium Storytelling */}
       <section
         id="unique-approach"
-        className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-32 pt-24"
+        className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-20 pt-32 md:pb-24 md:pt-40"
       >
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
         <Container>
           <div className="relative z-10 mx-auto max-w-5xl">
-            <div className="mb-6 inline-block rounded-full border border-accent/30 bg-gradient-to-r from-accent/10 to-primary/10 px-4 py-2">
-              <Text className="text-sm font-semibold tracking-wide text-accent">
+            <div className="mb-6 inline-block rounded-full border border-accent/30 bg-gradient-to-r from-accent/10 to-primary/10 px-5 py-2.5">
+              <Text className="text-xs font-bold tracking-widest text-accent">
                 CIRCULAR INNOVATION
               </Text>
             </div>
             <Heading
               level={1}
-              className="mb-8 text-balance bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
+              className="mb-8 text-balance bg-gradient-to-r from-primary via-accent to-primary bg-clip-text font-extrabold leading-tight text-transparent"
             >
               Our Approach
             </Heading>
-            <div className="mb-8 h-1 w-24 bg-gradient-to-r from-accent via-primary to-accent"></div>
+            <div className="mb-10 h-1 w-24 bg-gradient-to-r from-accent via-primary to-accent"></div>
             <Text
               variant="lead"
-              className="mb-6 max-w-4xl text-balance text-3xl font-light leading-tight text-foreground"
+              className="mb-8 max-w-4xl text-balance text-3xl font-semibold leading-tight text-foreground md:text-4xl"
             >
               Circular Food. Local Innovation. Lasting Nutritional Impact.
             </Text>
-            <Text className="max-w-3xl text-xl leading-relaxed text-muted">
+            <Text className="max-w-3xl text-lg leading-relaxed text-muted md:text-xl">
               We&apos;re redefining how food moves through Nepal—from farm to
               table, and back into the community. Our approach is grounded in
               circular food innovation: a system that preserves surplus,
@@ -51,32 +51,24 @@ export default function OurApproachPage() {
       {/* Why It Matters - The Challenge */}
       <section
         id="why-it-matters"
-        className="bg-gradient-to-b from-gray-50 to-white py-24"
+        className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
       >
         <Container>
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-7xl">
             <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6">
+              <Heading level={2} className="mb-6 font-extrabold">
                 Why It Matters
               </Heading>
               <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent to-primary"></div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  gap: "1rem",
-                }}
-              >
-                <Text className="mx-auto max-w-3xl text-xl text-muted">
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
                   Nepal faces a triple food challenge that demands innovative
                   solutions
                 </Text>
               </div>
             </div>
-            <div className="mb-16 grid gap-8 md:grid-cols-3">
+
+            <div className="mb-16 grid gap-6 md:grid-cols-3">
               {[
                 {
                   challenge: "High food loss post-harvest",
@@ -91,26 +83,27 @@ export default function OurApproachPage() {
                   number: "03",
                 },
               ].map((item, index) => (
-                <div key={index} className="group relative">
+                <div key={index} className="group relative h-full">
                   <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-accent to-primary opacity-0 blur transition duration-500 group-hover:opacity-30"></div>
                   <Card
                     padding="lg"
-                    className="relative h-full border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
+                    className="relative flex h-full flex-col border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
                   >
                     <CardContent className="flex h-full flex-col">
-                      <div className="mb-4 text-6xl font-bold bg-gradient-to-br from-accent/20 to-primary/20 bg-clip-text text-transparent">
+                      <div className="mb-6 text-7xl font-extrabold bg-gradient-to-br from-accent/30 to-primary/30 bg-clip-text text-transparent">
                         {item.number}
                       </div>
-                      <Text className="text-lg font-semibold leading-relaxed text-foreground">
+                      <Text className="flex-1 text-lg font-semibold leading-relaxed text-foreground">
                         {item.challenge}
                       </Text>
-                      <div className="mt-4 h-1 w-12 bg-gradient-to-r from-accent to-primary transition-all duration-300 group-hover:w-full"></div>
+                      <div className="mt-6 h-1 w-12 bg-gradient-to-r from-accent to-primary transition-all duration-300 group-hover:w-full"></div>
                     </CardContent>
                   </Card>
                 </div>
               ))}
             </div>
-            <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-r from-accent/5 via-primary/5 to-accent/5 p-8 md:p-12">
+
+            <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-r from-accent/5 via-primary/5 to-accent/5 p-10 md:p-14">
               <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-accent/20 blur-3xl"></div>
               <div className="relative z-10">
                 <Text className="text-center text-lg font-medium leading-relaxed text-foreground md:text-xl">
@@ -128,11 +121,11 @@ export default function OurApproachPage() {
       </section>
 
       {/* Our Circular Model - The Solution */}
-      <section id="circular-model" className="relative bg-white py-24">
+      <section id="circular-model" className="relative bg-white py-20 md:py-28">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="mb-20 text-center">
-              <Heading level={2} className="mb-6">
+              <Heading level={2} className="mb-6 font-extrabold">
                 Our Circular Model
               </Heading>
               <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-primary to-accent"></div>
@@ -140,11 +133,12 @@ export default function OurApproachPage() {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center",
                   flexDirection: "column",
+                  alignItems: "center",
+                  gap: "1rem",
                 }}
               >
-                <Text className="mx-auto mb-4 max-w-2xl text-2xl font-light text-foreground">
+                <Text className="mx-auto mb-6 max-w-2xl text-2xl font-semibold leading-tight text-foreground md:text-3xl">
                   Preserve → Upcycle → Redistribute
                 </Text>
                 <Text className="mx-auto max-w-3xl text-lg text-muted">
@@ -154,7 +148,7 @@ export default function OurApproachPage() {
               </div>
             </div>
 
-            <div className="mb-16 grid gap-1 lg:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-3">
               {[
                 {
                   number: "01",
@@ -213,29 +207,29 @@ export default function OurApproachPage() {
                 return (
                   <div
                     key={index}
-                    className="group relative bg-gray-50 p-8 transition-all duration-300 hover:bg-white hover:shadow-2xl lg:p-10"
+                    className="group relative flex h-full flex-col bg-gray-50 p-8 transition-all duration-300 hover:bg-white hover:shadow-2xl lg:p-10"
                   >
                     <div
-                      className={`absolute left-0 top-0 h-full w-1 ${color.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                      className={`absolute left-0 top-0 h-full w-1.5 ${color.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
                     ></div>
-                    <div className="mb-6">
+                    <div className="mb-6 flex-shrink-0">
                       <div
-                        className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ${color.bg} text-2xl font-bold text-white shadow-lg`}
+                        className={`mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl ${color.bg} text-2xl font-bold text-white shadow-lg`}
                       >
                         {step.number}
                       </div>
                       <Heading
                         level={3}
-                        className="mb-2 text-2xl text-foreground"
+                        className="mb-2 text-2xl font-bold text-foreground"
                       >
                         {step.title}
                       </Heading>
-                      <Text className="text-base font-medium text-muted">
+                      <Text className="text-base font-semibold text-muted">
                         {step.subtitle}
                       </Text>
                     </div>
                     <ul
-                      className={`mb-6 space-y-3 border-l-2 ${color.border}/30 pl-4`}
+                      className={`mb-6 flex-1 space-y-3 border-l-2 ${color.border}/30 pl-5`}
                     >
                       {step.details.map((detail, i) => (
                         <li
@@ -246,7 +240,7 @@ export default function OurApproachPage() {
                         </li>
                       ))}
                     </ul>
-                    <div className={`mt-6 border-t ${color.border}/10 pt-6`}>
+                    <div className={`border-t ${color.border}/10 pt-6`}>
                       <Text
                         className={`text-sm font-semibold leading-relaxed ${color.text}`}
                       >
@@ -264,29 +258,23 @@ export default function OurApproachPage() {
       {/* What Makes Us Different - Differentiation */}
       <section
         id="what-makes-us-different"
-        className="bg-gradient-to-b from-gray-50 to-white py-24"
+        className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
       >
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6">
+              <Heading level={2} className="mb-6 font-extrabold">
                 What Makes Us Different
               </Heading>
               <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent via-primary to-accent"></div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Text className="mx-auto max-w-3xl text-xl text-muted">
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
                   Four pillars of innovation that set us apart
                 </Text>
               </div>
             </div>
-            <div className="grid gap-8 md:grid-cols-2">
+
+            <div className="grid gap-6 md:grid-cols-2">
               {[
                 {
                   title: "Localized Innovations, Global Insight",
@@ -337,25 +325,25 @@ export default function OurApproachPage() {
                 ];
                 const badgeColor = badgeColors[index];
                 return (
-                  <div key={index} className="group relative">
+                  <div key={index} className="group relative h-full">
                     <div
                       className={`absolute -inset-1 rounded-2xl bg-gradient-to-r ${badgeColor.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}
                     ></div>
-                    <div className="relative rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-accent/30 hover:shadow-xl">
+                    <div className="relative flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-accent/30 hover:shadow-xl">
                       <div
-                        className={`mb-4 inline-block rounded-full ${badgeColor.bg} px-3 py-1`}
+                        className={`mb-5 inline-block self-start rounded-full ${badgeColor.bg} px-4 py-2`}
                       >
                         <Text
-                          className={`text-xs font-bold tracking-wider ${badgeColor.text}`}
+                          className={`text-xs font-bold tracking-widest ${badgeColor.text}`}
                         >
                           {pillar.badge}
                         </Text>
                       </div>
-                      <Heading level={4} className="mb-4 text-xl">
+                      <Heading level={3} className="mb-4 text-xl font-bold">
                         {pillar.title}
                       </Heading>
-                      <div className="mb-4 h-1 w-12 bg-gradient-to-r from-accent to-primary"></div>
-                      <Text className="leading-relaxed text-muted">
+                      <div className="mb-5 h-1 w-12 bg-gradient-to-r from-accent to-primary"></div>
+                      <Text className="flex-1 leading-relaxed text-muted">
                         {pillar.description}
                       </Text>
                     </div>
@@ -370,7 +358,7 @@ export default function OurApproachPage() {
       {/* Real Outcomes, Real Impact - Results */}
       <section
         id="real-outcomes-real-impact"
-        className="relative overflow-hidden bg-white py-24"
+        className="relative overflow-hidden bg-white py-20 md:py-28"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-white to-primary/5"></div>
         <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
@@ -378,24 +366,18 @@ export default function OurApproachPage() {
         <Container>
           <div className="relative z-10 mx-auto max-w-7xl">
             <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6">
+              <Heading level={2} className="mb-6 font-extrabold">
                 Real Outcomes, Real Impact
               </Heading>
               <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent via-primary to-accent"></div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Text className="mx-auto max-w-3xl text-xl text-muted">
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
                   Our target include measurable results that transform lives and
                   communities
                 </Text>
               </div>
             </div>
+
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
@@ -463,22 +445,24 @@ export default function OurApproachPage() {
                 ];
                 const color = colors[index];
                 return (
-                  <div key={index} className="group relative">
+                  <div key={index} className="group relative h-full">
                     <div
                       className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${color.gradient} opacity-0 blur transition duration-500 group-hover:opacity-30`}
                     ></div>
-                    <div className="relative rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-lg transition-all duration-300 hover:shadow-2xl">
-                      <div className={`mb-4 text-4xl font-bold ${color.text}`}>
+                    <div className="relative flex h-full min-h-[240px] flex-col justify-center rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-lg transition-all duration-300 hover:shadow-2xl">
+                      <div
+                        className={`mb-5 text-4xl font-extrabold ${color.text}`}
+                      >
                         {metric.value}
                       </div>
                       <div
-                        className={`mx-auto mb-3 h-1 w-12 ${color.line}`}
+                        className={`mx-auto mb-4 h-1 w-12 ${color.line}`}
                       ></div>
-                      <Text className="font-semibold text-foreground">
+                      <Text className="mb-2 font-semibold text-foreground">
                         {metric.label}
                       </Text>
                       {metric.subtext && (
-                        <Text className="mt-2 text-sm text-muted">
+                        <Text className="text-sm text-muted">
                           {metric.subtext}
                         </Text>
                       )}
@@ -494,29 +478,23 @@ export default function OurApproachPage() {
       {/* Evidence-Based, Field-Tested - Validation */}
       <section
         id="evidence-based-field-tested"
-        className="bg-gradient-to-b from-gray-50 to-white py-24"
+        className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
       >
         <Container>
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-7xl">
             <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6">
+              <Heading level={2} className="mb-6 font-extrabold">
                 Evidence-Based, Field-Tested
               </Heading>
               <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-primary via-accent to-primary"></div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Text className="mx-auto max-w-3xl text-xl text-muted">
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
                   Our approach combines global research and local pilot data
                 </Text>
               </div>
             </div>
-            <div className="grid gap-8 md:grid-cols-3">
+
+            <div className="grid gap-6 md:grid-cols-3">
               {[
                 {
                   finding: "Better post-harvest handling",
@@ -554,23 +532,23 @@ export default function OurApproachPage() {
                 ];
                 const color = colors[index];
                 return (
-                  <div key={index} className="group relative">
+                  <div key={index} className="group relative h-full">
                     <div
                       className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-b ${color.glow} opacity-0 transition duration-300 group-hover:opacity-100`}
                     ></div>
-                    <div className="relative rounded-2xl border border-gray-200 bg-white p-8 text-center transition-all duration-300 hover:shadow-xl">
+                    <div className="relative flex h-full min-h-[280px] flex-col rounded-2xl border border-gray-200 bg-white p-8 text-center transition-all duration-300 hover:shadow-xl">
                       <div
-                        className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full ${color.bg} mx-auto text-2xl font-bold text-white shadow-lg`}
+                        className={`mx-auto mb-6 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full ${color.bg} text-2xl font-bold text-white shadow-lg`}
                       >
                         ✓
                       </div>
-                      <Text className="mb-4 text-lg font-semibold text-foreground">
+                      <Text className="mb-5 flex-1 text-lg font-semibold text-foreground">
                         {item.finding}
                       </Text>
                       <div
-                        className={`mx-auto my-4 h-1 w-16 ${color.line}`}
+                        className={`mx-auto mb-5 h-1 w-16 ${color.line}`}
                       ></div>
-                      <Text className={`font-medium ${color.text}`}>
+                      <Text className={`font-semibold ${color.text}`}>
                         {item.result}
                       </Text>
                     </div>
@@ -585,34 +563,27 @@ export default function OurApproachPage() {
       {/* Built for Scale - Vision */}
       <section
         id="built-for-scale"
-        className="relative overflow-hidden bg-white py-24"
+        className="relative overflow-hidden bg-white py-20 md:py-28"
       >
         <Container>
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-7xl">
             <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6">
+              <Heading level={2} className="mb-6 font-extrabold">
                 Built for Scale
               </Heading>
               <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent to-primary"></div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Text className="mb-4 text-xl leading-relaxed text-foreground">
-                  Our circular model isn&apos;t just working—it&apos;s gaining
-                  momentum.
-                </Text>
+              <Text className="mb-6 text-xl font-medium leading-relaxed text-foreground">
+                Our circular model isn&apos;t just working—it&apos;s gaining
+                momentum.
+              </Text>
+              <div style={{ display: "flex", justifyContent: "center" }}>
                 <Text className="mx-auto max-w-3xl text-lg text-muted">
                   We&apos;re building toward a future where:
                 </Text>
               </div>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   target: "2M children",
@@ -668,21 +639,21 @@ export default function OurApproachPage() {
                       className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${color.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}
                     ></div>
                     <div
-                      className={`relative flex h-full flex-col rounded-2xl border-2 border-gray-200 bg-white p-8 text-center transition-all duration-300 ${color.border} hover:shadow-2xl`}
+                      className={`relative flex h-full min-h-[280px] flex-col rounded-2xl border-2 border-gray-200 bg-white p-8 text-center transition-all duration-300 ${color.border} hover:shadow-2xl`}
                     >
                       <div
-                        className={`mb-4 inline-flex h-20 w-20 items-center justify-center rounded-full ${color.bg} text-3xl font-bold text-white shadow-lg`}
+                        className={`mx-auto mb-5 inline-flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full ${color.bg} text-3xl font-bold text-white shadow-lg`}
                       >
                         {index + 1}
                       </div>
                       <Heading
-                        level={4}
-                        className={`mb-3 text-2xl ${color.text}`}
+                        level={3}
+                        className={`mb-4 flex-1 text-xl font-bold ${color.text}`}
                       >
                         {vision.target}
                       </Heading>
                       <div
-                        className={`mx-auto mb-4 h-1 w-12 ${color.line}`}
+                        className={`mx-auto mb-5 h-1 w-12 ${color.line}`}
                       ></div>
                       <Text className="leading-relaxed text-muted">
                         {vision.description}

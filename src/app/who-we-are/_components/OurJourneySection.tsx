@@ -26,7 +26,7 @@ export function OurJourneySection() {
         />
 
         <Container>
-          <div className="relative mx-auto w-[90%] max-w-7xl">
+          <div className="relative mx-auto max-w-7xl">
             {/* Section Header */}
             <div className="mb-12 text-center">
               <div className="mb-6 inline-block">
