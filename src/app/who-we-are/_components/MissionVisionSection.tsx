@@ -30,11 +30,23 @@ export function MissionVisionSection() {
                 </div>
               </div>
               <div>
-                <span>
-                  Good nutrition should be within everyone’s reach — and no
-                  nourishing food should ever go to waste. This belief is the
-                  foundation of who we are. We see food not just as a commodity,
-                  but as a force for dignity, livelihood, and health.
+                <span
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontSize: "1.25rem",
+                    lineHeight: "1.75rem",
+                    color: "#4B5563",
+                    fontWeight: 400,
+                  }}
+                >
+                  <span style={{ fontWeight: "bold" }}>
+                    {" "}
+                    Good nutrition should be within everyone’s reach — and no
+                    nourishing food should ever go to waste.{" "}
+                  </span>{" "}
+                  This belief is the foundation of who we are. We see food not
+                  just as a commodity, but as a force for dignity, livelihood,
+                  and health.
                 </span>
               </div>
             </div>

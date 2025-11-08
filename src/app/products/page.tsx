@@ -536,7 +536,7 @@ export default function ProductsPage() {
                 className="inline-block rounded-full border-2 border-white px-10 py-4 text-lg text-white transition-all hover:bg-white/10"
                 style={{ fontFamily: "Gilroy, sans-serif" }}
               >
-                Our Story
+                Our Approach
               </Link>
             </div>
           </div>

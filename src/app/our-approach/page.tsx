@@ -71,7 +71,7 @@ export default function OurApproachPage() {
             <div className="mb-16 grid gap-6 md:grid-cols-3">
               {[
                 {
-                  challenge: "High food loss post-harvest",
+                  challenge: "High post-harvest food loss",
                   number: "01",
                 },
                 {
