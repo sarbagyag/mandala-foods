@@ -43,6 +43,7 @@ export function OurJourneySection() {
                   </p>
 
                   <p>That&rsquo;s where our story began.</p>
+                  <br />
 
                   <p>
                     Though Mandala Agrifresh, we helped farmers reduce
@@ -54,6 +55,8 @@ export function OurJourneySection() {
                     went without nutritious food.
                   </p>
 
+                  <br />
+
                   <p style={{ fontWeight: "bold" }}>
                     Then came a personal moment of truth.
                   </p>
@@ -63,10 +66,10 @@ export function OurJourneySection() {
                     for safe, fruit-based purees, something easily available
                     abroad but not in Nepal. It struck me: the very fruits being
                     wasted here could become the nourishing food I wanted for
-                    her.
+                    her. That spark became the Mandala Foods.
                   </p>
 
-                  <p>That spark became Mandala Foods.</p>
+                  <br />
 
                   <p>
                     In 2025, we founded Mandala Foods with a clear belief:
@@ -76,14 +79,14 @@ export function OurJourneySection() {
                       nourishing food should ever go to waste.{" "}
                     </span>
                   </p>
-
+                  <br />
                   <p>
                     Today, we upcycle surplus and market-rejected fruits — good
                     harvests overlooked due to cosmetic standards — into safe,
                     affordable, and nutrient-rich fruit-based foods crafted for
                     schools and families across Nepal.
                   </p>
-
+                  <br />
                   <p>
                     Our products are more than food. Every jar and pouch we
                     create is a proof that food loss and waste can become
