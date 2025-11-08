@@ -15,7 +15,7 @@ export const homepageContent: HomePageContent = {
     subheading: "We upcycle surplus and overlooked fruits into nutritious foods — real taste, trusted nutrition, and second chances for fruits, farmers, and families.",
     cta: {
       text: "Discover Our Products",
-      href: "/",
+      href: "/products",
       variant: "primary",
     },
     secondaryCta: {
