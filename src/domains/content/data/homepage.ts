@@ -46,7 +46,7 @@ export const homepageContent: HomePageContent = {
           },
           cta: {
             text: "Schools",
-            href: "/products/schools",
+            href: "/",
             variant: "primary",
           },
         },
@@ -64,7 +64,7 @@ export const homepageContent: HomePageContent = {
           },
           cta: {
             text: "Families",
-            href: "/products/families",
+            href: "/",
             variant: "primary",
           },
         },
@@ -82,7 +82,7 @@ export const homepageContent: HomePageContent = {
           },
           cta: {
             text: "Collaborators",
-            href: "/products/collaborators",
+            href: "/",
             variant: "primary",
           },
         },
