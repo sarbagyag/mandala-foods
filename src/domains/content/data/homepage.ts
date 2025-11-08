@@ -55,7 +55,7 @@ export const homepageContent: HomePageContent = {
           title: "Families (Retail)",
           description:
             "Nutritious Goodness On the Go - Perfect for lunchboxes and busy lifestyles",
-          headline: "Nutrition Made Easy",
+          headline: "Goodness you can trust",
           image: {
             src: "/images/products/families.jpg",
             alt: "Someone squeezing a pouch directly, lunchbox or on-the-go",
