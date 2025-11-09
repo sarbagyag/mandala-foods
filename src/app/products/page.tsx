@@ -497,14 +497,13 @@ export default function ProductsPage() {
                 <div className="overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-green-50 via-lime-50 to-emerald-50 p-16 shadow-2xl">
                   <div className="relative aspect-square">
                     {/* Placeholder - replace with actual Fruit Splash product image */}
-                    <div className="flex items-center justify-center h-full text-gray-400">
-                      <p
-                        className="text-2xl"
-                        style={{ fontFamily: "Gilroy, sans-serif" }}
-                      >
-                        Fruit Splash Product Image
-                      </p>
-                    </div>
+                    <Image
+                      src="/products/mango-splash.png"
+                      alt="Maya Kiwi Smash - Fruit is the Hero"
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
                   </div>
                 </div>
               </div>

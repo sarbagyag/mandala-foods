@@ -46,7 +46,7 @@ export function OurJourneySection() {
                   <br />
 
                   <p>
-                    Though Mandala Agrifresh, we helped farmers reduce
+                    Through Mandala Agrifresh, we helped farmers reduce
                     post-harvest loss with simple, affordable technologies that
                     could keep fruits and vegetables fresh for longer. But we
                     realized that even when fruits reached markets, many were
