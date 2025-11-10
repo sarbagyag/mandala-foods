@@ -93,7 +93,7 @@ export const navigationConfig: NavigationConfig = {
     },
     {
       title: "Our Stories",
-      href: "/",
+      href: "/our-stories",
       items: [
         // {
         //   title: "Overview",
