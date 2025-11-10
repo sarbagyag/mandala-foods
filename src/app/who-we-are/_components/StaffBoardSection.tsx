@@ -8,13 +8,13 @@ export function StaffBoardSection() {
     {
       name: "Dr. Robin Shrestha",
       role: "Chairperson",
-      image: "/images/team/board/robin-shrestha.jpg",
+      image: "/images/team/board/robin.jpeg",
       category: "Board",
     },
     {
       name: "Ms. Sophiya Tamang",
       role: "CEO and Co-Founder",
-      image: "/images/team/board/sophiya-tamang.jpg",
+      image: "/images/team/board/sophiya.png",
       category: "Board",
     },
   ];
@@ -23,37 +23,37 @@ export function StaffBoardSection() {
     {
       name: "Ms. Sophiya Tamang",
       role: "CEO and Co-Founder",
-      image: "/images/team/staff/sophiya-tamang.jpg",
+      image: "/images/team/staff/sophiya.png",
     },
     {
       name: "Mr. Sudeep Bajracharya",
       role: "Co-Founder and Director of Growth and Innovation",
-      image: "/images/team/staff/sudeep-bajracharya.jpg",
+      image: "/images/team/staff/sudeep.png",
     },
     {
       name: "Mr. Mohit Rana",
       role: "Senior Culinary Consultant",
-      image: "/images/team/staff/mohit-rana.jpg",
+      image: "/images/team/staff/mohit.jpeg",
     },
     {
       name: "Ms. Pragya Khanal",
       role: "Operations Manager",
-      image: "/images/team/staff/pragya-khanal.jpg",
+      image: "/images/team/staff/pragya.jpg",
     },
     {
       name: "Er. Sarbagya Shrestha",
       role: "Integrated Communications and AI Strategy Lead Consultant",
-      image: "/images/team/staff/sarbagya.jpg",
+      image: "/images/team/staff/sarbagya.jpeg",
     },
     {
       name: "Mr. Abhitosh Dhungel",
       role: "Food Science Consultant",
-      image: "/images/team/staff/abhitosh-dhungel.jpg",
+      image: "/images/team/staff/abhitosh.jpeg",
     },
     {
       name: "Mr. Bharat Khadka",
       role: "Production Team",
-      image: "/images/team/staff/bharat-khadka.jpg",
+      image: "/images/team/staff/bharat.jpg",
     },
   ];
 
