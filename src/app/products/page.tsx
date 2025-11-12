@@ -13,7 +13,7 @@ export default function ProductsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-white py-24 md:py-32">
+      <section style={{ paddingTop: "100px" }} className="bg-white py-24 md:py-32">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             <h1
@@ -42,7 +42,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Madam Purée Section */}
-      <section className="bg-gray-50 py-20 md:py-24">
+      <section style={{ paddingTop: "100px" }} className="bg-gray-50 py-20 md:py-24">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
@@ -193,7 +193,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Fruit Smash Section */}
-      <section className="bg-gray-50 py-20 md:py-24">
+      <section style={{ paddingTop: "100px" }} className="bg-gray-50 py-20 md:py-24">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
@@ -344,7 +344,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Apple Halwa Section */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-32 md:py-40">
+      <section style={{ paddingTop: "100px" }} className="bg-gradient-to-b from-gray-50 to-white py-32 md:py-40">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
@@ -512,7 +512,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Fruit Splash Section */}
-      <section className="bg-white py-20 md:py-24">
+      <section style={{ paddingTop: "100px" }} className="bg-white py-20 md:py-24">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
@@ -664,7 +664,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-[#00a54f] py-20 text-white md:py-24">
+      <section style={{ paddingTop: "100px" }} className="bg-[#00a54f] py-20 text-white md:py-24">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             <h2

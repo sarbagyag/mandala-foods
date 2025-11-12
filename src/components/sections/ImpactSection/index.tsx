@@ -13,7 +13,7 @@ export function ImpactSection({ data }: ImpactSectionProps) {
   const { id, heading, subheading, metrics, cta } = data;
 
   return (
-    <section id={id} className="relative bg-gradient-to-br from-orange-50 via-red-50 to-orange-50 py-20 md:py-32 overflow-hidden">
+    <section style={{ paddingTop: "100px" }} id={id} className="relative bg-gradient-to-br from-orange-50 via-red-50 to-orange-50 py-20 md:py-32 overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100 rounded-full blur-3xl opacity-30 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-100 rounded-full blur-3xl opacity-30 pointer-events-none" />

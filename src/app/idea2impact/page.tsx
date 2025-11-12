@@ -12,7 +12,10 @@ export default function Idea2ImpactPage() {
   return (
     <>
       {/* Hero Section with Logo and Governance Model Side by Side */}
-      <section className="relative overflow-hidden bg-linear-to-br from-[#1d6f8f]/10 via-[#1d6f8f]/5 to-white py-32 md:py-40 lg:py-48">
+      <section
+        style={{ paddingTop: "100px" }}
+        className="relative overflow-hidden bg-linear-to-br from-[#1d6f8f]/10 via-[#1d6f8f]/5 to-white py-32 md:py-40 lg:py-48"
+      >
         {/* Subtle background pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -274,7 +277,7 @@ export default function Idea2ImpactPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="relative overflow-hidden bg-white py-32 md:py-40">
+      <section style={{ paddingTop: "100px" }} className="relative overflow-hidden bg-white py-32 md:py-40">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -398,7 +401,7 @@ export default function Idea2ImpactPage() {
       </section>
 
       {/* Our Approach - Four Pillars */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-white py-32 md:py-40">
+      <section style={{ paddingTop: "100px" }} className="relative overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-white py-32 md:py-40">
         <div className="absolute left-0 top-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-[#1d6f8f]/5 to-transparent blur-3xl"></div>
 
         <Container>
@@ -424,7 +427,10 @@ export default function Idea2ImpactPage() {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <p
                   className="mx-auto max-w-3xl text-center text-xl leading-relaxed text-gray-600 md:text-2xl"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   We work across four interconnected pillars to create systemic
                   change.
@@ -598,7 +604,7 @@ export default function Idea2ImpactPage() {
       </section>
 
       {/* Integrated Services */}
-      <section className="relative overflow-hidden bg-white py-32 md:py-40">
+      <section style={{ paddingTop: "100px" }} className="relative overflow-hidden bg-white py-32 md:py-40">
         <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-gradient-to-bl from-[#00a54f]/5 to-transparent blur-3xl"></div>
 
         <Container>
@@ -624,7 +630,10 @@ export default function Idea2ImpactPage() {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <p
                   className="mx-auto max-w-3xl text-center text-xl leading-relaxed text-gray-600 md:text-2xl"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   The I2I operating spine combines essential services for
                   comprehensive impact.
@@ -652,7 +661,10 @@ export default function Idea2ImpactPage() {
                 </h4>
                 <p
                   className="text-center text-base leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Product and process innovation for upcycled, safe, nutritious
                   foods.
@@ -678,7 +690,10 @@ export default function Idea2ImpactPage() {
                 </h4>
                 <p
                   className="text-center text-base leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Pooled services for sourcing, quality assurance, and
                   routes‑to‑market.
@@ -704,7 +719,10 @@ export default function Idea2ImpactPage() {
                 </h4>
                 <p
                   className="text-center text-base leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Common metrics and portfolio dashboards for rapid course
                   correction.
@@ -730,7 +748,10 @@ export default function Idea2ImpactPage() {
                 </h4>
                 <p
                   className="text-center text-base leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Standardized unit economics and de‑risked pathways for
                   investors.
@@ -742,7 +763,7 @@ export default function Idea2ImpactPage() {
       </section>
 
       {/* Why This Matters */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-white py-32 md:py-40">
+      <section style={{ paddingTop: "100px" }} className="relative overflow-hidden bg-gradient-to-b from-gray-50/50 via-white to-white py-32 md:py-40">
         <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#1d6f8f]/5 via-[#00a54f]/5 to-[#e5790e]/5 blur-3xl"></div>
 
         <Container>
@@ -786,7 +807,7 @@ export default function Idea2ImpactPage() {
       </section>
 
       {/* Outcomes We Target */}
-      <section className="relative overflow-hidden bg-white py-32 md:py-40">
+      <section style={{ paddingTop: "100px" }} className="relative overflow-hidden bg-white py-32 md:py-40">
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-gradient-to-tr from-[#00a54f]/5 to-transparent blur-3xl"></div>
 
         <Container>
@@ -828,7 +849,10 @@ export default function Idea2ImpactPage() {
                 </div>
                 <p
                   className="flex-1 text-lg leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Lower food loss and waste and higher processor margins.
                 </p>
@@ -850,7 +874,10 @@ export default function Idea2ImpactPage() {
                 </div>
                 <p
                   className="flex-1 text-lg leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Safer products and improved diet quality at affordable price
                   points.
@@ -873,7 +900,10 @@ export default function Idea2ImpactPage() {
                 </div>
                 <p
                   className="flex-1 text-lg leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Women&apos;s leadership and ownership embedded in governance
                   and growth.
@@ -896,7 +926,10 @@ export default function Idea2ImpactPage() {
                 </div>
                 <p
                   className="flex-1 text-lg leading-relaxed text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "Gilroy, sans-serif",
+                    fontWeight: 400,
+                  }}
                 >
                   Verified climate co‑benefits through food loss reduction and
                   efficient logistics.
@@ -908,7 +941,7 @@ export default function Idea2ImpactPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#1d6f8f] via-[#0d7fa0] to-[#0d5f7f] py-40 text-white md:py-48">
+      <section style={{ paddingTop: "100px" }} className="relative overflow-hidden bg-gradient-to-br from-[#1d6f8f] via-[#0d7fa0] to-[#0d5f7f] py-40 text-white md:py-48">
         {/* Animated background elements */}
         <div className="absolute left-0 top-0 h-96 w-96 animate-pulse rounded-full bg-white/5 blur-3xl"></div>
         <div

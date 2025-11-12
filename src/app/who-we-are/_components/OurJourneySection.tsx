@@ -7,7 +7,7 @@ export function OurJourneySection() {
   return (
     <>
       {/* CEO Foreword-Style Journey Section */}
-      <section id="our-journey" className="bg-gray-50 py-16 md:py-20">
+      <section style={{ paddingTop: "100px" }} id="our-journey" className="bg-gray-50 py-16 md:py-20">
         <Container>
           <div className="mx-auto max-w-4xl ">
             {/* Section Header */}

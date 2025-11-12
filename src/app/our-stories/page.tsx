@@ -8,7 +8,10 @@ export const metadata: Metadata = getOurStoriesMetadata();
 
 export default function OurStoryPage() {
   return (
-    <section className="min-h-screen bg-linear-to-br from-gray-50 to-white py-16 md:py-24">
+    <section
+      style={{ paddingTop: "100px" }}
+      className="min-h-screen bg-linear-to-br from-gray-50 to-white py-16 md:py-24"
+    >
       <Container>
         <div className="mx-auto max-w-4xl">
           {/* Badge */}
@@ -55,8 +58,8 @@ export default function OurStoryPage() {
                 className="mb-8 text-base leading-relaxed text-gray-600 md:text-lg"
                 style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
               >
-                Our CEO and Co-Founder Sophiya Tamang has been selected as a
-                finalist for The Bicester Collection&rsquo;s Unlock Her Future
+                Our Chief Executive Officer Sophiya Tamang has been selected as
+                a finalist for The Bicester Collection&rsquo;s Unlock Her Future
                 Prize — spotlighting South Asian women-led innovation from
                 nearly 3,000 applicants. Featured in Vogue Business.
               </p>

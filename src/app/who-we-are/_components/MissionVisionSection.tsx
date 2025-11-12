@@ -8,6 +8,7 @@ export function MissionVisionSection() {
     <>
       {/* Section Header */}
       <section
+        style={{ paddingTop: "100px" }}
         id="mission-vision"
         className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white py-16"
       >

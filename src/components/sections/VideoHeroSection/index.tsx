@@ -19,6 +19,7 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
 
   return (
     <section
+      style={{ paddingTop: "100px" }}
       id={id}
       className="relative h-screen w-full overflow-hidden bg-black"
     >

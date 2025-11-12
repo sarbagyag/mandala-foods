@@ -12,6 +12,7 @@ export default function OurApproachPage() {
     <>
       {/* Hero Section - Premium Storytelling */}
       <section
+        style={{ paddingTop: "100px" }}
         id="unique-approach"
         className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-20 pt-32 md:pb-24 md:pt-40"
       >
@@ -50,6 +51,7 @@ export default function OurApproachPage() {
 
       {/* Why It Matters - The Challenge */}
       <section
+        style={{ paddingTop: "100px" }}
         id="why-it-matters"
         className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
       >
@@ -121,7 +123,7 @@ export default function OurApproachPage() {
       </section>
 
       {/* Our Circular Model - The Solution */}
-      <section id="circular-model" className="relative bg-white py-20 md:py-28">
+      <section style={{ paddingTop: "100px" }} id="circular-model" className="relative bg-white py-20 md:py-28">
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="mb-20 text-center">
@@ -257,6 +259,7 @@ export default function OurApproachPage() {
 
       {/* What Makes Us Different - Differentiation */}
       <section
+        style={{ paddingTop: "100px" }}
         id="what-makes-us-different"
         className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
       >
@@ -357,6 +360,7 @@ export default function OurApproachPage() {
 
       {/* Real Outcomes, Real Impact - Results */}
       <section
+        style={{ paddingTop: "100px" }}
         id="real-outcomes-real-impact"
         className="relative overflow-hidden bg-white py-20 md:py-28"
       >
@@ -477,6 +481,7 @@ export default function OurApproachPage() {
 
       {/* Evidence-Based, Field-Tested - Validation */}
       <section
+        style={{ paddingTop: "100px" }}
         id="evidence-based-field-tested"
         className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
       >
@@ -562,6 +567,7 @@ export default function OurApproachPage() {
 
       {/* Built for Scale - Vision */}
       <section
+        style={{ paddingTop: "100px" }}
         id="built-for-scale"
         className="relative overflow-hidden bg-white py-20 md:py-28"
       >

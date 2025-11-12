@@ -14,7 +14,7 @@ export function MissionSection({ data }: MissionSectionProps) {
   const { id, heading, subheading, missions } = data;
 
   return (
-    <section id={id} className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-32">
+    <section style={{ paddingTop: "100px" }} id={id} className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-32">
       <Container>
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <Heading level={2} className="mb-6 text-gray-900">

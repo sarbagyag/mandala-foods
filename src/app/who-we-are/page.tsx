@@ -11,7 +11,7 @@ export default function WhoWeArePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white py-16 md:py-20">
+      <section style={{ paddingTop: "100px" }} className="relative overflow-hidden bg-white py-16 md:py-20">
         <div
           className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-orange-50/30"
           aria-hidden="true"

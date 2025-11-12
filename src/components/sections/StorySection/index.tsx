@@ -26,6 +26,7 @@ export function StorySection({ data }: StorySectionProps) {
 
   return (
     <section
+      style={{ paddingTop: "100px" }}
       id={id}
       className="bg-white py-20 md:py-32 relative overflow-hidden"
     >

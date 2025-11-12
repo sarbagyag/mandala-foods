@@ -10,7 +10,7 @@ export default function RecipeCornerPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary py-20 text-white">
+      <section style={{ paddingTop: "100px" }} className="bg-primary py-20 text-white">
         <Container>
           <Heading level={1} className="mb-6 text-white">
             Recipe Corner
@@ -23,7 +23,7 @@ export default function RecipeCornerPage() {
       </section>
 
       {/* Home Recipes */}
-      <section id="home-recipes" className="bg-white">
+      <section style={{ paddingTop: "100px" }} id="home-recipes" className="bg-white">
         <Container>
           <Heading level={2} className="mb-6">
             Recipes for Home
@@ -41,7 +41,7 @@ export default function RecipeCornerPage() {
       </section>
 
       {/* Foodservice Recipes */}
-      <section id="foodservice-recipes" className="bg-secondary/30">
+      <section style={{ paddingTop: "100px" }} id="foodservice-recipes" className="bg-secondary/30">
         <Container>
           <Heading level={2} className="mb-6">
             Recipes for Foodservice

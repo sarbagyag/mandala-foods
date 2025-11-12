@@ -15,6 +15,7 @@ export function ProductsGrid({ data }: ProductsGridSectionProps) {
 
   return (
     <section
+      style={{ paddingTop: "100px" }}
       id={id}
       className="bg-gradient-to-b from-white to-gray-50 py-20 md:py-32"
     >

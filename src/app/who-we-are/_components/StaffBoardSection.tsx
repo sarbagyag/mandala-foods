@@ -13,8 +13,14 @@ export function StaffBoardSection() {
     },
     {
       name: "Ms. Sophiya Tamang",
-      role: "CEO and Co-Founder",
+      role: "Chief Executive Officer",
       image: "/images/team/board/sophiya.png",
+      category: "Board",
+    },
+    {
+      name: "Mr. Sudeep Bajracharya",
+      role: "Director, Growth and Innovation",
+      image: "/images/team/staff/sudeep.png",
       category: "Board",
     },
   ];
@@ -22,7 +28,7 @@ export function StaffBoardSection() {
   const staff = [
     {
       name: "Ms. Sophiya Tamang",
-      role: "CEO and Co-Founder",
+      role: "Chief Executive Officer",
       image: "/images/team/staff/sophiya.png",
     },
     {
@@ -67,7 +73,7 @@ export function StaffBoardSection() {
     {
       name: "Dr. Patrick Webb",
       role: "Nutrition Expert",
-      organization: "Tufts University (Global), I2I",
+      organization: "Tufts University (Global), Idea2Impact",
       image: "/images/team/experts/patrick.jpg",
     },
     {
@@ -80,25 +86,25 @@ export function StaffBoardSection() {
     {
       name: "Sapna Adhikari",
       role: "Nutrition Expert",
-      organization: "Tufts University (Global), I2I",
+      organization: "Tufts University (Global), Idea2Impact",
       image: "/images/team/experts/sapna.jpg",
     },
     {
       name: "Dr. Shibani Ghosh",
       role: "Nutrition Expert",
-      organization: "Cornell University (Global), I2I",
+      organization: "Cornell University (Global), Idea2Impact",
       image: "/images/team/experts/shibanii.jpg",
     },
     {
       name: "Dr. Ahmed Kablan",
       role: "Expert",
-      organization: "WICE (Global)",
+      organization: "WICE (Global), Idea2Impact",
       image: "/images/team/experts/ahmed.jpeg",
     },
     {
       name: "Giacomo Zanello",
       role: "Policy and Development",
-      organization: "University of Reading",
+      organization: "University of Reading, Idea2Impact",
       image: "/images/team/experts/giacomo.jpg",
     },
   ];
@@ -106,6 +112,7 @@ export function StaffBoardSection() {
   return (
     <>
       <section
+        style={{ paddingTop: "100px" }}
         id="staff-board"
         className="relative overflow-hidden bg-white py-20 md:py-28"
       >
@@ -165,19 +172,19 @@ export function StaffBoardSection() {
                     className="relative text-3xl font-black text-gray-900 md:text-4xl"
                     style={{ fontFamily: "Gilroy, sans-serif" }}
                   >
-                    Board of Directors
+                    Founders
                   </h3>
                 </div>
               </div>
 
-              <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+              <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
                 {boardMembers.map((member, index) => (
                   <div key={index} className="group relative h-full">
                     {/* Hover glow effect */}
                     <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#e5790e]/20 to-[#c85a00]/20 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100" />
 
                     {/* Card */}
-                    <div className="relative flex h-full min-h-[380px] flex-col items-center justify-start overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500 group-hover:shadow-2xl md:p-10">
+                    <div className="relative flex h-full min-h-[380px] flex-col items-center justify-start overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-500 group-hover:shadow-2xl md:p-8">
                       {/* Image */}
                       <div className="mb-6 flex-shrink-0 overflow-hidden rounded-full border-4 border-gray-100 shadow-xl transition-all duration-500 group-hover:border-[#e5790e]/30 group-hover:shadow-2xl">
                         <img
