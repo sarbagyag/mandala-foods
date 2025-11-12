@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "idea2impact.food" }],
+      "destination": "https://mandalafoods.co/idea2impact/$1",
+      "permanent": true
+    }
+  ]
+}
