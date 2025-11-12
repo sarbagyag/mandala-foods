@@ -48,6 +48,7 @@ export default function OurStoryPage() {
                 style={{
                   fontFamily: "Gilroy, sans-serif",
                   letterSpacing: "-0.015em",
+                  paddingBottom: "20px",
                 }}
               >
                 Turning Ideas Into Impact: Our Women-Led Innovation Making Waves
@@ -56,7 +57,11 @@ export default function OurStoryPage() {
 
               <p
                 className="mb-8 text-base leading-relaxed text-gray-600 md:text-lg"
-                style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                style={{
+                  fontFamily: "Gilroy, sans-serif",
+                  fontWeight: 400,
+                  paddingBottom: "20px",
+                }}
               >
                 Our Chief Executive Officer Sophiya Tamang has been selected as
                 a finalist for The Bicester Collection&rsquo;s Unlock Her Future
@@ -70,7 +75,9 @@ export default function OurStoryPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-lg bg-linear-to-r from-[#00a54f] to-[#1acf1b] px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:shadow-lg"
-                style={{ fontFamily: "Gilroy, sans-serif" }}
+                style={{
+                  fontFamily: "Gilroy, sans-serif",
+                }}
               >
                 Read Full Article
                 <svg
@@ -93,6 +100,7 @@ export default function OurStoryPage() {
                 style={{
                   fontFamily: "Gilroy, sans-serif",
                   letterSpacing: "0.05em",
+                  paddingTop: "10px",
                 }}
               >
                 Vogue Business • September 9, 2025
