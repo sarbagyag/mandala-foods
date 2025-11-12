@@ -512,6 +512,157 @@ export default function ProductsPage() {
         </Container>
       </section>
 
+      {/* Madam Purée Section */}
+      <section className="bg-gray-50 py-20 md:py-24">
+        <Container>
+          <div className="mx-auto max-w-7xl">
+            <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
+              {/* Product Image */}
+              <div className="order-1">
+                <div className="overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-green-100 via-green-50 to-lime-50 p-16 shadow-2xl">
+                  <div className="relative aspect-square">
+                    <Image
+                      src="/products/madampuree.jpeg"
+                      alt="Madam Purée - Like jam, but better"
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div className="order-2">
+                <div className="mb-6 inline-block">
+                  <span
+                    className="rounded-full bg-[#00a54f]/10 px-6 py-2 text-sm uppercase tracking-wider text-[#00a54f]"
+                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                  >
+                    Premium Spread
+                  </span>
+                </div>
+                <h2
+                  className="mb-4 text-5xl text-gray-900 md:text-6xl"
+                  style={{ fontFamily: "Gilroy, sans-serif" }}
+                >
+                  Madam Purée
+                </h2>
+                <p
+                  className="mb-12 text-2xl text-gray-700"
+                  style={{ fontFamily: "Gilroy, sans-serif" }}
+                >
+                  Like jam, but better.
+                </p>
+
+                <div className="space-y-8">
+                  <p
+                    className="text-lg text-gray-700"
+                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                  >
+                    A thick, pulpy fruit purée that brings real fruit flavor to
+                    your table. Made from locally sourced Nepali fruits and
+                    crafted to perfection, Madam Purée delivers the goodness of
+                    fresh fruit in every spoonful — supporting farmers and
+                    reducing food waste.
+                  </p>
+
+                  <div className="space-y-6 rounded-3xl border-l-4 border-[#00a54f] bg-white p-10 shadow-lg">
+                    <div className="flex items-start gap-4">
+                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
+                        <svg
+                          className="h-5 w-5 text-[#00a54f]"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p
+                          className="text-xl text-gray-900"
+                          style={{ fontFamily: "Gilroy, sans-serif" }}
+                        >
+                          Real Fruit Texture
+                        </p>
+                        <p
+                          className="mt-1 text-base text-gray-600"
+                          style={{ fontFamily: "Gilroy, sans-serif" }}
+                        >
+                          Thick and pulpy, not overly processed
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
+                        <svg
+                          className="h-5 w-5 text-[#00a54f]"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p
+                          className="text-xl text-gray-900"
+                          style={{ fontFamily: "Gilroy, sans-serif" }}
+                        >
+                          Locally Sourced
+                        </p>
+                        <p
+                          className="mt-1 text-base text-gray-600"
+                          style={{ fontFamily: "Gilroy, sans-serif" }}
+                        >
+                          Supporting Nepali farmers
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
+                        <svg
+                          className="h-5 w-5 text-[#00a54f]"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p
+                          className="text-xl text-gray-900"
+                          style={{ fontFamily: "Gilroy, sans-serif" }}
+                        >
+                          Naturally Delicious
+                        </p>
+                        <p
+                          className="mt-1 text-base text-gray-600"
+                          style={{ fontFamily: "Gilroy, sans-serif" }}
+                        >
+                          Pure fruit flavor in every bite
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Call to Action */}
       <section className="bg-[#00a54f] py-20 text-white md:py-24">
         <Container>
