@@ -3,7 +3,7 @@
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.idea2impact.food" }],
-      "destination": "https://idea2impact.co/idea2impact/$1",
+      "destination": "https://mandalafoods.co/idea2impact/$1",
       "permanent": true
     }
   ]
