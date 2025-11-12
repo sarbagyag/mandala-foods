@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Container } from "@/components/ui/Container";
+import { Linkedin } from "lucide-react";
 
 export function StaffBoardSection() {
   const boardMembers = [
@@ -10,18 +11,21 @@ export function StaffBoardSection() {
       role: "Chairperson",
       image: "/images/team/board/robin.jpeg",
       category: "Board",
+      linkedIn: "https://www.linkedin.com/in/robinshrestha/",
     },
     {
       name: "Ms. Sophiya Tamang",
       role: "Chief Executive Officer",
       image: "/images/team/board/sophiya.png",
       category: "Board",
+      linkedIn: "https://www.linkedin.com/in/sophiya-tamang/",
     },
     {
       name: "Mr. Sudeep Bajracharya",
       role: "Director, Growth and Innovation",
       image: "/images/team/staff/sudeep.png",
       category: "Board",
+      linkedIn: "https://www.linkedin.com/in/sudeep-bajracharya/",
     },
   ];
 
@@ -30,36 +34,43 @@ export function StaffBoardSection() {
       name: "Ms. Sophiya Tamang",
       role: "Chief Executive Officer",
       image: "/images/team/staff/sophiya.png",
+      linkedIn: "https://www.linkedin.com/in/sophiya-tamang/",
     },
     {
       name: "Mr. Sudeep Bajracharya",
       role: "Director of Growth and Innovation",
       image: "/images/team/staff/sudeep.png",
+      linkedIn: "https://www.linkedin.com/in/sudeep-bajracharya/",
     },
     {
       name: "Mr. Mohit Rana",
       role: "Senior Culinary Consultant",
       image: "/images/team/staff/mohit.jpeg",
+      linkedIn: "",
     },
     {
       name: "Ms. Pragya Khanal",
       role: "Operations Manager",
       image: "/images/team/staff/pragya.jpg",
+      linkedIn: "",
     },
     {
       name: "Er. Sarbagya Shrestha",
       role: "Integrated Communications and AI Strategy Lead Consultant",
       image: "/images/team/staff/sarbagya.jpeg",
+      linkedIn: "https://www.linkedin.com/in/sarbagyashrestha/",
     },
     {
       name: "Mr. Abhitosh Dhungel",
       role: "Food Science Consultant",
       image: "/images/team/staff/abhitosh.jpeg",
+      linkedIn: "",
     },
     {
       name: "Mr. Bharat Khadka",
       role: "Production Team",
       image: "/images/team/staff/bharat.jpg",
+      linkedIn: "",
     },
   ];
 
@@ -210,6 +221,27 @@ export function StaffBoardSection() {
                         </p>
                       </div>
 
+                      {/* LinkedIn Button */}
+                      <div className="mt-4">
+                        {member.linkedIn ? (
+                          <a
+                            href={member.linkedIn}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center rounded-full bg-[#0077b5] p-2 text-white transition-all duration-300 hover:bg-[#005582] hover:shadow-lg"
+                          >
+                            <Linkedin size={20} />
+                          </a>
+                        ) : (
+                          <button
+                            disabled
+                            className="flex cursor-not-allowed items-center justify-center rounded-full bg-gray-300 p-2 text-gray-500 opacity-50"
+                          >
+                            <Linkedin size={20} />
+                          </button>
+                        )}
+                      </div>
+
                       {/* Decorative corner accent */}
                       <div className="absolute right-4 top-4 h-3 w-3 rounded-full bg-[#e5790e] opacity-20" />
                       <div className="absolute left-4 bottom-4 h-2 w-2 rounded-full bg-[#00a54f] opacity-20" />
@@ -269,6 +301,27 @@ export function StaffBoardSection() {
                         >
                           {member.role}
                         </p>
+                      </div>
+
+                      {/* LinkedIn Button */}
+                      <div className="mt-3">
+                        {member.linkedIn ? (
+                          <a
+                            href={member.linkedIn}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center rounded-full bg-[#0077b5] p-2 text-white transition-all duration-300 hover:bg-[#005582] hover:shadow-lg"
+                          >
+                            <Linkedin size={18} />
+                          </a>
+                        ) : (
+                          <button
+                            disabled
+                            className="flex cursor-not-allowed items-center justify-center rounded-full bg-gray-300 p-2 text-gray-500 opacity-50"
+                          >
+                            <Linkedin size={18} />
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
