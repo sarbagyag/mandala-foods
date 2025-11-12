@@ -381,6 +381,12 @@ export function OurStorySection() {
                 className="text-sm font-light text-white/80"
                 style={{ fontFamily: "Gilroy, sans-serif" }}
               >
+                Co-Founder & CEO, Idea2Impact
+              </p>
+              <p
+                className="text-sm font-light text-white/80"
+                style={{ fontFamily: "Gilroy, sans-serif" }}
+              >
                 Co-Founder & CEO, Mandala Foods
               </p>
               <p
