@@ -49,6 +49,11 @@ export const navigationConfig: NavigationConfig = {
       title: "Our Approach",
       href: "/our-approach",
       items: [
+          {
+          title: "Idea to Impact (I2I)",
+          href: "/idea2impact",
+          // description: "Our governance platform for circular food enterprises",
+        },
         {
           title: "Our Unique Approach",
           href: "/our-approach#unique-approach",
@@ -84,11 +89,7 @@ export const navigationConfig: NavigationConfig = {
           href: "/our-approach#built-for-scale",
           // description: "Scaling solutions for greater reach",
         },
-        {
-          title: "Idea to Impact (I2I)",
-          href: "/idea2impact",
-          // description: "Our governance platform for circular food enterprises",
-        },
+      
       ],
     },
     {

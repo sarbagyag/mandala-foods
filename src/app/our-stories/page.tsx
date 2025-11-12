@@ -33,7 +33,7 @@ export default function OurStoryPage() {
                 alt="South Asian finalists - Sophiya Tamang, bottom right"
                 fill
                 className="object-cover"
-                sizes="(max-width: 800px) 100vw, 1000px"
+                sizes="(max-width: 1200spx) 100vw, 1000px"
                 priority
               />
             </div>
