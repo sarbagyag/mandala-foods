@@ -33,7 +33,7 @@ export function StaffBoardSection() {
     },
     {
       name: "Mr. Sudeep Bajracharya",
-      role: "Co-Founder and Director of Growth and Innovation",
+      role: "Director of Growth and Innovation",
       image: "/images/team/staff/sudeep.png",
     },
     {
