@@ -46,6 +46,13 @@ export function OurJourneySection() {
                   <br />
 
                   <p>
+                    In 2025, we founded Idea2Impact and Mandala Foods with a
+                    clear belief:
+                    <span style={{ fontStyle: "italic" }}>
+                      {" "}
+                      Good nutrition should be accessible to all - and no
+                      nourishing food should ever go to waste.
+                    </span>{" "}
                     Through Mandala Agrifresh, we helped farmers reduce
                     post-harvest loss with simple, affordable technologies that
                     could keep fruits and vegetables fresh for longer. But we
@@ -71,15 +78,6 @@ export function OurJourneySection() {
 
                   <br />
 
-                  <p>
-                    In 2025, we founded Mandala Foods with a clear belief:
-                    <span style={{ fontStyle: "italic" }}>
-                      {" "}
-                      Good nutrition should be accessible to all — and no
-                      nourishing food should ever go to waste.{" "}
-                    </span>
-                  </p>
-                  <br />
                   <p>
                     Today, we upcycle surplus and market-rejected fruits — good
                     harvests overlooked due to cosmetic standards — into safe,
