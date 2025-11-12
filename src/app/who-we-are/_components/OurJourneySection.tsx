@@ -41,18 +41,9 @@ export function OurJourneySection() {
                     — in fields, on the road, in markets, and even in kitchens.
                     Farmers lose income. Families lose nutrition.
                   </p>
-
                   <p>That&rsquo;s where our story began.</p>
                   <br />
-
                   <p>
-                    In 2025, we founded Idea2Impact and Mandala Foods with a
-                    clear belief:
-                    <span style={{ fontStyle: "italic" }}>
-                      {" "}
-                      Good nutrition should be accessible to all - and no
-                      nourishing food should ever go to waste.
-                    </span>{" "}
                     Through Mandala Agrifresh, we helped farmers reduce
                     post-harvest loss with simple, affordable technologies that
                     could keep fruits and vegetables fresh for longer. But we
@@ -61,13 +52,10 @@ export function OurJourneySection() {
                     Perfectly edible fruits were being discarded while children
                     went without nutritious food.
                   </p>
-
                   <br />
-
                   <p style={{ fontWeight: "bold" }}>
                     Then came a personal moment of truth.
                   </p>
-
                   <p>
                     While traveling with my six-month-old daughter, I searched
                     for safe, fruit-based purees, something easily available
@@ -75,9 +63,17 @@ export function OurJourneySection() {
                     wasted here could become the nourishing food I wanted for
                     her. That spark became the Mandala Foods.
                   </p>
-
                   <br />
-
+                  <p>
+                    In 2025, we founded Idea2Impact and Mandala Foods with a
+                    clear belief:
+                    <span style={{ fontStyle: "italic" }}>
+                      {" "}
+                      Good nutrition should be accessible to all - and no
+                      nourishing food should ever go to waste.
+                    </span>{" "}
+                  </p>
+                  <br />
                   <p>
                     Today, we upcycle surplus and market-rejected fruits — good
                     harvests overlooked due to cosmetic standards — into safe,
@@ -90,7 +86,6 @@ export function OurJourneySection() {
                     create is a proof that food loss and waste can become
                     nourishment, and that circularity can restore dignity.
                   </p>
-
                   {/* <p>Preserve. Upcycle. Nourish.</p> */}
                 </div>
 
@@ -101,6 +96,12 @@ export function OurJourneySection() {
                     style={{ fontFamily: "Gilroy, sans-serif" }}
                   >
                     Sophiya Tamang
+                  </p>
+                  <p
+                    className="text-sm text-gray-600"
+                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                  >
+                    Co-Founder & CEO, Idea2Impact
                   </p>
                   <p
                     className="text-sm text-gray-600"
