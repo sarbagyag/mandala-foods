@@ -5,6 +5,12 @@
       "has": [{ "type": "host", "value": "www.idea2impact.food" }],
       "destination": "https://mandalafoods.co/idea2impact/$1",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.idea2impact.co" }],
+      "destination": "https://mandalafoods.co/idea2impact/$1",
+      "permanent": true
     }
   ]
 }
