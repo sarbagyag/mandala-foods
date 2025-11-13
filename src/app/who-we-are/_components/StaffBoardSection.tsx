@@ -95,7 +95,7 @@ export function StaffBoardSection() {
     },
 
     {
-      name: "Sapna Adhikari",
+      name: "Dr.Sapna Adhikari",
       role: "Nutrition Expert",
       organization: "Tufts University (Global), Idea2Impact",
       image: "/images/team/experts/sapna.jpg",
