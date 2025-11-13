@@ -103,20 +103,6 @@
   --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #1acf1b; /* Light Green for dark mode */
-    --primary-hover: #00a54f;
-    --secondary: #1e293b;
-    --accent: #e5790e; /* Carrot Orange */
-    --accent-hover: #ff8c1a;
-    --muted: #94a3b8;
-    --border: #334155;
-  }
-}
-
 /* Base Styles */
 * {
   box-sizing: border-box;
@@ -127,6 +113,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  color-scheme: light only;
 }
 
 body {

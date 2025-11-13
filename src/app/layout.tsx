@@ -18,7 +18,7 @@ export default function RootLayout({
   const organizationSchema = generateOrganizationSchema();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
@@ -27,7 +27,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased" suppressHydrationWarning>
+      <body className="antialiased">
         <a href="#main-content" className="skip-to-content">
           Skip to content
         </a>
