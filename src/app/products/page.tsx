@@ -13,7 +13,10 @@ export default function ProductsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section style={{ paddingTop: "100px" }} className="bg-white py-24 md:py-32">
+      <section
+        style={{ paddingTop: "100px" }}
+        className="bg-white py-24 md:py-32"
+      >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             <h1
@@ -42,7 +45,10 @@ export default function ProductsPage() {
       </section>
 
       {/* Madam Purée Section */}
-      <section style={{ paddingTop: "100px" }} className="bg-gray-50 py-20 md:py-24">
+      <section
+        style={{ paddingTop: "100px" }}
+        className="bg-gray-50 py-20 md:py-24"
+      >
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
@@ -193,7 +199,10 @@ export default function ProductsPage() {
       </section>
 
       {/* Fruit Smash Section */}
-      <section style={{ paddingTop: "100px" }} className="bg-gray-50 py-20 md:py-24">
+      <section
+        style={{ paddingTop: "100px" }}
+        className="bg-gray-50 py-20 md:py-24"
+      >
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
@@ -344,7 +353,10 @@ export default function ProductsPage() {
       </section>
 
       {/* Apple Halwa Section */}
-      <section style={{ paddingTop: "100px" }} className="bg-gradient-to-b from-gray-50 to-white py-32 md:py-40">
+      <section
+        style={{ paddingTop: "100px" }}
+        className="bg-gradient-to-b from-gray-50 to-white py-32 md:py-40"
+      >
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
@@ -512,12 +524,30 @@ export default function ProductsPage() {
       </section>
 
       {/* Fruit Splash Section */}
-      <section style={{ paddingTop: "100px" }} className="bg-white py-20 md:py-24">
+      <section
+        style={{ paddingTop: "100px" }}
+        className="bg-white py-20 md:py-24"
+      >
         <Container>
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
-              {/* Product Info */}
+              {/* Product Image */}
               <div className="order-2 lg:order-1">
+                <div className="overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-green-50 via-lime-50 to-emerald-50 p-16 shadow-2xl">
+                  <div className="relative aspect-square">
+                    <Image
+                      src="/products/mango-splash.png"
+                      alt="Maya Kiwi Smash - Fruit is the Hero"
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div className="order-1 lg:order-2">
                 <div className="mb-6 inline-block">
                   <span
                     className="rounded-full bg-[#1acf1b]/10 px-6 py-2 text-sm uppercase tracking-wider text-[#1acf1b]"
@@ -642,29 +672,16 @@ export default function ProductsPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Product Image - Need actual Fruit Splash image */}
-              <div className="order-1 lg:order-2">
-                <div className="overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-green-50 via-lime-50 to-emerald-50 p-16 shadow-2xl">
-                  <div className="relative aspect-square">
-                    {/* Placeholder - replace with actual Fruit Splash product image */}
-                    <Image
-                      src="/products/mango-splash.png"
-                      alt="Maya Kiwi Smash - Fruit is the Hero"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </Container>
       </section>
 
       {/* Call to Action */}
-      <section style={{ paddingTop: "100px" }} className="bg-[#00a54f] py-20 text-white md:py-24">
+      <section
+        style={{ paddingTop: "100px" }}
+        className="bg-[#00a54f] py-20 text-white md:py-24"
+      >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             <h2
