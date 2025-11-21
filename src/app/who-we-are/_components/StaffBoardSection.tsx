@@ -49,17 +49,18 @@ export function StaffBoardSection() {
       linkedIn: "",
     },
     {
-      name: "Ms. Pragya Khanal",
-      role: "Operations Manager",
-      image: "/images/team/staff/pragya.jpg",
-      linkedIn: "",
-    },
-    {
       name: "Er. Sarbagya Shrestha",
       role: "Integrated Communications and AI Strategy Lead Consultant",
       image: "/images/team/staff/sarbagya.jpeg",
       linkedIn: "https://www.linkedin.com/in/sarbagyashrestha/",
     },
+    {
+      name: "Ms. Pragya Khanal",
+      role: "Operations Manager",
+      image: "/images/team/staff/pragya.jpg",
+      linkedIn: "",
+    },
+
     {
       name: "Mr. Abhitosh Dhungel",
       role: "Food Science Consultant",
