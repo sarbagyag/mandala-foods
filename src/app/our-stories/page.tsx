@@ -38,6 +38,7 @@ export default async function OurStoryPage() {
             >
               Our Latest Updates
             </h1>
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
             <p
               className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
               style={{
@@ -46,7 +47,9 @@ export default async function OurStoryPage() {
             >
               Discover the stories, insights, and innovations shaping our journey
             </p>
-          </div>
+ 
+            </div>
+         </div>
 
           {stories.length === 0 ? (
             <div className="text-center py-20 bg-white rounded-3xl shadow-sm ring-1 ring-gray-100">
