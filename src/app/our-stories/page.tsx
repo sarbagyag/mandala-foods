@@ -38,7 +38,7 @@ export default async function OurStoryPage() {
             >
               Our Latest Updates
             </h1>
-            <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
             <p
               className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
               style={{
