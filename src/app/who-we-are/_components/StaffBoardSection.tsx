@@ -57,7 +57,7 @@ export function StaffBoardSection() {
     {
       name: "Ms. Pragya Khanal",
       role: "Operations Manager",
-      image: "/images/team/staff/pragya.jpg",
+      image: "/images/team/staff/pragya_trans.png",
       linkedIn: "",
     },
 
@@ -98,7 +98,7 @@ export function StaffBoardSection() {
     {
       name: "Dr. Sapna Adhikari",
       role: "Nutrition Expert",
-      organization: "Tufts University (Global), Idea2Impact",
+      organization: "Idea2Impact",
       image: "/images/team/experts/sapna.jpg",
     },
     {
