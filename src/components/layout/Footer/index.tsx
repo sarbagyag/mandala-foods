@@ -20,18 +20,22 @@ export function Footer() {
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-20">
             {/* Brand & Social Column - Wider */}
             <div className="lg:col-span-5 space-y-8">
-              <div className="space-y-6">
+              <div className="space-y-6" style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', rowGap: '0.2rem'}}>
+                <div>
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
                   Mandala Foods
                 </h3>
+                </div>
+                <div>
                 <p className="text-base leading-relaxed text-gray-600 max-w-md font-light">
                   Functional food brand upcycling locally sourced surplus and cosmetically rejected fruits into reduced-sugar, high-fiber, enriched food products.
                 </p>
+                </div>
               </div>
 
               {/* Social Links */}
               <div className="pt-2">
-                <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">Follow Us</p>
+                <p style={{marginBottom: '1rem'}} className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">Follow Us</p>
                 <div className="flex gap-3">
                   {siteConfig.links.facebook && (
                     <a
@@ -78,10 +82,12 @@ export function Footer() {
 
             {/* Quick Links */}
             <div className="lg:col-span-3">
+              <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem', flexDirection: 'column', alignItems: 'flex-start', rowGap: '1.5rem'}}>
               <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-8 pb-2 border-b-2" style={{ borderColor: '#e5790e' }}>
                 Quick Links
               </h4>
-              <ul className="space-y-4">
+               <div>
+             <ul className="space-y-4">
                 <li>
                   <Link href="/who-we-are" className="group inline-flex items-center text-gray-600 hover:text-[#e5790e] transition-colors text-base font-medium">
                     <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
@@ -118,13 +124,20 @@ export function Footer() {
                   </Link>
                 </li>
               </ul>
+              </div>
+              </div>
+             
             </div>
 
             {/* Contact */}
             <div className="lg:col-span-4">
+              <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem', flexDirection: 'column', alignItems: 'flex-start', rowGap: '1rem'}}>
               <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-8 pb-2 border-b-2" style={{ borderColor: '#00a54f' }}>
                 Contact Us
               </h4>
+
+              </div>
+<div>
               <ul className="space-y-5">
                 <li>
                   <a
@@ -190,7 +203,10 @@ export function Footer() {
                   </a>
                 </li>
               </ul>
-            </div>
+ 
+</div>
+
+           </div>
           </div>
         </div>
 
