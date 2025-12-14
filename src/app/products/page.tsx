@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
 import { Container } from "@/components/ui/Container";
 import { getProducts } from "@/services/products";
-import { getPbImageUrl } from "@/lib/pocketbase";
+import { getPbImageUrl, ProductRecord } from "@/lib/pocketbase";
 
 export const metadata: Metadata = {
   title: "Our Products | Mandala Foods",
@@ -11,39 +12,42 @@ export const metadata: Metadata = {
     "Real Fruit. Real Goodness. Nutrition Made Easy — crafted for everyday life. Discover Fruit Smash, Fruit Splash, and Apple Halwa made from locally sourced Nepali fruits.",
 };
 
-// Helper to get styles based on category
-const getCategoryStyles = (category: string) => {
-  switch (category) {
-    case "spread":
-      return {
-        imageGradient: "bg-gradient-to-br from-green-100 via-green-50 to-lime-50",
-        sectionBg: "bg-gray-50",
-      };
-    case "smash":
-      return {
-        imageGradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50",
-        sectionBg: "bg-gray-50",
-      };
-    case "innovation":
-      return {
-        imageGradient: "bg-gradient-to-br from-orange-50 via-red-50 to-pink-50",
-        sectionBg: "bg-gradient-to-b from-gray-50 to-white",
-      };
-    case "splash":
-      return {
-        imageGradient: "bg-gradient-to-br from-green-50 via-lime-50 to-emerald-50",
-        sectionBg: "bg-white",
-      };
-    default:
-      return {
-        imageGradient: "bg-gray-100",
-        sectionBg: "bg-white",
-      };
-  }
+// Helper to group sorted products by category
+// Since the API returns them sorted by category_order, we can just iterate.
+type CategoryGroup = {
+  category: string;
+  themeColor: string; // Use the color of the first product in the group as the category theme? Or just individual?
+  products: ProductRecord[];
 };
+
+function groupProducts(products: ProductRecord[]): CategoryGroup[] {
+  const groups: CategoryGroup[] = [];
+  
+  products.forEach((product) => {
+    // Current group is the last one
+    const lastGroup = groups[groups.length - 1];
+    
+    // Normalize category for comparison
+    const currentCategory = product.category || "Other";
+    
+    if (lastGroup && lastGroup.category === currentCategory) {
+      lastGroup.products.push(product);
+    } else {
+      groups.push({
+        category: currentCategory,
+        // Fallback or use product's theme color
+        themeColor: product.theme_color?.startsWith("#") ? product.theme_color : "#00a54f",
+        products: [product],
+      });
+    }
+  });
+
+  return groups;
+}
 
 export default async function ProductsPage() {
   const products = await getProducts();
+  const groupedProducts = groupProducts(products);
 
   return (
     <>
@@ -79,135 +83,145 @@ export default async function ProductsPage() {
         </Container>
       </section>
 
-      {/* Dynamic Products */}
-      {products.map((product, index) => {
-        const styles = getCategoryStyles(product.category);
-        const imageUrl = getPbImageUrl(
-          product.collectionId,
-          product.id,
-          product.product_image
-        );
-        const isEven = index % 2 === 0;
-
-        // Determine text color based on theme_color or default to existing
-        // We ensure it is a valid hex code to support the alpha-channel manipulation below
-        const accentColor = 
-          product.theme_color && product.theme_color.startsWith("#") 
-            ? product.theme_color 
-            : "#00a54f";
+      {/* Dynamic Category Sections */}
+      {groupedProducts.map((group, groupIndex) => {
+        // Use the group's theme color for the badge/section accents
+        const categoryColor = group.themeColor;
         
-        // Helper to Convert hex to rgba for backgrounds with opacity
-        // A simple way is to use existing tailwind classes if possible, 
-        // or style objects. We will use style objects for dynamic colors.
+        // Alternate background colors for sections for visual separation
+        const isSectionEven = groupIndex % 2 === 0;
+        const sectionBgClass = isSectionEven ? "bg-gray-50" : "bg-white";
 
         return (
           <section
-            key={product.id}
-            style={{ paddingTop: "100px" }}
-            className={`${styles.sectionBg} py-20 md:py-24`}
+            key={group.category + groupIndex}
+            className={`${sectionBgClass} py-24`}
           >
             <Container>
               <div className="mx-auto max-w-7xl">
-                <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
-                  {/* Product Image */}
-                  <div className={isEven ? "order-1" : "order-2 lg:order-1"}>
-                    <div
-                      className={`overflow-hidden rounded-3xl border border-gray-200 ${styles.imageGradient} p-16 shadow-2xl`}
+                {/* Category Header */}
+                <div className="mb-16 flex flex-col items-center">
+                   <span
+                      className="rounded-full px-8 py-3 text-sm font-bold uppercase tracking-widest shadow-sm"
+                      style={{
+                        fontFamily: "Gilroy, sans-serif",
+                        backgroundColor: `${categoryColor}15`, // 15% opacity
+                        color: categoryColor,
+                        border: `1px solid ${categoryColor}30`
+                      }}
                     >
-                      <div className="relative aspect-square">
-                        {imageUrl && (
-                          <Image
-                            src={imageUrl}
-                            alt={`${product.name} - ${product.one_liner}`}
-                            fill
-                            className="object-contain" // Keep existing styling
-                            sizes="(max-width: 1024px) 100vw, 50vw"
-                            unoptimized
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                      {group.category.toUpperCase().replace("-", " ")}
+                    </span>
+                </div>
 
-                  {/* Product Info */}
-                  <div className={isEven ? "order-2" : "order-1 lg:order-2"}>
-                    <div className="mb-6 inline-block">
-                      <span
-                        className="rounded-full px-6 py-2 text-sm uppercase tracking-wider"
-                        style={{
-                          fontFamily: "Gilroy, sans-serif",
-                          backgroundColor: `${accentColor}1A`, // 10% opacity
-                          color: accentColor,
-                        }}
-                      >
-                        {product.category_tag}
-                      </span>
-                    </div>
-                    <h2
-                      className="mb-4 text-5xl text-gray-900 md:text-6xl"
-                      style={{ fontFamily: "Gilroy, sans-serif" }}
-                    >
-                      {product.name}
-                    </h2>
-                    <p
-                      className="mb-12 text-2xl text-gray-700"
-                      style={{ fontFamily: "Gilroy, sans-serif" }}
-                    >
-                      {product.one_liner}
-                    </p>
+                {/* Products Grid - 2 Column or Centered Single */}
+                <div 
+                  className={
+                    group.products.length === 1 
+                      ? "flex justify-center" 
+                      : "grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16"
+                  }
+                >
+                  {group.products.map((product) => {
+                     const imageUrl = getPbImageUrl(
+                        product.collectionId,
+                        product.id,
+                        product.product_image
+                      );
+                      const accentColor = 
+                        product.theme_color && product.theme_color.startsWith("#") 
+                          ? product.theme_color 
+                          : "#00a54f";
 
-                    <div className="space-y-8">
-                      <p
-                        className="text-lg text-gray-700"
-                        style={{ fontFamily: "Gilroy, sans-serif" }}
-                      >
-                       {product.excerpt}
-                      </p>
-
+                    return (
                       <div 
-                        className="space-y-6 rounded-3xl border-l-4 bg-white p-10 shadow-lg"
-                        style={{ borderColor: accentColor }}
+                        key={product.id} 
+                        className={`flex flex-col gap-8 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-xl md:p-10 ${
+                          group.products.length === 1 ? "w-full max-w-2xl" : ""
+                        }`}
                       >
-                        {/* Features Loop */}
-                        {product.features?.map((feature, idx) => (
-                           <div key={idx} className="flex items-start gap-4">
-                           <div 
-                             className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-                             style={{ backgroundColor: `${accentColor}1A` }}
-                           >
-                              {/* Using the tick icon consistently */}
-                             <svg
-                               className="h-5 w-5"
-                               style={{ color: accentColor }}
-                               fill="currentColor"
-                               viewBox="0 0 20 20"
-                             >
-                               <path
-                                 fillRule="evenodd"
-                                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                 clipRule="evenodd"
-                               />
-                             </svg>
-                           </div>
-                           <div>
-                             <p
-                               className="text-xl text-gray-900"
-                               style={{ fontFamily: "Gilroy, sans-serif" }}
-                             >
-                               {feature.title}
-                             </p>
-                             <p
-                               className="mt-1 text-base text-gray-600"
-                               style={{ fontFamily: "Gilroy, sans-serif" }}
-                             >
-                               {feature.subtitle}
-                             </p>
-                           </div>
+                         {/* Image Area - Card Style */}
+                         <div 
+                           className="relative overflow-hidden rounded-2xl p-10 md:p-12"
+                           style={{
+                               // Dynamic gradient based on accent color
+                               background: `linear-gradient(135deg, ${accentColor}1A 0%, ${accentColor}05 100%)`,
+                           }}
+                         >
+                            <div className="relative aspect-square w-full">
+                                {imageUrl && (
+                                  <Image
+                                    src={imageUrl}
+                                    alt={`${product.name} - ${product.one_liner}`}
+                                    fill
+                                    className="object-contain transition-transform duration-500 hover:scale-105"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    unoptimized
+                                  />
+                                )}
+                            </div>
                          </div>
-                        ))}
+
+                         {/* Content Area */}
+                         <div className="flex flex-1 flex-col">
+                            <div className="mb-4">
+                                <h3 
+                                    className="text-3xl font-bold text-gray-900 md:text-4xl"
+                                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                                >
+                                    {product.name}
+                                </h3>
+                                <p 
+                                    className="mt-2 text-xl font-medium text-gray-600"
+                                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                                >
+                                    {product.one_liner}
+                                </p>
+                            </div>
+
+                            <p 
+                                className="mb-8 text-gray-600 leading-relaxed"
+                                style={{ fontFamily: "Gilroy, sans-serif" }}
+                            >
+                                {product.excerpt}
+                            </p>
+
+                            {/* Features List */}
+                            <div className="mt-4 space-y-4">
+                                {product.features?.map((feature, idx) => (
+                                    <div key={idx} className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
+                                        <div 
+                                            className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                                            style={{ backgroundColor: `${accentColor}20` }}
+                                        >
+                                            <svg
+                                                className="h-3 w-3"
+                                                style={{ color: accentColor }}
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-gray-900 text-sm">
+                                                {feature.title}
+                                            </p>
+                                            <p className="text-sm text-gray-500">
+                                                {feature.subtitle}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                         </div>
                       </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
             </Container>

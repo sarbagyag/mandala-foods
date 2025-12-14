@@ -67,4 +67,6 @@ export interface ProductRecord {
     bg_color_class?: string;
     features: ProductFeature[];
     order?: number;
+    category_order?: number;
+    product_order?: number;
 }
