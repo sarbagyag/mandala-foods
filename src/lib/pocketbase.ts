@@ -45,3 +45,26 @@ export interface StoryRecord {
     external_link?: string;
     category?: string;
 }
+
+export interface ProductFeature {
+    title: string;
+    subtitle: string;
+}
+
+export interface ProductRecord {
+    id: string;
+    collectionId: string;
+    collectionName: string;
+    created: string;
+    updated: string;
+    name: string;
+    category: 'spread' | 'smash' | 'splash' | 'innovation';
+    category_tag: string;
+    one_liner: string;
+    excerpt: string;
+    product_image: string;
+    theme_color: string;
+    bg_color_class?: string;
+    features: ProductFeature[];
+    order?: number;
+}
