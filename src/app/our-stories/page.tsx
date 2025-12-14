@@ -35,7 +35,7 @@ export default async function OurStoryPage() {
                 fontFamily: "Gilroy, sans-serif",
                 letterSpacing: "-0.02em",
               }}
-            >
+            >Our Latest Updates
               Our Latest Updates
             </h1>
             <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
