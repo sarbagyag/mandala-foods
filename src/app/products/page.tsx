@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 // Since the API returns them sorted by category_order, we can just iterate.
 type CategoryGroup = {
   category: string;
-  themeColor: string; // Use the color of the first product in the group as the category theme? Or just individual?
+  categoryTag: string; // Display name like "Premium Spread"
+  themeColor: string; 
   products: ProductRecord[];
 };
 
@@ -35,6 +36,8 @@ function groupProducts(products: ProductRecord[]): CategoryGroup[] {
     } else {
       groups.push({
         category: currentCategory,
+        // Use the tag from the first product, or fallback to the category name
+        categoryTag: product.category_tag || currentCategory,
         // Fallback or use product's theme color
         themeColor: product.theme_color?.startsWith("#") ? product.theme_color : "#00a54f",
         products: [product],
@@ -148,6 +151,21 @@ export default async function ProductsPage() {
                                background: `linear-gradient(135deg, ${accentColor}1A 0%, ${accentColor}05 100%)`,
                            }}
                          >
+                            {/* Category Tag Badge Overlay */}
+                            <div className="absolute top-2 left-4 z-10">
+                              <span
+                                className="inline-block rounded-sm px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md"
+                                style={{
+                                  fontFamily: "Gilroy, sans-serif",
+                                  // backgroundColor: "#ffeee0", // Premium Creamy Orange
+                                  color: "#c2410c", // Deep Burnt Orange for contrast/legibility
+                                  // border: "1px solid #fed7aa" // Subtle border
+                                }}
+                              >
+                                {product.category_tag}
+                              </span>
+                            </div>
+
                             <div className="relative aspect-square w-full">
                                 {imageUrl && (
                                   <Image
