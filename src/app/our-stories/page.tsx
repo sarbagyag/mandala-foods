@@ -38,7 +38,6 @@ export default async function OurStoryPage() {
                 letterSpacing: "-0.02em",
               }}
             >Our Latest Updates
-              Our Latest Updates
             </h1>
             <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
             <p
