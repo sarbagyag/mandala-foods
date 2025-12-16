@@ -2,7 +2,7 @@ import PocketBase from 'pocketbase';
 
 async function testConnection() {
     // Use the URL provided by the user
-    const pb = new PocketBase('http://127.0.0.1:8090');
+    const pb = new PocketBase('https://cms.mandalafoods.co');
 
     try {
         console.log("Attempting to fetch stories...");
@@ -20,7 +20,7 @@ async function testConnection() {
             console.log("\n--- DIAGNOSIS ---");
             console.log("Status 404 means 'Not Found'.");
             console.log("1. Check if the collection 'stories' actually exists.");
-            console.log("2. Check if the URL is correct (http://127.0.0.1:8090).");
+            console.log("2. Check if the URL is correct (https://cms.mandalafoods.co).");
         } else if (error.status === 403) {
             console.log("\n--- DIAGNOSIS ---");
             console.log("Status 403 means 'Forbidden'.");
@@ -30,7 +30,7 @@ async function testConnection() {
         } else if (error.status === 0) {
             console.log("\n--- DIAGNOSIS ---");
             console.log("Status 0 usually means Connection Refused or Network Error.");
-            console.log("Is PocketBase running? Try visiting http://127.0.0.1:8090/_/ in your browser.");
+            console.log("Is PocketBase running? Try visiting https://cms.mandalafoods.co/_/ in your browser.");
         }
     }
 }

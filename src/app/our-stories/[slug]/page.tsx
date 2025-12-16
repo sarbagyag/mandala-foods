@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   try {
     const story = await pb.collection('stories').getFirstListItem<StoryRecord>(`slug="${slug}"`);
-    const imageUrl = story.cover_image?.[0]
-      ? getPbImageUrl(story.collectionId, story.id, story.cover_image[0])
+    const imageUrl = story.cover_image
+      ? getPbImageUrl(story.collectionId, story.id, story.cover_image)
       : null;
 
     return {
@@ -51,8 +51,8 @@ export default async function StoryDetailPage({ params }: Props) {
     notFound();
   }
 
-  const imageUrl = story.cover_image?.[0]
-    ? getPbImageUrl(story.collectionId, story.id, story.cover_image[0])
+  const imageUrl = story.cover_image
+    ? getPbImageUrl(story.collectionId, story.id, story.cover_image)
     : null;
 
   return (

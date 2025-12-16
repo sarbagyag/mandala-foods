@@ -70,9 +70,9 @@ export default async function OurStoryPage() {
 }
 
 function StoryCard({ story }: { story: StoryRecord }) {
-  // PocketBase returns file fields as arrays, get the first image
-  const imageUrl = story.cover_image?.[0]
-    ? getPbImageUrl(story.collectionId, story.id, story.cover_image[0])
+  // PocketBase returns file fields as string
+  const imageUrl = story.cover_image
+    ? getPbImageUrl(story.collectionId, story.id, story.cover_image)
     : null;
   const linkHref = `/our-stories/${story.slug}`;
 

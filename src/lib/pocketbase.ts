@@ -2,10 +2,8 @@ import PocketBase from 'pocketbase';
 
 // Initialize the PocketBase client
 // You can change the URL to your production URL when deploying
-export const pb = new PocketBase('http://127.0.0.1:2025'); // Using the port you specified (actually user said 8090, let me check)
+export const pb = new PocketBase('https://cms.mandalafoods.co');
 
-// User said: Server started at http://127.0.0.1:8090
-pb.baseUrl = 'http://127.0.0.1:8090';
 
 // Disable auto-cancellation to avoid issues with React Strict Mode in dev
 pb.autoCancellation(false);
@@ -38,7 +36,7 @@ export interface StoryRecord {
     slug: string;
     excerpt: string;
     content: string;
-    cover_image: string[]; // PocketBase returns file fields as arrays
+    cover_image: string; // PocketBase returns file fields as string (if max select is 1)
     published_date: string;
     author?: string;
     is_featured?: boolean;
