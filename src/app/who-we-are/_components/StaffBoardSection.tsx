@@ -58,7 +58,7 @@ export function StaffBoardSection() {
       name: "Ms. Pragya Khanal",
       role: "Operations Manager",
       image: "/images/team/staff/pragya_trans.png",
-      linkedIn: "",
+      linkedIn: "https://www.linkedin.com/in/pragya-khanal-8b6b3a272/",
     },
 
     {
