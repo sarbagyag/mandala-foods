@@ -13,7 +13,7 @@ export const siteConfig = {
     email: "info@mandalafoods.com",
     phone: "+977 9823604610",
     whatsapp: "+9779823604610",
-    address: "Kathmandu, Nepal",
+    address: "Kupondole, Lalitpur, Nepal",
   },
 } as const;
 

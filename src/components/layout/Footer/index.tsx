@@ -20,18 +20,22 @@ export function Footer() {
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-20">
             {/* Brand & Social Column - Wider */}
             <div className="lg:col-span-5 space-y-8">
-              <div className="space-y-6">
+              <div className="space-y-6" style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', rowGap: '0.2rem'}}>
+                <div>
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
                   Mandala Foods
                 </h3>
+                </div>
+                <div>
                 <p className="text-base leading-relaxed text-gray-600 max-w-md font-light">
                   Functional food brand upcycling locally sourced surplus and cosmetically rejected fruits into reduced-sugar, high-fiber, enriched food products.
                 </p>
+                </div>
               </div>
 
               {/* Social Links */}
               <div className="pt-2">
-                <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">Follow Us</p>
+                <p style={{marginBottom: '1rem'}} className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">Follow Us</p>
                 <div className="flex gap-3">
                   {siteConfig.links.facebook && (
                     <a
@@ -78,10 +82,12 @@ export function Footer() {
 
             {/* Quick Links */}
             <div className="lg:col-span-3">
+              <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem', flexDirection: 'column', alignItems: 'flex-start', rowGap: '1.5rem'}}>
               <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-8 pb-2 border-b-2" style={{ borderColor: '#e5790e' }}>
                 Quick Links
               </h4>
-              <ul className="space-y-4">
+               <div>
+             <ul className="space-y-4">
                 <li>
                   <Link href="/who-we-are" className="group inline-flex items-center text-gray-600 hover:text-[#e5790e] transition-colors text-base font-medium">
                     <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
@@ -118,16 +124,42 @@ export function Footer() {
                   </Link>
                 </li>
               </ul>
+              </div>
+              </div>
+             
             </div>
 
             {/* Contact */}
             <div className="lg:col-span-4">
+              <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem', flexDirection: 'column', alignItems: 'flex-start', rowGap: '1rem'}}>
               <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-8 pb-2 border-b-2" style={{ borderColor: '#00a54f' }}>
                 Contact Us
               </h4>
+
+              </div>
+<div>
               <ul className="space-y-5">
                 <li>
                   <a
+                    href={`mailto:${siteConfig.contact.email}`}
+                    className="group flex items-start gap-4 text-gray-600 hover:text-[#e5790e] transition-colors"
+                  >
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0 group-hover:text-white transition-colors" style={{ backgroundColor: 'rgba(229, 121, 14, 0.1)', color: '#e5790e' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#e5790e';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(229, 121, 14, 0.1)';
+                    }}>
+                      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <span className="text-base font-medium mt-2">{siteConfig.contact.phone}</span>
+                  </a>
+                </li>
+                <li>
+                    <a
                     href={`mailto:${siteConfig.contact.email}`}
                     className="group flex items-start gap-4 text-gray-600 hover:text-[#e5790e] transition-colors"
                   >
@@ -143,13 +175,11 @@ export function Footer() {
                       </svg>
                     </div>
                     <span className="text-base font-medium mt-2">{siteConfig.contact.email}</span>
-                  </a>
+                  </a> 
                 </li>
                 <li>
-                  <a
-                    href={`tel:${siteConfig.contact.phone}`}
-                    className="group flex items-start gap-4 text-gray-600 hover:text-[#e5790e] transition-colors"
-                  >
+                  <div  className="group flex items-start gap-4 text-gray-600 hover:text-[#e5790e] transition-colors">
+
                     <div className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0 group-hover:text-white transition-colors" style={{ backgroundColor: 'rgba(0, 165, 79, 0.1)', color: '#00a54f' }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#00a54f';
@@ -158,11 +188,13 @@ export function Footer() {
                       e.currentTarget.style.backgroundColor = 'rgba(0, 165, 79, 0.1)';
                     }}>
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
-                    <span className="text-base font-medium mt-2">{siteConfig.contact.phone}</span>
-                  </a>
+                    <span className="text-base font-medium mt-2">{siteConfig.contact.address}</span>
+
+                  </div>
                 </li>
                 <li className="pt-2">
                   <a
@@ -190,7 +222,10 @@ export function Footer() {
                   </a>
                 </li>
               </ul>
-            </div>
+ 
+</div>
+
+           </div>
           </div>
         </div>
 
