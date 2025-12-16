@@ -8,6 +8,8 @@ import { getPbImageUrl, StoryRecord } from "@/lib/pocketbase";
 
 export const metadata: Metadata = getOurStoriesMetadata();
 
+export const dynamic = "force-dynamic";
+
 export default async function OurStoryPage() {
   const stories = await getStories();
 

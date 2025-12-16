@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     "Real Fruit. Real Goodness. Nutrition Made Easy — crafted for everyday life. Discover Fruit Smash, Fruit Splash, and Apple Halwa made from locally sourced Nepali fruits.",
 };
 
+export const dynamic = "force-dynamic";
+
 // Helper to group sorted products by category
 // Since the API returns them sorted by category_order, we can just iterate.
 type CategoryGroup = {
