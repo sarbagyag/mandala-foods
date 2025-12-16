@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
 import { Container } from "@/components/ui/Container";
+import { getProducts } from "@/services/products";
+import { getPbImageUrl, ProductRecord } from "@/lib/pocketbase";
 
 export const metadata: Metadata = {
   title: "Our Products | Mandala Foods",
@@ -9,7 +12,46 @@ export const metadata: Metadata = {
     "Real Fruit. Real Goodness. Nutrition Made Easy — crafted for everyday life. Discover Fruit Smash, Fruit Splash, and Apple Halwa made from locally sourced Nepali fruits.",
 };
 
-export default function ProductsPage() {
+// Helper to group sorted products by category
+// Since the API returns them sorted by category_order, we can just iterate.
+type CategoryGroup = {
+  category: string;
+  categoryTag: string; // Display name like "Premium Spread"
+  themeColor: string; 
+  products: ProductRecord[];
+};
+
+function groupProducts(products: ProductRecord[]): CategoryGroup[] {
+  const groups: CategoryGroup[] = [];
+  
+  products.forEach((product) => {
+    // Current group is the last one
+    const lastGroup = groups[groups.length - 1];
+    
+    // Normalize category for comparison
+    const currentCategory = product.category || "Other";
+    
+    if (lastGroup && lastGroup.category === currentCategory) {
+      lastGroup.products.push(product);
+    } else {
+      groups.push({
+        category: currentCategory,
+        // Use the tag from the first product, or fallback to the category name
+        categoryTag: product.category_tag || currentCategory,
+        // Fallback or use product's theme color
+        themeColor: product.theme_color?.startsWith("#") ? product.theme_color : "#00a54f",
+        products: [product],
+      });
+    }
+  });
+
+  return groups;
+}
+
+export default async function ProductsPage() {
+  const products = await getProducts();
+  const groupedProducts = groupProducts(products);
+
   return (
     <>
       {/* Hero Section */}
@@ -44,638 +86,166 @@ export default function ProductsPage() {
         </Container>
       </section>
 
-      {/* Madam Purée Section */}
-      <section
-        style={{ paddingTop: "100px" }}
-        className="bg-gray-50 py-20 md:py-24"
-      >
-        <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
-              {/* Product Image */}
-              <div className="order-1">
-                <div className="overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-green-100 via-green-50 to-lime-50 p-16 shadow-2xl">
-                  <div className="relative aspect-square">
-                    <Image
-                      src="/products/madampuree.jpeg"
-                      alt="Madam Purée - Like jam, but better"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              </div>
+      {/* Dynamic Category Sections */}
+      {groupedProducts.map((group, groupIndex) => {
+        // Use the group's theme color for the badge/section accents
+        const categoryColor = group.themeColor;
+        
+        // Alternate background colors for sections for visual separation
+        const isSectionEven = groupIndex % 2 === 0;
+        const sectionBgClass = isSectionEven ? "bg-gray-50" : "bg-white";
 
-              {/* Product Info */}
-              <div className="order-2">
-                <div className="mb-6 inline-block">
-                  <span
-                    className="rounded-full bg-[#00a54f]/10 px-6 py-2 text-sm uppercase tracking-wider text-[#00a54f]"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Premium Spread
-                  </span>
-                </div>
-                <h2
-                  className="mb-4 text-5xl text-gray-900 md:text-6xl"
-                  style={{ fontFamily: "Gilroy, sans-serif" }}
-                >
-                  Madam Purée
-                </h2>
-                <p
-                  className="mb-12 text-2xl text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif" }}
-                >
-                  Like jam, but better.
-                </p>
-
-                <div className="space-y-8">
-                  <p
-                    className="text-lg text-gray-700"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    A thick, pulpy fruit purée that brings real fruit flavor to
-                    your table. Made from locally sourced Nepali fruits and
-                    crafted to perfection, Madam Purée delivers the goodness of
-                    fresh fruit in every spoonful — supporting farmers and
-                    reducing food waste.
-                  </p>
-
-                  <div className="space-y-6 rounded-3xl border-l-4 border-[#00a54f] bg-white p-10 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
-                        <svg
-                          className="h-5 w-5 text-[#00a54f]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Real Fruit Texture
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Thick and pulpy, not overly processed
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
-                        <svg
-                          className="h-5 w-5 text-[#00a54f]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Locally Sourced
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Supporting Nepali farmers
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
-                        <svg
-                          className="h-5 w-5 text-[#00a54f]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Naturally Delicious
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Pure fruit flavor in every bite
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Fruit Smash Section */}
-      <section
-        style={{ paddingTop: "100px" }}
-        className="bg-gray-50 py-20 md:py-24"
-      >
-        <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
-              {/* Product Image */}
-              <div className="order-1">
-                <div className="overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50 p-16 shadow-2xl">
-                  <div className="relative aspect-square">
-                    <Image
-                      src="/products/kiwi-smash.png"
-                      alt="Maya Kiwi Smash - Fruit is the Hero"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className="order-2">
-                <div className="mb-6 inline-block">
-                  <span
-                    className="rounded-full bg-[#00a54f]/10 px-6 py-2 text-sm uppercase tracking-wider text-[#00a54f]"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Premium Product Line
-                  </span>
-                </div>
-                <h2
-                  className="mb-4 text-5xl text-gray-900 md:text-6xl"
-                  style={{ fontFamily: "Gilroy, sans-serif" }}
-                >
-                  Fruit Smash
-                </h2>
-                <p
-                  className="mb-12 text-2xl text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif" }}
-                >
-                  Real Fruit, Reimagined.
-                </p>
-
-                <div className="space-y-8">
-                  <p
-                    className="text-lg text-gray-700"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Every batch begins with real Nepali fruit — the kind that
-                    rarely makes it to retail shelves. We give those harvests a
-                    second chance, transforming them into thick, pulpy purées
-                    that keep every bit of the fruit&apos;s natural fiber and
-                    flavor intact.
-                  </p>
-
-                  <div className="space-y-6 rounded-3xl border-l-4 border-[#00a54f] bg-white p-10 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
-                        <svg
-                          className="h-5 w-5 text-[#00a54f]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          3× More Real Fruit
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Compared to traditional spreads
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
-                        <svg
-                          className="h-5 w-5 text-[#00a54f]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          High in Natural Fiber
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Supports digestive health
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00a54f]/10">
-                        <svg
-                          className="h-5 w-5 text-[#00a54f]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          100% Locally Sourced
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Supporting Nepali farmers
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Apple Halwa Section */}
-      <section
-        style={{ paddingTop: "100px" }}
-        className="bg-gradient-to-b from-gray-50 to-white py-32 md:py-40"
-      >
-        <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
-              {/* Product Image */}
-              <div className="order-2 lg:order-1">
-                <div className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 p-16 shadow-2xl">
-                  <div className="relative aspect-square">
-                    <Image
-                      src="/products/apple-halwa.png"
-                      alt="Maya Apple Halwa Snack Bar"
-                      fill
-                      className="object-contain transition-transform duration-700 group-hover:scale-105 group-hover:rotate-2"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className="order-1 lg:order-2">
-                <div className="mb-6 inline-block">
-                  <span
-                    className="rounded-full bg-[#e5790e]/10 px-6 py-2 text-sm font-bold uppercase tracking-wider text-[#e5790e]"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Snack Innovation
-                  </span>
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <h2
-                    className="mb-4 text-6xl font-black text-gray-900 md:text-7xl"
-                    style={{
-                      fontFamily: "Gilroy, sans-serif",
-                      letterSpacing: "-0.03em",
-                    }}
-                  >
-                    Apple Halwa
-                  </h2>
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <p
-                    className="mb-12 text-3xl font-light text-gray-700"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Snack Bar
-                  </p>
-                </div>
-
-                <div className="space-y-8">
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <p
-                      className="text-center text-2xl font-medium leading-relaxed text-gray-900"
+        return (
+          <section
+            key={group.category + groupIndex}
+            className={`${sectionBgClass} py-24`}
+          >
+            <Container>
+              <div className="mx-auto max-w-7xl">
+                {/* Category Header */}
+                <div className="mb-16 flex flex-col items-center">
+                   <span
+                      className="rounded-full px-8 py-3 text-sm font-bold uppercase tracking-widest shadow-sm"
                       style={{
                         fontFamily: "Gilroy, sans-serif",
-                        fontWeight: 500,
+                        backgroundColor: `${categoryColor}15`, // 15% opacity
+                        color: categoryColor,
+                        border: `1px solid ${categoryColor}30`
                       }}
                     >
-                      Same halwa, with real fruit.
-                    </p>
-                  </div>
-
-                  <div className="space-y-6 rounded-3xl border-l-4 border-[#e5790e] bg-white p-10 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e5790e]/10">
-                        <svg
-                          className="h-5 w-5 text-[#e5790e]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl font-bold text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Rich in Nutrients
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{
-                            fontFamily: "Gilroy, sans-serif",
-                            fontWeight: 400,
-                          }}
-                        >
-                          Antioxidants, Vitamin C, and Fiber
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e5790e]/10">
-                        <svg
-                          className="h-5 w-5 text-[#e5790e]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl font-bold text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Clean Ingredients
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{
-                            fontFamily: "Gilroy, sans-serif",
-                            fontWeight: 400,
-                          }}
-                        >
-                          No added sugars or preservatives
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e5790e]/10">
-                        <svg
-                          className="h-5 w-5 text-[#e5790e]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl font-bold text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Perfect Anytime
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{
-                            fontFamily: "Gilroy, sans-serif",
-                            fontWeight: 400,
-                          }}
-                        >
-                          Ideal for lunch boxes and on-the-go snacking
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                      {group.category.toUpperCase().replace("-", " ")}
+                    </span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* Fruit Splash Section */}
-      <section
-        style={{ paddingTop: "100px" }}
-        className="bg-white py-20 md:py-24"
-      >
-        <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="grid items-center gap-20 lg:grid-cols-2 lg:gap-24">
-              {/* Product Image */}
-              <div className="order-2 lg:order-1">
-                <div className="overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-green-50 via-lime-50 to-emerald-50 p-16 shadow-2xl">
-                  <div className="relative aspect-square">
-                    <Image
-                      src="/products/mango-splash.png"
-                      alt="Maya Kiwi Smash - Fruit is the Hero"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className="order-1 lg:order-2">
-                <div className="mb-6 inline-block">
-                  <span
-                    className="rounded-full bg-[#1acf1b]/10 px-6 py-2 text-sm uppercase tracking-wider text-[#1acf1b]"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Beverage Line
-                  </span>
-                </div>
-                <h2
-                  className="mb-4 text-5xl text-gray-900 md:text-6xl"
-                  style={{ fontFamily: "Gilroy, sans-serif" }}
+                {/* Products Grid - 2 Column or Centered Single */}
+                <div 
+                  className={
+                    group.products.length === 1 
+                      ? "flex justify-center" 
+                      : "grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16"
+                  }
                 >
-                  Fruit Splash
-                </h2>
-                <p
-                  className="mb-12 text-2xl text-gray-700"
-                  style={{ fontFamily: "Gilroy, sans-serif" }}
-                >
-                  Keeping It Real
-                </p>
+                  {group.products.map((product) => {
+                     const imageUrl = getPbImageUrl(
+                        product.collectionId,
+                        product.id,
+                        product.product_image
+                      );
+                      const accentColor = 
+                        product.theme_color && product.theme_color.startsWith("#") 
+                          ? product.theme_color 
+                          : "#00a54f";
 
-                <div className="space-y-8">
-                  <p
-                    className="text-lg text-gray-700"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Made from rich fruit purée — not thin juice concentrate —
-                    Fruit Splash captures the fiber, flavor, and freshness
-                    nature intended. Pulpy, bright, and refreshingly honest,
-                    it&apos;s crafted from locally grown fruits — often
-                    overlooked, yet full of the fresh, honest taste of Nepal.
-                  </p>
+                    return (
+                      <div 
+                        key={product.id} 
+                        className={`flex flex-col gap-8 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-xl md:p-10 ${
+                          group.products.length === 1 ? "w-full max-w-2xl" : ""
+                        }`}
+                      >
+                         {/* Image Area - Card Style */}
+                         <div 
+                           className="relative overflow-hidden rounded-2xl p-10 md:p-12"
+                           style={{
+                               // Dynamic gradient based on accent color
+                               background: `linear-gradient(135deg, ${accentColor}1A 0%, ${accentColor}05 100%)`,
+                           }}
+                         >
+                            {/* Category Tag Badge Overlay */}
+                            <div className="absolute top-2 left-4 z-10">
+                              <span
+                                className="inline-block rounded-sm px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md"
+                                style={{
+                                  fontFamily: "Gilroy, sans-serif",
+                                  // backgroundColor: "#ffeee0", // Premium Creamy Orange
+                                  color: "#c2410c", // Deep Burnt Orange for contrast/legibility
+                                  // border: "1px solid #fed7aa" // Subtle border
+                                }}
+                              >
+                                {product.category_tag}
+                              </span>
+                            </div>
 
-                  <div className="space-y-6 rounded-3xl border-l-4 border-[#1acf1b] bg-white p-10 shadow-lg">
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1acf1b]/10">
-                        <svg
-                          className="h-5 w-5 text-[#1acf1b]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                            <div className="relative aspect-square w-full">
+                                {imageUrl && (
+                                  <Image
+                                    src={imageUrl}
+                                    alt={`${product.name} - ${product.one_liner}`}
+                                    fill
+                                    className="object-contain transition-transform duration-500 hover:scale-105"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    unoptimized
+                                  />
+                                )}
+                            </div>
+                         </div>
+
+                         {/* Content Area */}
+                         <div className="flex flex-1 flex-col">
+                            <div className="mb-4">
+                                <h3 
+                                    className="text-3xl font-bold text-gray-900 md:text-4xl"
+                                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                                >
+                                    {product.name}
+                                </h3>
+                                <p 
+                                    className="mt-2 text-xl font-medium text-gray-600"
+                                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                                >
+                                    {product.one_liner}
+                                </p>
+                            </div>
+
+                            <p 
+                                className="mb-8 text-gray-600 leading-relaxed"
+                                style={{ fontFamily: "Gilroy, sans-serif" }}
+                            >
+                                {product.excerpt}
+                            </p>
+
+                            {/* Features List */}
+                            <div className="mt-4 space-y-4">
+                                {product.features?.map((feature, idx) => (
+                                    <div key={idx} className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
+                                        <div 
+                                            className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                                            style={{ backgroundColor: `${accentColor}20` }}
+                                        >
+                                            <svg
+                                                className="h-3 w-3"
+                                                style={{ color: accentColor }}
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-gray-900 text-sm">
+                                                {feature.title}
+                                            </p>
+                                            <p className="text-sm text-gray-500">
+                                                {feature.subtitle}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                         </div>
                       </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          More Real Fruit
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Rich purée, not concentrate
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1acf1b]/10">
-                        <svg
-                          className="h-5 w-5 text-[#1acf1b]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          High in Fiber
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Naturally nutritious
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1acf1b]/10">
-                        <svg
-                          className="h-5 w-5 text-[#1acf1b]"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p
-                          className="text-xl text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Locally Sourced
-                        </p>
-                        <p
-                          className="mt-1 text-base text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          Farm-to-table freshness
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
-            </div>
-          </div>
-        </Container>
-      </section>
+            </Container>
+          </section>
+        );
+      })}
 
       {/* Call to Action */}
       <section
@@ -697,7 +267,7 @@ export default function ProductsPage() {
               Fruit that does more — supporting Nepali farmers, reducing food
               waste, and bringing honest nutrition to every home.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 mt-1">
+            <div className="mt-1 flex flex-wrap justify-center gap-6">
               <Link
                 href="/our-approach"
                 className="inline-block rounded-full border-2 border-white px-10 py-4 text-lg text-white transition-all hover:bg-white/10"
