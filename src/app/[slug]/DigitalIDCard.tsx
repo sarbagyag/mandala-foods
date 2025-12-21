@@ -22,7 +22,7 @@ export default function DigitalIDCard({
         @media print {
           @page {
             size: A4 landscape;
-            margin: 0.8cm;
+            margin: 0.5cm;
           }
 
           * {
@@ -36,11 +36,12 @@ export default function DigitalIDCard({
             margin: 0 !important;
             padding: 0 !important;
             height: 100vh !important;
+            width: 100vw !important;
             overflow: hidden !important;
           }
 
-          body > *:not(.id-card-wrapper) {
-            display: none !important;
+          body * {
+            visibility: hidden !important;
           }
 
           .no-print {
@@ -48,38 +49,51 @@ export default function DigitalIDCard({
             visibility: hidden !important;
           }
 
+          .id-card-wrapper,
+          .id-card-wrapper * {
+            visibility: visible !important;
+          }
+
           .id-card-wrapper {
-            position: static !important;
+            position: fixed !important;
+            left: 0 !important;
+            top: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: white !important;
+            padding: 0.5cm !important;
+            margin: 0 !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            width: 100% !important;
-            height: 100vh !important;
-            background: white !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            page-break-after: avoid !important;
-            page-break-before: avoid !important;
+            min-height: auto !important;
+            page-break-inside: avoid !important;
           }
 
           .id-card {
             position: relative !important;
             width: 100% !important;
-            max-width: 25cm !important;
+            max-width: 26cm !important;
             min-height: auto !important;
             height: auto !important;
+            max-height: 18cm !important;
             margin: 0 auto !important;
             box-shadow: none !important;
-            page-break-inside: avoid !important;
-            page-break-after: avoid !important;
-            page-break-before: avoid !important;
             border-radius: 12px !important;
-            overflow: hidden !important;
+            overflow: visible !important;
+            page-break-inside: avoid !important;
+            transform: scale(0.95) !important;
           }
 
-          /* Ensure all internal elements are visible */
+          /* Prevent page breaks inside card */
+          .id-card,
+          .id-card > *,
           .id-card * {
             page-break-inside: avoid !important;
+            page-break-before: avoid !important;
+            page-break-after: avoid !important;
           }
         }
       `}</style>
