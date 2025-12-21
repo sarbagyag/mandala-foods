@@ -68,3 +68,24 @@ export interface ProductRecord {
     category_order?: number;
     product_order?: number;
 }
+
+/**
+ * Type definition for an Identity record (Digital ID Card)
+ */
+export interface IdentityRecord {
+    id: string;
+    collectionId: string;
+    collectionName: string;
+    created: string;
+    updated: string;
+    username: string; // Used in URL: /robin, /sophiya
+    full_name: string; // Display name on card
+    position: string; // Job title
+    department?: string; // Department or unit
+    employee_id?: string; // Employee ID number (e.g., "2A")
+    profile_image: string; // Profile photo
+    qr_link: string; // URL for QR code destination
+    card_theme_color?: string; // Hex color for branding
+    is_active?: boolean; // Whether card is active
+    bio?: string; // Short biography
+}
