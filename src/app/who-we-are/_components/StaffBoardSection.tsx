@@ -43,12 +43,6 @@ export function StaffBoardSection() {
       linkedIn: "https://www.linkedin.com/in/sudeep-bajracharya/",
     },
     {
-      name: "Mr. Mohit Rana",
-      role: "Senior Culinary Consultant",
-      image: "/images/team/staff/mohit.jpeg",
-      linkedIn: "",
-    },
-    {
       name: "Er. Sarbagya Shrestha",
       role: "Integrated Communications and AI Strategy Lead Consultant",
       image: "/images/team/staff/sarbagya_no_glare.png",
@@ -84,7 +78,7 @@ export function StaffBoardSection() {
     },
     {
       name: "Dr. Patrick Webb",
-      role: "Nutrition Expert",
+      role: "Food Systems for Nutrition",
       organization: "Tufts University (Global), Idea2Impact",
       image: "/images/team/experts/patrick.jpg",
     },
@@ -97,7 +91,7 @@ export function StaffBoardSection() {
 
     {
       name: "Dr. Sapna Adhikari",
-      role: "Nutrition Expert",
+      role: "MD",
       organization: "Idea2Impact",
       image: "/images/team/experts/sapna.jpg",
     },
