@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { useState } from "react";
 import { VideoHeroSection as VideoHeroSectionType } from "@/domains/content/types";
 import { Button } from "@/components/ui/Button";
 
@@ -7,6 +9,8 @@ interface VideoHeroSectionProps {
 }
 
 export function VideoHeroSection({ data }: VideoHeroSectionProps) {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
   const {
     id,
     videoUrl,
@@ -14,6 +18,7 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
     subheading,
     cta,
     secondaryCta,
+    posterUrl,
     overlayOpacity = 0.4,
   } = data;
 
@@ -23,13 +28,33 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
       id={id}
       className="relative h-screen w-full overflow-hidden bg-black"
     >
+      {/* Poster Image - Shows while video loads */}
+      {posterUrl && (
+        <div
+          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${
+            isVideoLoaded ? "opacity-0" : "opacity-100"
+          }`}
+          style={{
+            backgroundImage: `url(${posterUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Video Background */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 h-full w-full object-cover opacity-90"
+        poster={posterUrl}
+        onCanPlayThrough={() => setIsVideoLoaded(true)}
+        onLoadedData={() => setIsVideoLoaded(true)}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+          isVideoLoaded ? "opacity-90" : "opacity-0"
+        }`}
         aria-hidden="true"
       >
         <source src={videoUrl} type="video/mp4" />

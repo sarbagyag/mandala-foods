@@ -21,6 +21,7 @@ export interface VideoHeroSection {
   type: "video-hero";
   id: string;
   videoUrl: string;
+  posterUrl?: string; // Fallback image shown while video loads
   heading: string;
   subheading?: string;
   cta?: CTA;

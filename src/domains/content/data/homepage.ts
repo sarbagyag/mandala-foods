@@ -11,6 +11,7 @@ export const homepageContent: HomePageContent = {
     type: "video-hero",
     id: SECTION_IDS.HERO,
     videoUrl: "/videos/mandala-compressed.mp4",
+    posterUrl: "/images/hero-poster.jpg", // Fallback image shown while video loads
     heading: "Mandala Foods Turning Local Surplus into Global Solutions",
     subheading: "We upcycle surplus and overlooked fruits into nutritious foods — real taste, trusted nutrition, and second chances for fruits, farmers, and families.",
     cta: {
