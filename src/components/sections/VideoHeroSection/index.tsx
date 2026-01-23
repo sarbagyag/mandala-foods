@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { VideoHeroSection as VideoHeroSectionType } from "@/domains/content/types";
 import { Button } from "@/components/ui/Button";
 
@@ -9,7 +9,9 @@ interface VideoHeroSectionProps {
 }
 
 export function VideoHeroSection({ data }: VideoHeroSectionProps) {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const {
     id,
@@ -18,42 +20,95 @@ export function VideoHeroSection({ data }: VideoHeroSectionProps) {
     subheading,
     cta,
     secondaryCta,
-    posterUrl,
-    overlayOpacity = 0.4,
   } = data;
+
+  // Handle video ready state
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleCanPlay = () => {
+      setIsVideoReady(true);
+    };
+
+    // Check if video is already ready (cached)
+    if (video.readyState >= 3) {
+      setIsVideoReady(true);
+    }
+
+    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("canplaythrough", handleCanPlay);
+
+    return () => {
+      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("canplaythrough", handleCanPlay);
+    };
+  }, []);
+
+  // Transition to video when ready
+  useEffect(() => {
+    if (isVideoReady) {
+      // Small delay for smoother transition
+      const timer = setTimeout(() => {
+        setShowVideo(true);
+        videoRef.current?.play();
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isVideoReady]);
 
   return (
     <section
       style={{ paddingTop: "100px" }}
       id={id}
-      className="relative h-screen w-full overflow-hidden bg-black"
+      className="relative h-screen w-full overflow-hidden bg-[#1a2419]"
     >
-      {/* Poster Image - Shows while video loads */}
-      {posterUrl && (
+      {/* Animated Gradient Background - Always present, fades out when video ready */}
+      <div
+        className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ease-out ${
+          showVideo ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        aria-hidden="true"
+      >
+        {/* Base gradient layer */}
         <div
-          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${
-            isVideoLoaded ? "opacity-0" : "opacity-100"
-          }`}
+          className="absolute inset-0"
           style={{
-            backgroundImage: `url(${posterUrl})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            background: `linear-gradient(135deg, #1a2e1a 0%, #2d2416 40%, #1f2937 70%, #1a2e1a 100%)`,
           }}
-          aria-hidden="true"
         />
-      )}
+        {/* Animated glow layers */}
+        <div
+          className="absolute inset-0 animate-pulse-slow"
+          style={{
+            background: `radial-gradient(ellipse at 20% 80%, rgba(229, 121, 14, 0.25) 0%, transparent 50%)`,
+          }}
+        />
+        <div
+          className="absolute inset-0 animate-pulse-slower"
+          style={{
+            background: `radial-gradient(ellipse at 80% 30%, rgba(0, 165, 79, 0.15) 0%, transparent 45%)`,
+          }}
+        />
+        <div
+          className="absolute inset-0 animate-shimmer"
+          style={{
+            background: `linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%)`,
+            backgroundSize: "200% 100%",
+          }}
+        />
+      </div>
 
-      {/* Video Background */}
+      {/* Video Background - Preloads in background, shown when ready */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        poster={posterUrl}
-        onCanPlayThrough={() => setIsVideoLoaded(true)}
-        onLoadedData={() => setIsVideoLoaded(true)}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
-          isVideoLoaded ? "opacity-90" : "opacity-0"
+        preload="auto"
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-out ${
+          showVideo ? "opacity-90" : "opacity-0"
         }`}
         aria-hidden="true"
       >
