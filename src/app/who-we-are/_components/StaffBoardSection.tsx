@@ -96,6 +96,12 @@ export function StaffBoardSection() {
       image: "/images/team/experts/sapna.jpg",
     },
     {
+      name: "Salina Giri",
+      role: "Stewardship and Donor Relations, Global",
+      organization: "Mandala Foods",
+      image: "/images/team/experts/salina-2.jpeg",
+    },
+    {
       name: "Dr. Shibani Ghosh",
       role: "Nutrition Expert",
       organization: "Cornell University (Global), Idea2Impact",
