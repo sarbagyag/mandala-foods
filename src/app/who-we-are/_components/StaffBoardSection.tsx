@@ -278,20 +278,20 @@ export function StaffBoardSection() {
                         <img
                           src={member.image}
                           alt={member.name}
-                          className="h-24 w-24 object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="h-32 w-32 object-cover transition-transform duration-500 group-hover:scale-110 md:h-36 md:w-36"
                         />
                       </div>
 
                       {/* Info */}
                       <div className="flex flex-1 flex-col items-center justify-start text-center">
                         <h4
-                          className="mb-2 text-lg font-black leading-tight text-gray-900"
+                          className="mb-1 text-sm font-bold leading-tight text-gray-900"
                           style={{ fontFamily: "Gilroy, sans-serif" }}
                         >
                           {member.name}
                         </h4>
                         <p
-                          className="text-sm font-medium leading-relaxed text-gray-600"
+                          className="text-xs font-medium leading-relaxed text-gray-600"
                           style={{ fontFamily: "Gilroy, sans-serif" }}
                         >
                           {member.role}
@@ -364,26 +364,26 @@ export function StaffBoardSection() {
                         <img
                           src={expert.image}
                           alt={expert.name}
-                          className="h-20 w-20 object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="h-28 w-28 object-cover transition-transform duration-500 group-hover:scale-110 md:h-32 md:w-32"
                         />
                       </div>
 
                       {/* Info */}
                       <div className="flex flex-1 flex-col items-center justify-start text-center">
                         <h4
-                          className="mb-2 text-base font-black leading-tight text-gray-900"
+                          className="mb-1 text-sm font-bold leading-tight text-gray-900"
                           style={{ fontFamily: "Gilroy, sans-serif" }}
                         >
                           {expert.name}
                         </h4>
                         <p
-                          className="mb-1 text-sm font-semibold leading-relaxed text-gray-700"
+                          className="mb-0.5 text-xs font-semibold leading-relaxed text-gray-700"
                           style={{ fontFamily: "Gilroy, sans-serif" }}
                         >
                           {expert.role}
                         </p>
                         <p
-                          className="text-xs leading-relaxed text-gray-500"
+                          className="text-[10px] leading-relaxed text-gray-500"
                           style={{ fontFamily: "Gilroy, sans-serif" }}
                         >
                           {expert.organization}
