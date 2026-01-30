@@ -173,6 +173,91 @@ p {
   color: #4b5563;
 }
 
+/* Rich text content styling - override Tailwind resets */
+.rich-text-content p {
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+.rich-text-content p:first-child {
+  margin-top: 0 !important;
+}
+
+.rich-text-content p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.rich-text-content ul {
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+  padding-left: 2em !important;
+}
+
+.rich-text-content ol {
+  list-style-type: decimal !important;
+  list-style-position: outside !important;
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+  padding-left: 2em !important;
+}
+
+.rich-text-content li {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+  padding-left: 0.5em !important;
+  display: list-item !important;
+}
+
+.rich-text-content li::marker {
+  color: #00a54f;
+}
+
+.rich-text-content strong {
+  font-weight: 700 !important;
+  color: #111827;
+}
+
+.rich-text-content em {
+  font-style: italic !important;
+}
+
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6 {
+  margin-top: 1.5em !important;
+  margin-bottom: 0.75em !important;
+  color: #111827;
+}
+
+.rich-text-content a {
+  color: #00a54f;
+  text-decoration: underline;
+}
+
+.rich-text-content a:hover {
+  color: #008a42;
+}
+
+.rich-text-content blockquote {
+  border-left: 4px solid #00a54f;
+  padding-left: 1em;
+  margin: 1.5em 0 !important;
+  font-style: italic;
+  color: #4b5563;
+}
+
+.rich-text-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0 !important;
+  border-radius: 0.5rem;
+}
+
 .lead {
   font-size: clamp(1.125rem, 1.5vw, 1.375rem);
   line-height: 1.7;

@@ -95,8 +95,8 @@ export default async function StoryDetailPage({ params }: Props) {
             </div>
           )}
 
-          <div 
-            className="prose prose-lg prose-green max-w-none text-gray-700"
+          <div
+            className="rich-text-content text-gray-700 text-lg leading-relaxed"
             dangerouslySetInnerHTML={{ __html: story.content }}
           />
           
