@@ -3,6 +3,7 @@ import Script from "next/script";
 import "../styles/globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ChatBot } from "@/components/layout/ChatBot";
 import { getHomePageMetadata } from "@/domains/seo/metadata";
 import {
   generateOrganizationSchema,
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
+        <ChatBot />
       </body>
     </html>
   );
