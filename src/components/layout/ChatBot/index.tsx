@@ -109,16 +109,37 @@ export function ChatBot() {
       <button
         onClick={() => setIsOpen((o) => !o)}
         aria-label={isOpen ? "Close chat" : "Chat with Maya"}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
         style={{
           background: "linear-gradient(135deg, #e5790e 0%, #c66609 100%)",
           boxShadow: "0 8px 28px rgba(229, 121, 14, 0.45)",
+          borderRadius: isOpen ? "50%" : "999px",
+          width: isOpen ? "56px" : "auto",
+          height: "56px",
+          padding: isOpen ? "0" : "0 20px 0 16px",
+          gap: isOpen ? "0" : "9px",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
         }}
       >
         {isOpen ? (
           <X className="w-5 h-5 text-white" strokeWidth={2.5} />
         ) : (
-          <ChatIcon />
+          <>
+            <SparkChatIcon />
+            <span
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontWeight: 700,
+                fontSize: "0.8125rem",
+                color: "#ffffff",
+                letterSpacing: "0.02em",
+                lineHeight: 1,
+              }}
+            >
+              Ask me anything
+            </span>
+          </>
         )}
       </button>
 
@@ -835,18 +856,27 @@ function Inline({ text }: { text: string }) {
   return <>{tokens}</>;
 }
 
-function ChatIcon() {
+function SparkChatIcon() {
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 22 22"
       fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-6 h-6 text-white"
+      className="w-5 h-5 text-white"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      {/* Chat bubble */}
+      <path
+        d="M19 13.5a2 2 0 0 1-2 2H6.5L3 19V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9.5z"
+        fill="rgba(255,255,255,0.25)"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Sparkle dots inside bubble */}
+      <circle cx="7.5" cy="8.5" r="1.1" fill="white" />
+      <circle cx="11" cy="8.5" r="1.1" fill="white" />
+      <circle cx="14.5" cy="8.5" r="1.1" fill="white" />
     </svg>
   );
 }
