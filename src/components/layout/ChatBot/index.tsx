@@ -493,6 +493,32 @@ function MarkdownText({ text }: { text: string }) {
       continue;
     }
 
+    // Horizontal rule  ---  ***  ___
+    if (/^(-{3,}|\*{3,}|_{3,})$/.test(line.trim())) {
+      elements.push(
+        <div
+          key={key++}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            margin: "4px 0",
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background:
+                "linear-gradient(90deg, transparent, rgba(0,165,79,0.25) 20%, rgba(0,165,79,0.25) 80%, transparent)",
+            }}
+          />
+        </div>
+      );
+      i++;
+      continue;
+    }
+
     // Heading  #  ##  ###  ####
     const headingMatch = line.match(/^(#{1,4})\s+(.+)$/);
     if (headingMatch) {
@@ -515,6 +541,99 @@ function MarkdownText({ text }: { text: string }) {
         </div>
       );
       i++;
+      continue;
+    }
+
+    // Markdown table — detect by pipe-separated rows
+    if (/^\|.+\|/.test(line)) {
+      const tableLines: string[] = [];
+      while (i < lines.length && /^\|.+\|/.test(lines[i])) {
+        tableLines.push(lines[i]);
+        i++;
+      }
+      // Parse header, separator, and body rows
+      const rows = tableLines.filter((l) => !/^\|[\s|:-]+\|$/.test(l));
+      const [headerRow, ...bodyRows] = rows;
+      const parseRow = (r: string) =>
+        r
+          .split("|")
+          .slice(1, -1)
+          .map((c) => c.trim());
+      const headers = parseRow(headerRow);
+      const body = bodyRows.map(parseRow);
+      elements.push(
+        <div
+          key={key++}
+          style={{
+            overflowX: "auto",
+            borderRadius: "10px",
+            border: "1px solid rgba(0,165,79,0.15)",
+            fontSize: "0.8125rem",
+            fontFamily: "var(--font-sans)",
+          }}
+        >
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              minWidth: "260px",
+            }}
+          >
+            <thead>
+              <tr
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(0,165,79,0.1) 0%, rgba(0,122,58,0.1) 100%)",
+                }}
+              >
+                {headers.map((h, hi) => (
+                  <th
+                    key={hi}
+                    style={{
+                      padding: "8px 12px",
+                      textAlign: "left",
+                      fontWeight: 600,
+                      color: "#007a3a",
+                      borderBottom: "1px solid rgba(0,165,79,0.2)",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <Inline text={h} />
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {body.map((row, ri) => (
+                <tr
+                  key={ri}
+                  style={{
+                    background:
+                      ri % 2 === 0 ? "#ffffff" : "rgba(0,165,79,0.03)",
+                  }}
+                >
+                  {row.map((cell, ci) => (
+                    <td
+                      key={ci}
+                      style={{
+                        padding: "7px 12px",
+                        color: "#374151",
+                        borderBottom:
+                          ri < body.length - 1
+                            ? "1px solid rgba(0,165,79,0.08)"
+                            : "none",
+                        lineHeight: "1.45",
+                      }}
+                    >
+                      <Inline text={cell} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
       continue;
     }
 
@@ -620,7 +739,9 @@ function MarkdownText({ text }: { text: string }) {
       lines[i].trim() !== "" &&
       !/^#{1,4}\s/.test(lines[i]) &&
       !/^[\s]*[-*+]\s/.test(lines[i]) &&
-      !/^[\s]*\d+\.\s/.test(lines[i])
+      !/^[\s]*\d+\.\s/.test(lines[i]) &&
+      !/^\|.+\|/.test(lines[i]) &&
+      !/^(-{3,}|\*{3,}|_{3,})$/.test(lines[i].trim())
     ) {
       paraLines.push(lines[i]);
       i++;
