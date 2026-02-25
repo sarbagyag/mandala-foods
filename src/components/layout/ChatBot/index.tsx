@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { X, Send } from "lucide-react";
 
 const WS_URL = "wss://maya.mandalafoods.co/ws";
 const SESSION_KEY = "maya_session_id";
@@ -38,7 +38,6 @@ export function ChatBot() {
     setConnStatus("connecting");
 
     ws.onopen = () => {
-      // Guard: ignore if this ws was replaced by a newer one (StrictMode)
       if (wsRef.current !== ws) return;
       setConnStatus("online");
     };
@@ -81,7 +80,7 @@ export function ChatBot() {
   useEffect(() => {
     if (!isOpen) {
       const ws = wsRef.current;
-      wsRef.current = null; // disown before closing so onclose guard ignores it
+      wsRef.current = null;
       ws?.close();
       return;
     }
@@ -106,54 +105,115 @@ export function ChatBot() {
 
   return (
     <>
-      {/* Floating chat button */}
+      {/* Floating toggle button */}
       <button
         onClick={() => setIsOpen((o) => !o)}
         aria-label={isOpen ? "Close chat" : "Chat with Maya"}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95"
-        style={{ backgroundColor: "#e5790e" }}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
+        style={{
+          background: "linear-gradient(135deg, #e5790e 0%, #c66609 100%)",
+          boxShadow: "0 8px 28px rgba(229, 121, 14, 0.45)",
+        }}
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-white" />
+          <X className="w-5 h-5 text-white" strokeWidth={2.5} />
         ) : (
-          <MessageCircle className="w-6 h-6 text-white" />
+          <ChatIcon />
         )}
       </button>
 
       {/* Chat panel */}
       <div
         className={cn(
-          "fixed bottom-24 right-6 z-50 flex flex-col rounded-2xl shadow-2xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 origin-bottom-right",
-          "w-[calc(100vw-3rem)] max-w-sm md:max-w-md",
+          "fixed bottom-24 right-6 z-50 flex flex-col overflow-hidden bg-white transition-all duration-300 origin-bottom-right",
+          "w-[calc(100vw-3rem)] max-w-[380px]",
           isOpen
             ? "opacity-100 scale-100 pointer-events-auto"
             : "opacity-0 scale-90 pointer-events-none"
         )}
-        style={{ height: "520px" }}
+        style={{
+          height: "580px",
+          fontFamily: "var(--font-sans)",
+          borderRadius: "20px",
+          boxShadow:
+            "0 24px 64px rgba(0,0,0,0.16), 0 8px 24px rgba(0,0,0,0.08)",
+          border: "1px solid rgba(0, 165, 79, 0.12)",
+        }}
       >
-        {/* Header */}
+        {/* ── Header ── */}
         <div
-          className="flex items-center gap-3 px-4 py-3 shrink-0"
-          style={{ backgroundColor: "#00a54f" }}
+          className="flex items-center gap-3 px-5 py-4 shrink-0"
+          style={{
+            background: "linear-gradient(135deg, #00a54f 0%, #007a3a 100%)",
+          }}
         >
-          <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-            <span className="text-white font-bold text-sm">M</span>
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-white font-semibold text-sm leading-none">Maya</p>
-            <p className="text-white/70 text-xs mt-0.5">Mandala Foods Genie</p>
-          </div>
-          <div className="flex items-center gap-1.5 shrink-0">
+          {/* Avatar with live indicator dot */}
+          <div className="relative shrink-0">
             <div
-              className={`w-2 h-2 rounded-full transition-colors ${
+              className="w-10 h-10 rounded-full flex items-center justify-center"
+              style={{
+                background: "rgba(255,255,255,0.18)",
+                border: "2px solid rgba(255,255,255,0.32)",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontWeight: 700,
+                  fontSize: "0.875rem",
+                  color: "#ffffff",
+                }}
+              >
+                M
+              </span>
+            </div>
+            <div
+              className={cn(
+                "absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white transition-colors",
                 connStatus === "online"
-                  ? "bg-green-300"
+                  ? "bg-emerald-400"
                   : connStatus === "error"
                   ? "bg-red-400"
                   : "bg-yellow-300 animate-pulse"
-              }`}
+              )}
             />
-            <span className="text-white/70 text-xs">
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <p
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontWeight: 600,
+                fontSize: "0.9375rem",
+                color: "#ffffff",
+                lineHeight: 1.2,
+                margin: 0,
+              }}
+            >
+              Maya
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.68)",
+                lineHeight: 1.2,
+                marginTop: "3px",
+                margin: 0,
+              }}
+            >
+              Mandala Foods Genie
+            </p>
+          </div>
+
+          <div className="flex items-center gap-1.5 shrink-0">
+            <span
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.68)",
+              }}
+            >
               {connStatus === "online"
                 ? "Online"
                 : connStatus === "error"
@@ -163,7 +223,17 @@ export function ChatBot() {
             {connStatus === "error" && (
               <button
                 onClick={connect}
-                className="text-white/80 hover:text-white text-xs underline ml-1"
+                className="underline"
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.75rem",
+                  color: "rgba(255,255,255,0.82)",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 0,
+                  marginLeft: "4px",
+                }}
               >
                 Retry
               </button>
@@ -171,16 +241,59 @@ export function ChatBot() {
           </div>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+        {/* ── Messages ── */}
+        <div
+          className="flex-1 overflow-y-auto px-4 py-4"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            background: "linear-gradient(180deg, #f6faf7 0%, #edf5f0 100%)",
+          }}
+        >
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full text-center pb-8">
-              <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mb-3">
-                <MessageCircle className="w-6 h-6 text-green-500" />
+            <div
+              className="flex flex-col items-center justify-center h-full text-center px-6"
+              style={{ paddingBottom: "32px" }}
+            >
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
+                style={{ background: "rgba(0,165,79,0.1)" }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontWeight: 700,
+                    fontSize: "1.25rem",
+                    color: "#00a54f",
+                  }}
+                >
+                  M
+                </span>
               </div>
-              <p className="font-semibold text-gray-700 text-sm">Hi, I&apos;m Maya!</p>
-              <p className="text-gray-400 text-xs mt-1 max-w-[200px] leading-relaxed">
-                Your Mandala Foods assistant. Ask me anything!
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontWeight: 600,
+                  fontSize: "0.9375rem",
+                  color: "#1f2937",
+                  margin: "0 0 6px",
+                }}
+              >
+                Hi, I&apos;m Maya!
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.8125rem",
+                  lineHeight: "1.55",
+                  color: "#6b7280",
+                  maxWidth: "220px",
+                  margin: 0,
+                }}
+              >
+                Your Mandala Foods assistant. Ask me anything about our
+                programs and impact.
               </p>
             </div>
           )}
@@ -188,16 +301,57 @@ export function ChatBot() {
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+              className={cn(
+                "flex",
+                msg.role === "user"
+                  ? "justify-end"
+                  : "justify-start items-end gap-2"
+              )}
             >
+              {/* Bot avatar */}
+              {msg.role === "bot" && (
+                <div
+                  className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+                  style={{ background: "#00a54f", marginBottom: "2px" }}
+                >
+                  <span
+                    style={{
+                      color: "#fff",
+                      fontSize: "0.6875rem",
+                      fontWeight: 700,
+                      fontFamily: "var(--font-sans)",
+                    }}
+                  >
+                    M
+                  </span>
+                </div>
+              )}
+
               <div
-                className={`max-w-[85%] px-3 py-2 text-sm leading-relaxed ${
+                className={cn(
+                  "max-w-[82%]",
                   msg.role === "user"
-                    ? "text-white rounded-2xl rounded-br-none"
-                    : "bg-white text-gray-800 rounded-2xl rounded-bl-none shadow-sm"
-                }`}
+                    ? "rounded-2xl rounded-br-sm px-4 py-2.5"
+                    : "bg-white rounded-2xl rounded-bl-sm px-4 py-3"
+                )}
                 style={
-                  msg.role === "user" ? { backgroundColor: "#e5790e" } : {}
+                  msg.role === "user"
+                    ? {
+                        background:
+                          "linear-gradient(135deg, #e5790e 0%, #c96b09 100%)",
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "0.875rem",
+                        lineHeight: "1.5",
+                        color: "#ffffff",
+                        boxShadow: "0 2px 10px rgba(229,121,14,0.28)",
+                      }
+                    : {
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "0.875rem",
+                        lineHeight: "1.55",
+                        border: "1px solid rgba(0,165,79,0.1)",
+                        boxShadow: "0 2px 10px rgba(0,0,0,0.06)",
+                      }
                 }
               >
                 {msg.role === "bot" ? (
@@ -211,21 +365,44 @@ export function ChatBot() {
 
           {/* Typing indicator */}
           {isTyping && (
-            <div className="flex justify-start">
-              <div className="bg-white px-4 py-3 rounded-2xl rounded-bl-none shadow-sm">
-                <div className="flex gap-1 items-center">
-                  <span
-                    className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                    style={{ animationDelay: "0ms" }}
-                  />
-                  <span
-                    className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                    style={{ animationDelay: "150ms" }}
-                  />
-                  <span
-                    className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                    style={{ animationDelay: "300ms" }}
-                  />
+            <div className="flex justify-start items-end gap-2">
+              <div
+                className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+                style={{ background: "#00a54f" }}
+              >
+                <span
+                  style={{
+                    color: "#fff",
+                    fontSize: "0.6875rem",
+                    fontWeight: 700,
+                    fontFamily: "var(--font-sans)",
+                  }}
+                >
+                  M
+                </span>
+              </div>
+              <div
+                className="bg-white rounded-2xl rounded-bl-sm px-4 py-3"
+                style={{
+                  border: "1px solid rgba(0,165,79,0.1)",
+                  boxShadow: "0 2px 10px rgba(0,0,0,0.06)",
+                }}
+              >
+                <div className="flex gap-1.5 items-center" style={{ height: "16px" }}>
+                  {[0, 120, 240].map((delay) => (
+                    <span
+                      key={delay}
+                      className="rounded-full animate-bounce"
+                      style={{
+                        width: "6px",
+                        height: "6px",
+                        background: "#00a54f",
+                        opacity: 0.65,
+                        animationDelay: `${delay}ms`,
+                        display: "block",
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -234,97 +411,240 @@ export function ChatBot() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input */}
-        <div className="p-3 bg-white border-t border-gray-100 flex gap-2 items-center shrink-0">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                send();
-              }
+        {/* ── Input ── */}
+        <div
+          className="shrink-0 px-4 py-3"
+          style={{
+            background: "#ffffff",
+            borderTop: "1px solid rgba(0,165,79,0.1)",
+          }}
+        >
+          <div
+            className="flex items-center gap-2 rounded-full px-4 transition-all duration-200"
+            style={{
+              background: "#f5f7f5",
+              border: "1.5px solid #e5e7eb",
+              paddingTop: "8px",
+              paddingBottom: "8px",
             }}
-            placeholder="Ask Maya anything…"
-            className="flex-1 text-sm px-4 py-2 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500/30 placeholder:text-gray-400"
-          />
-          <button
-            onClick={send}
-            disabled={!input.trim() || connStatus !== "online"}
-            aria-label="Send message"
-            className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all disabled:opacity-40 hover:opacity-90 active:scale-95"
-            style={{ backgroundColor: "#00a54f" }}
           >
-            <Send className="w-4 h-4 text-white" />
-          </button>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  send();
+                }
+              }}
+              placeholder="Ask Maya anything…"
+              className="flex-1 bg-transparent focus:outline-none"
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.875rem",
+                color: "#374151",
+              }}
+            />
+            <button
+              onClick={send}
+              disabled={!input.trim() || connStatus !== "online"}
+              aria-label="Send message"
+              className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all disabled:opacity-35 hover:opacity-90 active:scale-95"
+              style={{ background: "#00a54f", flexShrink: 0 }}
+            >
+              <Send className="w-3.5 h-3.5 text-white" />
+            </button>
+          </div>
+          <p
+            className="text-center mt-2"
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.6875rem",
+              color: "#9ca3af",
+              margin: "8px 0 0",
+            }}
+          >
+            Powered by Mandala Foods AI
+          </p>
         </div>
       </div>
     </>
   );
 }
 
-// ── Simple markdown renderer ────────────────────────────────────────────────
+// ── Markdown renderer ─────────────────────────────────────────────────────────
+// Processes line-by-line to correctly handle mixed content
+// (e.g. a paragraph followed immediately by a bullet list in the same block).
+// Uses div/span (not p) so global p-tag CSS rules don't interfere.
 
 function MarkdownText({ text }: { text: string }) {
-  const blocks = text.split(/\n{2,}/);
+  const lines = text.split("\n");
+  const elements: React.ReactNode[] = [];
+  let i = 0;
+  let key = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // Blank line — skip (gap is handled by the flex container)
+    if (line.trim() === "") {
+      i++;
+      continue;
+    }
+
+    // Heading  #  ##  ###  ####
+    const headingMatch = line.match(/^(#{1,4})\s+(.+)$/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const fs =
+        level === 1 ? "0.9375rem" : level === 2 ? "0.875rem" : "0.875rem";
+      const fw = level <= 2 ? 700 : 600;
+      elements.push(
+        <div
+          key={key++}
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: fs,
+            fontWeight: fw,
+            lineHeight: 1.4,
+            color: "#111827",
+          }}
+        >
+          <Inline text={headingMatch[2]} />
+        </div>
+      );
+      i++;
+      continue;
+    }
+
+    // Unordered list — collect consecutive bullet lines
+    if (/^[\s]*[-*+]\s/.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^[\s]*[-*+]\s/.test(lines[i])) {
+        items.push(lines[i].replace(/^[\s]*[-*+]\s/, ""));
+        i++;
+      }
+      elements.push(
+        <div
+          key={key++}
+          style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+        >
+          {items.map((item, j) => (
+            <div
+              key={j}
+              style={{
+                display: "flex",
+                gap: "8px",
+                alignItems: "flex-start",
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.875rem",
+                lineHeight: "1.55",
+                color: "#374151",
+              }}
+            >
+              <span
+                style={{
+                  color: "#00a54f",
+                  flexShrink: 0,
+                  fontSize: "0.5rem",
+                  marginTop: "5px",
+                  display: "block",
+                }}
+              >
+                ●
+              </span>
+              <span>
+                <Inline text={item} />
+              </span>
+            </div>
+          ))}
+        </div>
+      );
+      continue;
+    }
+
+    // Ordered list — collect consecutive numbered lines
+    if (/^[\s]*\d+\.\s/.test(line)) {
+      const items: string[] = [];
+      const firstNumMatch = line.trim().match(/^(\d+)\./);
+      const startNum = firstNumMatch ? parseInt(firstNumMatch[1]) : 1;
+      while (i < lines.length && /^[\s]*\d+\.\s/.test(lines[i])) {
+        items.push(lines[i].replace(/^[\s]*\d+\.\s/, ""));
+        i++;
+      }
+      elements.push(
+        <div
+          key={key++}
+          style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+        >
+          {items.map((item, j) => (
+            <div
+              key={j}
+              style={{
+                display: "flex",
+                gap: "8px",
+                alignItems: "flex-start",
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.875rem",
+                lineHeight: "1.55",
+                color: "#374151",
+              }}
+            >
+              <span
+                style={{
+                  color: "#00a54f",
+                  fontWeight: 600,
+                  flexShrink: 0,
+                  minWidth: "18px",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.875rem",
+                }}
+              >
+                {startNum + j}.
+              </span>
+              <span>
+                <Inline text={item} />
+              </span>
+            </div>
+          ))}
+        </div>
+      );
+      continue;
+    }
+
+    // Paragraph — collect consecutive non-special lines
+    const paraLines: string[] = [];
+    while (
+      i < lines.length &&
+      lines[i].trim() !== "" &&
+      !/^#{1,4}\s/.test(lines[i]) &&
+      !/^[\s]*[-*+]\s/.test(lines[i]) &&
+      !/^[\s]*\d+\.\s/.test(lines[i])
+    ) {
+      paraLines.push(lines[i]);
+      i++;
+    }
+    if (paraLines.length > 0) {
+      elements.push(
+        <div
+          key={key++}
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.875rem",
+            lineHeight: "1.55",
+            color: "#374151",
+          }}
+        >
+          <Inline text={paraLines.join(" ")} />
+        </div>
+      );
+    }
+  }
 
   return (
-    <div className="space-y-1.5">
-      {blocks.map((block, i) => {
-        const lines = block.split("\n").filter(Boolean);
-        if (lines.length === 0) return null;
-
-        // Unordered list
-        if (lines.every((l) => /^[-*+] /.test(l.trim()))) {
-          return (
-            <ul key={i} className="list-disc list-outside ml-4 space-y-0.5">
-              {lines.map((l, j) => (
-                <li key={j}>
-                  <Inline text={l.replace(/^[-*+] /, "")} />
-                </li>
-              ))}
-            </ul>
-          );
-        }
-
-        // Ordered list
-        if (lines.every((l) => /^\d+\. /.test(l.trim()))) {
-          return (
-            <ol key={i} className="list-decimal list-outside ml-4 space-y-0.5">
-              {lines.map((l, j) => (
-                <li key={j}>
-                  <Inline text={l.replace(/^\d+\. /, "")} />
-                </li>
-              ))}
-            </ol>
-          );
-        }
-
-        // Heading (treat single-line block starting with #)
-        const headingMatch = block.match(/^(#{1,4}) (.+)$/);
-        if (headingMatch) {
-          const level = headingMatch[1].length;
-          const cls =
-            level === 1
-              ? "font-bold text-base"
-              : level === 2
-              ? "font-bold text-sm"
-              : "font-semibold text-sm";
-          return (
-            <p key={i} className={cls}>
-              <Inline text={headingMatch[2]} />
-            </p>
-          );
-        }
-
-        // Paragraph — join lines with a space
-        return (
-          <p key={i}>
-            <Inline text={lines.join(" ")} />
-          </p>
-        );
-      })}
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+      {elements}
     </div>
   );
 }
@@ -340,14 +660,36 @@ function Inline({ text }: { text: string }) {
     if (match.index > last) tokens.push(text.slice(last, match.index));
 
     if (match[1])
-      tokens.push(<strong key={match.index}>{match[1]}</strong>);
+      tokens.push(
+        <strong
+          key={match.index}
+          style={{
+            fontWeight: 700,
+            color: "#111827",
+            fontFamily: "var(--font-sans)",
+          }}
+        >
+          {match[1]}
+        </strong>
+      );
     else if (match[2])
-      tokens.push(<em key={match.index}>{match[2]}</em>);
+      tokens.push(
+        <em key={match.index} style={{ fontStyle: "italic" }}>
+          {match[2]}
+        </em>
+      );
     else if (match[3])
       tokens.push(
         <code
           key={match.index}
-          className="bg-gray-100 px-1 rounded text-xs font-mono"
+          style={{
+            background: "rgba(0,165,79,0.08)",
+            padding: "0.1em 0.35em",
+            borderRadius: "4px",
+            fontSize: "0.8125rem",
+            fontFamily: "monospace",
+            color: "#007a3a",
+          }}
         >
           {match[3]}
         </code>
@@ -359,7 +701,7 @@ function Inline({ text }: { text: string }) {
           href={match[5]}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline text-green-600"
+          style={{ color: "#00a54f", textDecoration: "underline" }}
         >
           {match[4]}
         </a>
@@ -370,6 +712,22 @@ function Inline({ text }: { text: string }) {
 
   if (last < text.length) tokens.push(text.slice(last));
   return <>{tokens}</>;
+}
+
+function ChatIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-6 h-6 text-white"
+    >
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  );
 }
 
 function cn(...classes: (string | boolean | undefined)[]) {
