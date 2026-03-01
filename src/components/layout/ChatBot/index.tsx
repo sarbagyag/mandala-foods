@@ -137,7 +137,7 @@ export function ChatBot() {
                 lineHeight: 1,
               }}
             >
-              Ask me anything
+              Ask Maya (Beta)
             </span>
           </>
         )}
