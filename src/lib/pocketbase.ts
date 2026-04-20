@@ -88,4 +88,6 @@ export interface IdentityRecord {
     card_theme_color?: string; // Hex color for branding
     is_active?: boolean; // Whether card is active
     bio?: string; // Short biography
+    contact_number?: string;
+    email?: string;
 }
