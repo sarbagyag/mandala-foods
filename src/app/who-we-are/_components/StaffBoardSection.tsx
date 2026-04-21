@@ -82,12 +82,12 @@ export function StaffBoardSection() {
       organization: "Vertex Foods (Nepal)",
       image: "/images/team/experts/atul.jpeg",
     },
-    {
-      name: "Dr. Patrick Webb",
-      role: "Food Systems for Nutrition",
-      organization: "Tufts University (Global), Idea2Impact",
-      image: "/images/team/experts/patrick.jpg",
-    },
+    // {
+    //   name: "Dr. Patrick Webb",
+    //   role: "Food Systems for Nutrition",
+    //   organization: "Tufts University (Global), Idea2Impact",
+    //   image: "/images/team/experts/patrick.jpg",
+    // },
     {
       name: "Ms. Lauran Shamie",
       role: "Nutrition Advisor",
@@ -101,25 +101,25 @@ export function StaffBoardSection() {
       organization: "Idea2Impact",
       image: "/images/team/experts/sapna.jpg",
     },
- 
-    {
-      name: "Dr. Shibani Ghosh",
-      role: "Nutrition Expert",
-      organization: "Cornell University (Global), Idea2Impact",
-      image: "/images/team/experts/shibanii.jpg",
-    },
+
+    // {
+    //   name: "Dr. Shibani Ghosh",
+    //   role: "Nutrition Expert",
+    //   organization: "Cornell University (Global), Idea2Impact",
+    //   image: "/images/team/experts/shibanii.jpg",
+    // },
     {
       name: "Dr. Ahmed Kablan",
       role: "Expert",
       organization: "WICE (Global), Idea2Impact",
       image: "/images/team/experts/ahmed.jpeg",
     },
-    {
-      name: "Giacomo Zanello",
-      role: "Policy and Development",
-      organization: "University of Reading, Idea2Impact",
-      image: "/images/team/experts/giacomo.jpg",
-    },
+    // {
+    //   name: "Giacomo Zanello",
+    //   role: "Policy and Development",
+    //   organization: "University of Reading, Idea2Impact",
+    //   image: "/images/team/experts/giacomo.jpg",
+    // },
   ];
 
   return (
