@@ -21,6 +21,10 @@ export const navigationConfig: NavigationConfig = {
           href: "/who-we-are#staff-board",
           // description: "Meet the team turning waste into worth",
         },
+        {
+          title: "Our Stories",
+          href: "/our-stories",
+        },
       ],
     },
     {
@@ -93,25 +97,8 @@ export const navigationConfig: NavigationConfig = {
       ],
     },
     {
-      title: "Our Stories",
-      href: "/our-stories",
-      items: [
-        // {
-        //   title: "Overview",
-        //   href: "/our-stories#overview",
-        //   description: "Stories from our community",
-        // },
-        // {
-        //   title: "Farmers",
-        //   href: "/our-stories#farmers",
-        //   description: "Meet the farmers we work with",
-        // },
-        // {
-        //   title: "HORECA",
-        //   href: "/our-stories#horeca",
-        //   description: "Hotel, restaurant, and cafe partners",
-        // },
-      ],
+      title: "Reimagining Nutrition",
+      href: "/reimagining-nutrition",
     },
   ],
 };
