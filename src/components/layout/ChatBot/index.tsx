@@ -94,7 +94,12 @@ export function ChatBot() {
 
   const send = () => {
     const text = input.trim();
-    if (!text || connStatus !== "online" || wsRef.current?.readyState !== WebSocket.OPEN) return;
+    if (
+      !text ||
+      connStatus !== "online" ||
+      wsRef.current?.readyState !== WebSocket.OPEN
+    )
+      return;
     wsRef.current.send(JSON.stringify({ text }));
     setMessages((prev) => [
       ...prev,
@@ -137,7 +142,7 @@ export function ChatBot() {
                 lineHeight: 1,
               }}
             >
-              Ask Maya (Beta)
+              Ask Maya
             </span>
           </>
         )}
@@ -150,7 +155,7 @@ export function ChatBot() {
           "w-[calc(100vw-3rem)] max-w-[380px]",
           isOpen
             ? "opacity-100 scale-100 pointer-events-auto"
-            : "opacity-0 scale-90 pointer-events-none"
+            : "opacity-0 scale-90 pointer-events-none",
         )}
         style={{
           height: "580px",
@@ -194,8 +199,8 @@ export function ChatBot() {
                 connStatus === "online"
                   ? "bg-emerald-400"
                   : connStatus === "error"
-                  ? "bg-red-400"
-                  : "bg-yellow-300 animate-pulse"
+                    ? "bg-red-400"
+                    : "bg-yellow-300 animate-pulse",
               )}
             />
           </div>
@@ -238,8 +243,8 @@ export function ChatBot() {
               {connStatus === "online"
                 ? "Online"
                 : connStatus === "error"
-                ? "Disconnected"
-                : "Connecting…"}
+                  ? "Disconnected"
+                  : "Connecting…"}
             </span>
             {connStatus === "error" && (
               <button
@@ -313,8 +318,8 @@ export function ChatBot() {
                   margin: 0,
                 }}
               >
-                Your Mandala Foods assistant. Ask me anything about our
-                programs and impact.
+                Your Mandala Foods assistant. Ask me anything about our programs
+                and impact.
               </p>
             </div>
           )}
@@ -326,7 +331,7 @@ export function ChatBot() {
                 "flex",
                 msg.role === "user"
                   ? "justify-end"
-                  : "justify-start items-end gap-2"
+                  : "justify-start items-end gap-2",
               )}
             >
               {/* Bot avatar */}
@@ -353,7 +358,7 @@ export function ChatBot() {
                   "max-w-[82%]",
                   msg.role === "user"
                     ? "rounded-2xl rounded-br-sm px-4 py-2.5"
-                    : "bg-white rounded-2xl rounded-bl-sm px-4 py-3"
+                    : "bg-white rounded-2xl rounded-bl-sm px-4 py-3",
                 )}
                 style={
                   msg.role === "user"
@@ -409,7 +414,10 @@ export function ChatBot() {
                   boxShadow: "0 2px 10px rgba(0,0,0,0.06)",
                 }}
               >
-                <div className="flex gap-1.5 items-center" style={{ height: "16px" }}>
+                <div
+                  className="flex gap-1.5 items-center"
+                  style={{ height: "16px" }}
+                >
                   {[0, 120, 240].map((delay) => (
                     <span
                       key={delay}
@@ -534,7 +542,7 @@ function MarkdownText({ text }: { text: string }) {
                 "linear-gradient(90deg, transparent, rgba(0,165,79,0.25) 20%, rgba(0,165,79,0.25) 80%, transparent)",
             }}
           />
-        </div>
+        </div>,
       );
       i++;
       continue;
@@ -559,7 +567,7 @@ function MarkdownText({ text }: { text: string }) {
           }}
         >
           <Inline text={headingMatch[2]} />
-        </div>
+        </div>,
       );
       i++;
       continue;
@@ -653,7 +661,7 @@ function MarkdownText({ text }: { text: string }) {
               ))}
             </tbody>
           </table>
-        </div>
+        </div>,
       );
       continue;
     }
@@ -699,7 +707,7 @@ function MarkdownText({ text }: { text: string }) {
               </span>
             </div>
           ))}
-        </div>
+        </div>,
       );
       continue;
     }
@@ -748,7 +756,7 @@ function MarkdownText({ text }: { text: string }) {
               </span>
             </div>
           ))}
-        </div>
+        </div>,
       );
       continue;
     }
@@ -779,7 +787,7 @@ function MarkdownText({ text }: { text: string }) {
           }}
         >
           <Inline text={paraLines.join(" ")} />
-        </div>
+        </div>,
       );
     }
   }
@@ -812,13 +820,13 @@ function Inline({ text }: { text: string }) {
           }}
         >
           {match[1]}
-        </strong>
+        </strong>,
       );
     else if (match[2])
       tokens.push(
         <em key={match.index} style={{ fontStyle: "italic" }}>
           {match[2]}
-        </em>
+        </em>,
       );
     else if (match[3])
       tokens.push(
@@ -834,7 +842,7 @@ function Inline({ text }: { text: string }) {
           }}
         >
           {match[3]}
-        </code>
+        </code>,
       );
     else if (match[4])
       tokens.push(
@@ -846,7 +854,7 @@ function Inline({ text }: { text: string }) {
           style={{ color: "#00a54f", textDecoration: "underline" }}
         >
           {match[4]}
-        </a>
+        </a>,
       );
 
     last = match.index + match[0].length;
