@@ -11,8 +11,8 @@ export const siteConfig = {
   },
   contact: {
     email: "info@mandalafoods.co",
-    phone: "+977 9823604610",
-    whatsapp: "+9779823604610",
+    phone: "+977 9741688523",
+    whatsapp: "+9779741688523",
     address: "Kupondole, Lalitpur, Nepal",
   },
 } as const;
