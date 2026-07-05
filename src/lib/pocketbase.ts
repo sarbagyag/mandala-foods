@@ -70,6 +70,26 @@ export interface ProductRecord {
 }
 
 /**
+ * Type definition for a Meal Integration Media record (gallery item)
+ */
+export interface MealIntegrationMediaRecord {
+    id: string;
+    collectionId: string;
+    collectionName: string;
+    created: string;
+    updated: string;
+    title: string;
+    description?: string;
+    media_type: 'photo' | 'video_upload' | 'youtube';
+    media_file?: string; // PocketBase returns file fields as string (if max select is 1)
+    youtube_url?: string;
+    thumbnail?: string;
+    uploaded_by?: string;
+    order?: number;
+    date?: string;
+}
+
+/**
  * Type definition for an Identity record (Digital ID Card)
  */
 export interface IdentityRecord {

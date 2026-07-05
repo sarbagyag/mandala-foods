@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
+import { MealIntegrationGallery } from "@/components/sections/MealIntegrationGallery";
+import { getMealIntegrationMedia } from "@/services/meal-integration";
 
 export const metadata: Metadata = {
   title: "Reimagining Nutrition | Mandala Foods",
@@ -7,7 +9,11 @@ export const metadata: Metadata = {
     "Mandala Foods is building a localized food systems integrator and school meal environment engineering platform — making nutritious, locally sourced school meals practical, scalable, and sustainable.",
 };
 
-export default function ReimaginingNutritionPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ReimaginingNutritionPage() {
+  const mealIntegrationMedia = await getMealIntegrationMedia();
+
   return (
     <>
       {/* ── Hero ── */}
@@ -524,6 +530,48 @@ export default function ReimaginingNutritionPage() {
           </div>
         </Container>
       </section>
+
+      {/* ── Meal Integration Gallery ── */}
+      {mealIntegrationMedia.length > 0 && (
+        <section
+          style={{ paddingTop: "100px" }}
+          className="relative overflow-hidden bg-white py-32 md:py-40"
+        >
+          <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-linear-to-bl from-[#e5790e]/5 to-transparent blur-3xl" />
+
+          <Container>
+            <div className="relative z-10 mx-auto max-w-7xl">
+              <div className="mb-20 text-center">
+                <div className="mb-8 inline-block rounded-full bg-linear-to-r from-[#00a54f]/10 to-[#e5790e]/10 px-8 py-3">
+                  <span
+                    className="text-sm font-bold uppercase tracking-wider text-[#00a54f]"
+                    style={{ fontFamily: "Gilroy, sans-serif" }}
+                  >
+                    In the Field
+                  </span>
+                </div>
+                <h2
+                  className="mb-8 text-5xl font-black text-gray-900 md:text-6xl lg:text-7xl"
+                  style={{ fontFamily: "Gilroy, sans-serif", letterSpacing: "-0.03em" }}
+                >
+                  Our Ongoing Meal Integration Initiatives
+                </h2>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <p
+                    className="mx-auto max-w-3xl text-center text-xl leading-relaxed text-gray-600 md:text-2xl"
+                    style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 400 }}
+                  >
+                    A look at how our meals are reaching schools and communities
+                    on the ground.
+                  </p>
+                </div>
+              </div>
+
+              <MealIntegrationGallery media={mealIntegrationMedia} />
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* ── CTA ── */}
       <section

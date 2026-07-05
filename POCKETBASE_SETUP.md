@@ -54,3 +54,31 @@ We will use **Server Components** (Next.js App Router) for fetching data. This e
 ### Folder Structure
 - `src/app/our-stories/page.tsx`: The main listing page. Fetches all records from `stories` collection.
 - `src/app/our-stories/[slug]/page.tsx`: The dynamic detail page. Fetches a single record by `slug`.
+
+---
+
+## 4. Meal Integration Media Collection
+
+Collection name: **`meal_integration_media`**. Powers the "Our Ongoing Meal Integration Initiatives" gallery on the **Reimagining Nutrition** page.
+
+### Fields
+
+| Field Name    | Type          | Options / Notes                                                                 |
+| ------------- | ------------- | -------------------------------------------------------------------------------- |
+| `title`       | Text          | Required. Caption/heading for the item.                                          |
+| `description` | Text          | Optional. Short blurb shown under the media.                                     |
+| `media_type`  | Select        | Required, single. Options: `photo`, `video_upload`, `youtube`.                   |
+| `media_file`  | File          | Required if `media_type` is `photo` or `video_upload`. MIME types: `image/jpeg,image/png,image/webp,video/mp4`. Max size ~50MB. |
+| `youtube_url` | URL           | Required if `media_type` is `youtube` (e.g. `https://youtube.com/watch?v=...`).  |
+| `thumbnail`   | File          | Optional. Custom poster image, mainly used for `video_upload` / `youtube` items. |
+| `uploaded_by` | Text          | Optional. Name of the person/school who submitted the media.                     |
+| `order`       | Number        | Optional. Controls display sequence in the grid (lower = first).                 |
+| `date`        | Date          | Optional. When the initiative/event happened.                                    |
+
+Note: `media_file` / `youtube_url` conditional requirements are enforced by convention when adding records, not by the PocketBase schema itself — always fill in `media_file` for `photo`/`video_upload` items and `youtube_url` for `youtube` items.
+
+### Sorting
+Records are fetched sorted by `order,-date` — set `order` explicitly to pin featured items to the top; items without an `order` fall back to newest-first by `date`.
+
+### Image Specifications
+Same aspect ratio and size guidance as Cover Images above (16:9, ~1200x675px, WebP/JPG/PNG, under 500KB) applies to `thumbnail`.
