@@ -17,15 +17,41 @@ interface ViewerDoc {
 
 const OFFICE_EXTS = ["DOC", "DOCX", "PPT", "PPTX", "XLS", "XLSX"];
 
+const EXT_META: Record<string, { label: string; badge: string }> = {
+  PDF: { label: "PDF Document", badge: "bg-red-50 text-red-600" },
+  DOC: { label: "Word Document", badge: "bg-blue-50 text-blue-600" },
+  DOCX: { label: "Word Document", badge: "bg-blue-50 text-blue-600" },
+  PPT: { label: "Presentation", badge: "bg-orange-50 text-orange-600" },
+  PPTX: { label: "Presentation", badge: "bg-orange-50 text-orange-600" },
+  XLS: { label: "Spreadsheet", badge: "bg-emerald-50 text-emerald-600" },
+  XLSX: { label: "Spreadsheet", badge: "bg-emerald-50 text-emerald-600" },
+};
+
 function getExt(fileName: string) {
   return fileName.split(".").pop()?.toUpperCase() || "FILE";
+}
+
+// PocketBase suffixes uploads with a random id (e.g. "annual-report_a1B2c3D4e5.pdf")
+// — strip it so we can show a readable name instead of the raw filename.
+function getDisplayName(fileName: string) {
+  const dot = fileName.lastIndexOf(".");
+  const base = dot > -1 ? fileName.slice(0, dot) : fileName;
+  const cleaned = base
+    .replace(/_[a-zA-Z0-9]{10}$/, "")
+    .replace(/[_-]+/g, " ")
+    .trim();
+  return cleaned ? cleaned.replace(/\b\w/g, (c) => c.toUpperCase()) : fileName;
 }
 
 function downloadUrl(url: string) {
   return `${url}${url.includes("?") ? "&" : "?"}download=1`;
 }
 
-export function DocumentsSection({ documents, collectionId, recordId }: DocumentsSectionProps) {
+export function DocumentsSection({
+  documents,
+  collectionId,
+  recordId,
+}: DocumentsSectionProps) {
   const [activeDoc, setActiveDoc] = useState<ViewerDoc | null>(null);
 
   // Close on Escape, lock background scroll while the viewer is open
@@ -55,41 +81,88 @@ export function DocumentsSection({ documents, collectionId, recordId }: Document
     : null;
 
   return (
-    <div className="mt-12 pt-8 border-t border-gray-100">
-      <h2 className="text-lg font-bold text-gray-900 mb-4" style={{ fontFamily: "Gilroy, sans-serif" }}>
-        Attachments
-      </h2>
-      <div className="space-y-3">
-        {documents.map((doc, index) => {
+    <div className="mt-14 pt-10 border-t border-gray-200">
+      <div className="mb-5 flex items-center gap-2">
+        <svg
+          className="h-4 w-4 text-[#00a54f]"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+        <span
+          className="text-xs font-semibold uppercase tracking-widest text-gray-500"
+          style={{ fontFamily: "Gilroy, sans-serif" }}
+        >
+          Attachments
+        </span>
+      </div>
+
+      <div className="divide-y divide-gray-100 rounded-xl border border-gray-200 bg-white px-5 shadow-sm">
+        {documents.map((doc) => {
           const url = getPbFileUrl(collectionId, recordId, doc);
           if (!url) return null;
           const ext = getExt(doc);
-          const label = documents.length > 1 ? `Document ${index + 1}` : "View Document";
+          const meta = EXT_META[ext] ?? {
+            label: `${ext} File`,
+            badge: "bg-gray-100 text-gray-600",
+          };
+          const displayName = getDisplayName(doc);
 
           return (
-            <div
-              key={doc}
-              className="flex items-center gap-3 rounded-xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-[#00a54f]/40 hover:bg-[#00a54f]/5"
-            >
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[#00a54f]/10 text-xs font-bold text-[#00a54f]">
+            <div key={doc} className="flex items-center gap-4 py-4">
+              <span
+                className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-xs font-bold tracking-wide ${meta.badge}`}
+              >
                 {ext}
               </span>
-              <button
-                type="button"
-                onClick={() => setActiveDoc({ url, name: doc, ext })}
-                className="flex-1 truncate text-left"
-              >
-                {label}
-              </button>
-              <a
-                href={downloadUrl(url)}
-                title="Download"
-                className="flex-shrink-0 text-gray-400 transition-colors hover:text-[#00a54f]"
-              >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-                </svg>
-              </a>
+
+              <div className="min-w-0 flex-1">
+                <button
+                  type="button"
+                  onClick={() => setActiveDoc({ url, name: displayName, ext })}
+                  className="block truncate text-left text-sm font-semibold text-gray-900 transition-colors hover:text-[#00a54f]"
+                  style={{ fontFamily: "Gilroy, sans-serif" }}
+                >
+                  {displayName}
+                </button>
+                <p className="mt-0.5 text-xs text-gray-500">{meta.label}</p>
+              </div>
+
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveDoc({ url, name: displayName, ext })}
+                  className="rounded-md border border-gray-200 px-3.5 py-1.5 text-xs font-semibold text-gray-700 transition-colors hover:border-[#00a54f] hover:text-[#00a54f]"
+                >
+                  View
+                </button>
+                <a
+                  href={downloadUrl(url)}
+                  title="Download"
+                  className="rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
           );
         })}
@@ -105,8 +178,10 @@ export function DocumentsSection({ documents, collectionId, recordId }: Document
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-gray-100 px-5 py-3">
-              <span className="truncate text-sm font-semibold text-gray-900">{activeDoc.name}</span>
-              <div className="flex flex-shrink-0 items-center gap-4">
+              <span className="truncate text-sm font-semibold text-gray-900">
+                {activeDoc.name}
+              </span>
+              <div className="flex shrink-0 items-center gap-4">
                 <a
                   href={downloadUrl(activeDoc.url)}
                   className="text-sm font-medium text-[#00a54f] hover:underline"
@@ -119,13 +194,27 @@ export function DocumentsSection({ documents, collectionId, recordId }: Document
                   className="text-gray-400 hover:text-gray-600"
                   aria-label="Close"
                 >
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
             </div>
-            <iframe src={viewerSrc ?? undefined} className="w-full flex-1" title={activeDoc.name} />
+            <iframe
+              src={viewerSrc ?? undefined}
+              className="w-full flex-1"
+              title={activeDoc.name}
+            />
           </div>
         </div>
       )}
