@@ -59,19 +59,22 @@ export default async function StoryDetailPage({ params }: Props) {
   return (
     <article className="min-h-screen bg-white pt-32 pb-20">
       <Container>
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-4xl">
           <Link href="/publications" className="inline-flex items-center text-sm text-gray-500 hover:text-[#00a54f] mb-8 transition-colors">
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
             Back to Stories
           </Link>
-          
+
           <header className="mb-10">
             {story.category && (
                <span className="inline-block rounded-full bg-[#00a54f]/10 px-3 py-1 text-xs font-semibold text-[#00a54f] mb-4 uppercase tracking-wider">
                  {story.category}
                </span>
             )}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6" style={{ fontFamily: "Gilroy, sans-serif" }}>
+            <h1
+              className="font-bold text-gray-900 leading-tight mb-6"
+              style={{ fontFamily: "Gilroy, sans-serif", fontSize: "clamp(1.875rem, 3.4vw, 3rem)" }}
+            >
               {story.title}
             </h1>
             

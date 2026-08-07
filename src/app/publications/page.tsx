@@ -129,10 +129,11 @@ function StoryCard({ story }: { story: StoryRecord }) {
 
           {/* Title */}
           <h3
-            className="mb-3 text-xl font-bold leading-tight text-gray-900 transition-colors group-hover:text-[#00a54f] lg:text-2xl line-clamp-2"
+            className="mb-3 font-bold leading-tight text-gray-900 transition-colors group-hover:text-[#00a54f] line-clamp-2"
             style={{
               fontFamily: "Gilroy, sans-serif",
               letterSpacing: "-0.01em",
+              fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)",
             }}
           >
             {story.title}
