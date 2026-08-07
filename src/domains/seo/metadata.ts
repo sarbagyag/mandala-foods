@@ -99,11 +99,11 @@ export function getOurApproachMetadata(): Metadata {
 
 export function getOurStoriesMetadata(): Metadata {
   return generateMetadata({
-    title: "Our Stories",
+    title: "Publications",
     description:
       "Real stories from farmers, restaurants, and cafes partnering with Mandala Foods to create sustainable food systems.",
     keywords: ["farmer stories", "HORECA", "case studies", "impact stories", "success stories"],
-    canonical: `${siteConfig.url}/our-stories`,
+    canonical: `${siteConfig.url}/publications`,
   });
 }
 

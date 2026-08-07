@@ -9,9 +9,9 @@ export const pb = new PocketBase('https://cms.mandalafoods.co');
 pb.autoCancellation(false);
 
 /**
- * Helper to generate the full URL for a PocketBase file/image
+ * Helper to generate the full URL for a PocketBase file (image, pdf, docx, etc.)
  */
-export const getPbImageUrl = (
+export const getPbFileUrl = (
     collectionId: string,
     recordId: string,
     fileName: string,
@@ -22,6 +22,11 @@ export const getPbImageUrl = (
     const params = options.thumb ? `?thumb=${options.thumb}` : '';
     return `${pb.baseUrl}/api/files/${collectionId}/${recordId}/${fileName}${params}`;
 };
+
+/**
+ * Kept as an alias for existing callers — image files use the same file endpoint as any other file.
+ */
+export const getPbImageUrl = getPbFileUrl;
 
 /**
  * Type definition for a Story record
@@ -37,6 +42,7 @@ export interface StoryRecord {
     excerpt: string;
     content: string;
     cover_image: string; // PocketBase returns file fields as string (if max select is 1)
+    documents?: string[]; // PocketBase returns file fields as string[] (max select > 1) — pdf/docx attachments
     published_date: string;
     author?: string;
     is_featured?: boolean;

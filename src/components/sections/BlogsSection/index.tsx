@@ -77,7 +77,7 @@ export function BlogsSection({ data }: BlogsSectionProps) {
         </div>
 
         <div className="mt-12 text-center">
-          <Button href="/our-stories" variant="outline" size="lg">
+          <Button href="/publications" variant="outline" size="lg">
             View All Stories
           </Button>
         </div>

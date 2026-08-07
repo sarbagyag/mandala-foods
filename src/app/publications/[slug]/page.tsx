@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { pb, getPbImageUrl, StoryRecord } from "@/lib/pocketbase";
+import { DocumentsSection } from "@/components/publications/DocumentsSection";
 
 interface Props {
   params: Promise<{
@@ -59,7 +60,7 @@ export default async function StoryDetailPage({ params }: Props) {
     <article className="min-h-screen bg-white pt-32 pb-20">
       <Container>
         <div className="mx-auto max-w-3xl">
-          <Link href="/our-stories" className="inline-flex items-center text-sm text-gray-500 hover:text-[#00a54f] mb-8 transition-colors">
+          <Link href="/publications" className="inline-flex items-center text-sm text-gray-500 hover:text-[#00a54f] mb-8 transition-colors">
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
             Back to Stories
           </Link>
@@ -99,7 +100,15 @@ export default async function StoryDetailPage({ params }: Props) {
             className="rich-text-content text-gray-700 text-lg leading-relaxed"
             dangerouslySetInnerHTML={{ __html: story.content }}
           />
-          
+
+          {story.documents && story.documents.length > 0 && (
+            <DocumentsSection
+              documents={story.documents}
+              collectionId={story.collectionId}
+              recordId={story.id}
+            />
+          )}
+
           {story.external_link && (
              <div className="mt-12 pt-8 border-t border-gray-100">
                <Link 

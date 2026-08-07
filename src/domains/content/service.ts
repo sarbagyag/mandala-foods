@@ -30,7 +30,7 @@ class StaticContentService implements IContentService {
         return this.getWhoWeAreContent();
       case "our-approach":
         return this.getOurApproachContent();
-      case "our-stories":
+      case "publications":
         return this.getOurStoriesContent();
       case "recipe-corner":
         return this.getRecipeCornerContent();

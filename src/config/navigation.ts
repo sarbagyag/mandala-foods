@@ -22,8 +22,8 @@ export const navigationConfig: NavigationConfig = {
           // description: "Meet the team turning waste into worth",
         },
         {
-          title: "Our Stories",
-          href: "/our-stories",
+          title: "Publications",
+          href: "/publications",
         },
       ],
     },

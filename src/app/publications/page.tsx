@@ -29,7 +29,7 @@ export default async function OurStoryPage() {
                 letterSpacing: "0.15em",
               }}
             >
-              News & Stories
+              Publications
             </span>
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
@@ -37,7 +37,7 @@ export default async function OurStoryPage() {
                 fontFamily: "Gilroy, sans-serif",
                 letterSpacing: "-0.02em",
               }}
-            >Our Latest Updates
+            >Our Publications
             </h1>
             <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
             <p
@@ -46,7 +46,7 @@ export default async function OurStoryPage() {
                 fontFamily: "Gilroy, sans-serif",
               }}
             >
-              Discover the stories, insights, and innovations shaping our journey
+              Technical reports, blogs, and insights shaping our journey
             </p>
  
             </div>
@@ -75,7 +75,7 @@ function StoryCard({ story }: { story: StoryRecord }) {
   const imageUrl = story.cover_image
     ? getPbImageUrl(story.collectionId, story.id, story.cover_image)
     : null;
-  const linkHref = `/our-stories/${story.slug}`;
+  const linkHref = `/publications/${story.slug}`;
 
   return (
     <Link href={linkHref} className="group">
@@ -149,27 +149,41 @@ function StoryCard({ story }: { story: StoryRecord }) {
           </p>
 
           {/* Read More Link */}
-          <div className="flex items-center gap-2 text-sm font-semibold text-[#00a54f] transition-all group-hover:gap-3">
-            <span
-              style={{
-                fontFamily: "Gilroy, sans-serif",
-              }}
-            >
-              Read More
-            </span>
-            <svg
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2.5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-sm font-semibold text-[#00a54f] transition-all group-hover:gap-3">
+              <span
+                style={{
+                  fontFamily: "Gilroy, sans-serif",
+                }}
+              >
+                Read More
+              </span>
+              <svg
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </div>
+
+            {story.documents && story.documents.length > 0 && (
+              <span
+                className="flex items-center gap-1 text-xs font-medium text-gray-400"
+                title={`${story.documents.length} attached document${story.documents.length > 1 ? "s" : ""}`}
+              >
+                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 10-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                {story.documents.length}
+              </span>
+            )}
           </div>
         </div>
       </article>
