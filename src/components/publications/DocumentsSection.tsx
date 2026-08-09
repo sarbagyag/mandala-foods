@@ -116,7 +116,10 @@ export function DocumentsSection({
           const displayName = getDisplayName(doc);
 
           return (
-            <div key={doc} className="flex items-center gap-4 py-4">
+            <div
+              key={doc}
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 py-4"
+            >
               <span
                 className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-xs font-bold tracking-wide ${meta.badge}`}
               >
@@ -127,7 +130,7 @@ export function DocumentsSection({
                 <button
                   type="button"
                   onClick={() => setActiveDoc({ url, name: displayName, ext })}
-                  className="block truncate text-left text-sm font-semibold text-gray-900 transition-colors hover:text-[#00a54f]"
+                  className="block w-full truncate text-left text-sm font-semibold text-gray-900 transition-colors hover:text-[#00a54f]"
                   style={{ fontFamily: "Gilroy, sans-serif" }}
                 >
                   {displayName}
@@ -135,7 +138,7 @@ export function DocumentsSection({
                 <p className="mt-0.5 text-xs text-gray-500">{meta.label}</p>
               </div>
 
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="ml-auto flex shrink-0 items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setActiveDoc({ url, name: displayName, ext })}
@@ -177,8 +180,8 @@ export function DocumentsSection({
             className="flex h-full max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-gray-100 px-5 py-3">
-              <span className="truncate text-sm font-semibold text-gray-900">
+            <div className="flex items-center justify-between gap-4 border-b border-gray-100 px-5 py-3">
+              <span className="min-w-0 flex-1 truncate text-sm font-semibold text-gray-900">
                 {activeDoc.name}
               </span>
               <div className="flex shrink-0 items-center gap-4">
