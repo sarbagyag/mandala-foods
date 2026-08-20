@@ -48,12 +48,12 @@ export function StaffBoardSection() {
       organization: "Mandala Foods",
       image: "/images/team/experts/salina-2.jpeg",
     },
-    {
-      name: "Er. Sarbagya Shrestha",
-      role: "Integrated Communications and AI Strategy Lead Consultant",
-      image: "/images/team/staff/sarbagya_no_glare.png",
-      linkedIn: "https://www.linkedin.com/in/sarbagyashrestha/",
-    },
+    // {
+    //   name: "Er. Sarbagya Shrestha",
+    //   role: "Integrated Communications and AI Strategy Lead Consultant",
+    //   image: "/images/team/staff/sarbagya_no_glare.png",
+    //   linkedIn: "https://www.linkedin.com/in/sarbagyashrestha/",
+    // },
     {
       name: "Ms. Pragya Khanal",
       role: "Operations Manager",
