@@ -65,7 +65,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/publications/${story.slug}`,
       lastModified: story.published_date ? new Date(story.published_date) : currentDate,
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
     }));
 
   // Recipe pages have no dynamic [slug] route or PocketBase collection yet
