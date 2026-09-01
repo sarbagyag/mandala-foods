@@ -5,12 +5,9 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { getProducts } from "@/services/products";
 import { getPbImageUrl, ProductRecord } from "@/lib/pocketbase";
+import { getProductsMetadata } from "@/domains/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Our Products | Mandala Foods",
-  description:
-    "Real Fruit. Real Goodness. Nutrition Made Easy — crafted for everyday life. Discover Fruit Smash, Fruit Splash, and Apple Halwa made from locally sourced Nepali fruits.",
-};
+export const metadata: Metadata = getProductsMetadata();
 
 export const dynamic = "force-dynamic";
 

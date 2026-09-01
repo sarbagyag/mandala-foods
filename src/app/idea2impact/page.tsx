@@ -1,12 +1,9 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { getIdea2ImpactMetadata } from "@/domains/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Idea to Impact (I2I) | Mandala Foods",
-  description:
-    "A governance and systems platform uniting circular, women-led food enterprises to turn post-harvest loss into prosperity through market-driven, nutrition-sensitive, climate-smart business models.",
-};
+export const metadata: Metadata = getIdea2ImpactMetadata();
 
 export default function Idea2ImpactPage() {
   return (

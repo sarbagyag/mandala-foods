@@ -19,12 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: "Not Found | Mandala Foods",
       description: "Digital ID not found",
+      robots: { index: false, follow: false },
     };
   }
 
   return {
     title: `${identity.full_name} - Digital ID | Mandala Foods`,
     description: `Digital identity card for ${identity.full_name}, ${identity.position} at Mandala Foods`,
+    robots: { index: false, follow: false },
   };
 }
 

@@ -4,6 +4,7 @@ import {
   WebPageSchema,
   BreadcrumbListSchema,
   BreadcrumbItem,
+  ArticleSchema,
 } from "./types";
 
 export function generateOrganizationSchema(): OrganizationSchema {
@@ -56,6 +57,41 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]): BreadcrumbLis
       item: item.item,
     })),
   };
+}
+
+export function generateArticleSchema(params: {
+  title: string;
+  description: string;
+  image: string | null;
+  author?: string;
+  publishedDate: string;
+  updatedDate: string;
+}): ArticleSchema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: params.title,
+    description: params.description,
+    image: params.image,
+    author: {
+      "@type": "Person",
+      name: params.author || siteConfig.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    // PocketBase returns dates as "YYYY-MM-DD HH:MM:SS.sssZ" (space, not "T"),
+    // which isn't strict ISO 8601 — normalize for schema.org validators.
+    datePublished: toISOStringSafe(params.publishedDate),
+    dateModified: toISOStringSafe(params.updatedDate),
+  };
+}
+
+function toISOStringSafe(value: string): string {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? value : date.toISOString();
 }
 
 export function renderStructuredData(data: any): string {

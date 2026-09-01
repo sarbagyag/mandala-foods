@@ -20,3 +20,18 @@ export async function getStoryBySlug(slug: string) {
         return null;
     }
 }
+
+/**
+ * Fetch every published story's slug + dates, for sitemap generation.
+ */
+export async function getAllStorySlugs() {
+    try {
+        const records = await pb.collection('stories').getFullList<StoryRecord>({
+            sort: '-published_date',
+            fields: 'slug,published_date,updated',
+        });
+        return records;
+    } catch {
+        return [];
+    }
+}

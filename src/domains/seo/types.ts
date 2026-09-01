@@ -51,4 +51,27 @@ export interface BreadcrumbListSchema {
   }>;
 }
 
-export type StructuredData = OrganizationSchema | WebPageSchema | BreadcrumbListSchema;
+export interface ArticleSchema {
+  "@context": string;
+  "@type": string;
+  headline: string;
+  description: string;
+  image: string | null;
+  author: {
+    "@type": string;
+    name: string;
+  };
+  publisher: {
+    "@type": string;
+    name: string;
+    url: string;
+  };
+  datePublished: string;
+  dateModified: string;
+}
+
+export type StructuredData =
+  | OrganizationSchema
+  | WebPageSchema
+  | BreadcrumbListSchema
+  | ArticleSchema;

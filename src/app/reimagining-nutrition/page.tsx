@@ -2,12 +2,9 @@ import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { MealIntegrationGallery } from "@/components/sections/MealIntegrationGallery";
 import { getMealIntegrationMedia } from "@/services/meal-integration";
+import { getReimaginingNutritionMetadata } from "@/domains/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Reimagining Nutrition | Mandala Foods",
-  description:
-    "Mandala Foods is building a localized food systems integrator and school meal environment engineering platform — making nutritious, locally sourced school meals practical, scalable, and sustainable.",
-};
+export const metadata: Metadata = getReimaginingNutritionMetadata();
 
 export const dynamic = "force-dynamic";
 

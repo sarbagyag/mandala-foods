@@ -122,3 +122,53 @@ export function getRecipeCornerMetadata(): Metadata {
     canonical: `${siteConfig.url}/recipe-corner`,
   });
 }
+
+export function getProductsMetadata(): Metadata {
+  return generateMetadata({
+    title: "Our Products",
+    description:
+      "Real Fruit. Real Goodness. Discover Mandala Foods' Fruit Smash, Fruit Splash, and Apple Halwa — nutritious products crafted from locally sourced Nepali fruits.",
+    keywords: [
+      "Fruit Smash",
+      "Fruit Splash",
+      "Apple Halwa",
+      "Nepali fruit products",
+      "sustainable snacks",
+      "Mandala Foods products",
+    ],
+    canonical: `${siteConfig.url}/products`,
+  });
+}
+
+export function getReimaginingNutritionMetadata(): Metadata {
+  return generateMetadata({
+    title: "Reimagining Nutrition",
+    description:
+      "Mandala Foods engineers school meal environments with a localized food systems platform, making nutritious, locally sourced meals scalable and sustainable.",
+    keywords: [
+      "school meals",
+      "nutrition Nepal",
+      "food systems integrator",
+      "school meal environment",
+      "child nutrition",
+    ],
+    canonical: `${siteConfig.url}/reimagining-nutrition`,
+  });
+}
+
+export function getIdea2ImpactMetadata(): Metadata {
+  return generateMetadata({
+    title: "Idea to Impact (I2I)",
+    description:
+      "Idea to Impact (I2I): Mandala Foods' governance platform connecting circular, women-led food enterprises turning post-harvest loss into prosperity in Nepal.",
+    keywords: [
+      "Idea to Impact",
+      "I2I",
+      "women-led enterprises",
+      "circular economy governance",
+      "post-harvest loss",
+      "climate-smart business",
+    ],
+    canonical: `${siteConfig.url}/idea2impact`,
+  });
+}
