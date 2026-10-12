@@ -136,7 +136,7 @@ export const homepageContent: HomePageContent = {
           },
           cta: {
             text: "Explore Mandala Agrifresh",
-            href: "https://www.mandalaagrifresh.com",
+            href: "https://www.linkedin.com/company/mandalaagrifresh/posts/",
             variant: "outline",
             external: true,
           },
