@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
-import { pb, getPbImageUrl, StoryRecord } from "@/lib/pocketbase";
+import { pb, getPbImageUrl, getPbFileUrl, StoryRecord } from "@/lib/pocketbase";
+import { StoryContent } from "@/components/publications/StoryContent";
 import { DocumentsSection } from "@/components/publications/DocumentsSection";
 import { siteConfig } from "@/config/site";
 import { generateMetadata as buildSEOMetadata } from "@/domains/seo/metadata";
@@ -66,6 +67,10 @@ export default async function StoryDetailPage({ params }: Props) {
   const imageUrl = story.cover_image
     ? getPbImageUrl(story.collectionId, story.id, story.cover_image)
     : null;
+
+  const videoUrls = (story.videos ?? [])
+    .map((file) => getPbFileUrl(story.collectionId, story.id, file))
+    .filter((url): url is string => Boolean(url));
 
   const articleSchema = generateArticleSchema({
     title: story.title,
@@ -162,9 +167,9 @@ export default async function StoryDetailPage({ params }: Props) {
               </div>
             )}
 
-            <div
-              className="rich-text-content text-gray-700 text-lg leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: story.content }}
+            <StoryContent
+              html={story.content}
+              videoUrls={videoUrls}
             />
 
             {story.documents && story.documents.length > 0 && (

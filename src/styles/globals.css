@@ -445,3 +445,16 @@ section {
 .animate-shimmer {
   animation: shimmer 8s ease-in-out infinite;
 }
+
+/* Videos / embeds inserted inline via the PocketBase rich-text editor */
+.rich-text-content video,
+.rich-text-content iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: 1.5rem 0;
+  border-radius: 1rem;
+  background: #000;
+}

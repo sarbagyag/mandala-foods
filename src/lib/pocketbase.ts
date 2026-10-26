@@ -43,6 +43,7 @@ export interface StoryRecord {
     content: string;
     cover_image: string; // PocketBase returns file fields as string (if max select is 1)
     documents?: string[]; // PocketBase returns file fields as string[] (max select > 1) — pdf/docx attachments
+    videos?: string[]; // multi-file field — uploaded videos shown above the article body
     published_date: string;
     author?: string;
     is_featured?: boolean;
