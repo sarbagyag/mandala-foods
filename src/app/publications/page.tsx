@@ -141,7 +141,7 @@ function StoryCard({ story }: { story: StoryRecord }) {
 
           {/* Excerpt */}
           <p
-            className="mb-4 flex-1 text-sm leading-relaxed text-gray-600 line-clamp-3"
+            className="mb-4 flex-1 text-[13px] leading-relaxed text-gray-600 line-clamp-6"
             style={{
               fontFamily: "Gilroy, sans-serif",
             }}
