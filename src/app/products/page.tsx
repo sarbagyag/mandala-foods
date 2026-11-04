@@ -42,7 +42,7 @@ function ProductFeature({ product, flip }: { product: ProductRecord; flip: boole
   return (
     <article className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
       <div
-        className={cn("relative aspect-[4/5] overflow-hidden rounded-[2rem] sm:aspect-square lg:aspect-[4/5]", flip && "lg:order-2")}
+        className={cn("relative aspect-square w-full max-w-xl overflow-hidden rounded-[2rem] lg:max-w-none", flip && "lg:order-2")}
         style={{ backgroundColor: `${accent}14` }}
       >
         {img && (
