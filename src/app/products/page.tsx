@@ -90,6 +90,9 @@ export default async function ProductsPage() {
         </Container>
       </section>
 
+      {/* Product Videos — hidden when the CMS has none */}
+      <ProductVideos videos={videos} />
+
       {/* Dynamic Category Sections */}
       {groupedProducts.map((group, groupIndex) => {
         // Use the group's theme color for the badge/section accents
@@ -250,9 +253,6 @@ export default async function ProductsPage() {
           </section>
         );
       })}
-
-      {/* Product Videos — hidden when the CMS has none */}
-      <ProductVideos videos={videos} />
 
       {/* Call to Action */}
       <section
