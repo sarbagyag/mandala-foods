@@ -135,4 +135,5 @@ export interface ProductVideoRecord {
     product?: string[]; // multi-relation to `products`; empty = page-wide video
     order?: number;
     is_active?: boolean;
+    expand?: { product?: Pick<ProductRecord, 'id' | 'name'>[] }; // when fetched with expand: 'product'
 }

@@ -5,6 +5,7 @@ export async function getProductVideos() {
         const records = await pb.collection('product_videos').getFullList<ProductVideoRecord>({
             filter: 'is_active = true',
             sort: 'order,-created',
+            expand: 'product',
         });
         return records;
     } catch {
