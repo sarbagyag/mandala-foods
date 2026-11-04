@@ -170,5 +170,7 @@ export function getIdea2ImpactMetadata(): Metadata {
       "climate-smart business",
     ],
     canonical: `${siteConfig.url}/idea2impact`,
+    // Hidden for now while the site focuses on the two Mandala companies.
+    noindex: true,
   });
 }

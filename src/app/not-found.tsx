@@ -1,28 +1,25 @@
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Heading";
-import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Section";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[60vh] items-center">
+    <section className="flex min-h-[80vh] items-center bg-white pb-20 pt-32">
       <Container>
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-8 text-8xl font-bold text-primary">404</div>
-          <Heading level={1} className="mb-4">
-            Page Not Found
-          </Heading>
-          <Text variant="lead" className="mb-8 text-muted">
-            Sorry, we couldn't find the page you're looking for. It might have been moved
-            or deleted.
-          </Text>
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button href="/" variant="primary" size="lg">
-              Go Home
+        <div className="max-w-2xl">
+          <Eyebrow>Error 404</Eyebrow>
+          <h1 className="text-balance text-[2.5rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink md:text-6xl">
+            We couldn&apos;t find that page.
+          </h1>
+          <p className="mt-6 text-lg leading-relaxed text-gray-600">
+            It may have been moved or deleted. Try one of these instead.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Button href="/" size="lg" arrow>
+              Go to homepage
             </Button>
-            <Button href="/publications" variant="outline" size="lg">
-              View Publications
+            <Button href="/products" variant="outline" size="lg">
+              Our products
             </Button>
           </div>
         </div>

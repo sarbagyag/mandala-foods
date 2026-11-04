@@ -2,10 +2,12 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { pb, getPbImageUrl, getPbFileUrl, StoryRecord } from "@/lib/pocketbase";
 import { StoryContent } from "@/components/publications/StoryContent";
 import { DocumentsSection } from "@/components/publications/DocumentsSection";
+import { formatStoryDate } from "@/components/publications/StoryCard";
 import { siteConfig } from "@/config/site";
 import { generateMetadata as buildSEOMetadata } from "@/domains/seo/metadata";
 import {
@@ -51,7 +53,7 @@ async function getStory(slug: string) {
       .collection("stories")
       .getFirstListItem<StoryRecord>(`slug="${slug}"`);
     return story;
-  } catch (error) {
+  } catch {
     return null;
   }
 }
@@ -101,76 +103,50 @@ export default async function StoryDetailPage({ params }: Props) {
           __html: renderStructuredData(breadcrumbSchema),
         }}
       />
-      <article className="min-h-screen bg-white pt-32 pb-20">
+      <article className="bg-white pb-20 pt-28 md:pb-28 md:pt-36">
         <Container>
-          <div className="mx-auto max-w-4xl">
-            <Link
-              href="/publications"
-              className="inline-flex items-center text-sm text-gray-500 hover:text-[#00a54f] mb-8 transition-colors"
-            >
-              <svg
-                className="w-4 h-4 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 19l-7-7 7-7"
-                ></path>
-              </svg>
-              Back to Stories
-            </Link>
+          <div className="mx-auto max-w-3xl">
+            <nav aria-label="Breadcrumb" className="mb-10">
+              <ol className="flex items-center gap-2 text-sm text-gray-500">
+                <li>
+                  <Link href="/publications" className="inline-flex items-center gap-1.5 font-semibold text-ink hover:text-primary">
+                    <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                    Publications
+                  </Link>
+                </li>
+                {story.category && (
+                  <>
+                    <li aria-hidden="true" className="text-gray-300">/</li>
+                    <li>{story.category}</li>
+                  </>
+                )}
+              </ol>
+            </nav>
 
-            <header className="mb-10">
-              {story.category && (
-                <span className="inline-block rounded-full bg-[#00a54f]/10 px-3 py-1 text-xs font-semibold text-[#00a54f] mb-4 uppercase tracking-wider">
-                  {story.category}
-                </span>
-              )}
-              <h1
-                className="font-bold text-gray-900 leading-tight mb-6"
-                style={{
-                  fontFamily: "Gilroy, sans-serif",
-                  fontSize: "clamp(1.875rem, 3.4vw, 3rem)",
-                }}
-              >
+            <header className="mb-10 md:mb-12">
+              <h1 className="text-balance text-[2.25rem] font-bold leading-[1.08] tracking-[-0.035em] text-ink md:text-[3.25rem]">
                 {story.title}
               </h1>
-
-              <div className="flex items-center text-gray-500 text-sm">
-                {story.author && (
-                  <span className="mr-4">By {story.author}</span>
+              {story.excerpt && (
+                <p className="mt-6 text-xl leading-relaxed text-gray-600">{story.excerpt}</p>
+              )}
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-line pt-6 text-sm text-gray-500">
+                {story.author && <span className="font-semibold text-ink">{story.author}</span>}
+                {story.published_date && (
+                  <time dateTime={story.published_date}>{formatStoryDate(story.published_date, "long")}</time>
                 )}
-                <time dateTime={story.published_date}>
-                  {new Date(story.published_date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
               </div>
             </header>
+          </div>
 
-            {imageUrl && (
-              <div className="relative aspect-video w-full mb-12 rounded-2xl overflow-hidden shadow-lg">
-                <Image
-                  src={imageUrl}
-                  alt={story.title}
-                  fill
-                  className="object-cover"
-                  priority
-                  unoptimized
-                />
-              </div>
-            )}
+          {imageUrl && (
+            <div className="relative mx-auto mb-14 aspect-[16/9] max-w-5xl overflow-hidden rounded-[1.75rem] bg-mist">
+              <Image src={imageUrl} alt="" fill className="object-cover" priority unoptimized />
+            </div>
+          )}
 
-            <StoryContent
-              html={story.content}
-              videoUrls={videoUrls}
-            />
+          <div className="mx-auto max-w-3xl">
+            <StoryContent html={story.content} videoUrls={videoUrls} />
 
             {story.documents && story.documents.length > 0 && (
               <DocumentsSection
@@ -181,17 +157,25 @@ export default async function StoryDetailPage({ params }: Props) {
             )}
 
             {story.external_link && (
-              <div className="mt-12 pt-8 border-t border-gray-100">
-                <Link
+              <div className="mt-12 border-t border-line pt-8">
+                <a
                   href={story.external_link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#00a54f] hover:bg-[#008f44] transition-colors"
+                  className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 text-[0.95rem] font-semibold text-white transition-colors hover:bg-primary-hover"
                 >
-                  Read Full Article on Source
-                </Link>
+                  Read the full article at the source
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
               </div>
             )}
+
+            <div className="mt-16 border-t border-line pt-8">
+              <Link href="/publications" className="inline-flex items-center gap-2 text-[0.95rem] font-semibold text-ink hover:text-primary">
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                All publications
+              </Link>
+            </div>
           </div>
         </Container>
       </article>

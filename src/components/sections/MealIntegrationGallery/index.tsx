@@ -66,7 +66,7 @@ export function MealIntegrationGallery({ media }: MealIntegrationGalleryProps) {
               key={item.id}
               type="button"
               onClick={() => setActiveItem(item)}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-gray-200/50 bg-white text-left shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
+              className="group relative flex flex-col overflow-hidden rounded-[1.25rem] bg-white text-left ring-1 ring-black/[0.04] transition-shadow duration-300 hover:shadow-[0_24px_48px_-28px_rgb(0_0_0/0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <div className="relative aspect-video overflow-hidden bg-gray-100">
                 {thumbnailUrl ? (

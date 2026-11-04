@@ -32,6 +32,7 @@ export interface VideoHeroSection {
 export interface ProductsGridSection {
   type: "products-grid";
   id: string;
+  eyebrow?: string;
   heading: string;
   subheading?: string;
   products: Product[];
@@ -50,6 +51,7 @@ export interface Product {
 export interface StorySection {
   type: "story";
   id: string;
+  eyebrow?: string;
   heading: string;
   subheading?: string;
   content: string;
@@ -61,6 +63,7 @@ export interface StorySection {
 export interface MissionSection {
   type: "mission";
   id: string;
+  eyebrow?: string;
   heading: string;
   subheading?: string;
   missions: Mission[];
@@ -78,6 +81,7 @@ export interface Mission {
 export interface ImpactSection {
   type: "impact";
   id: string;
+  eyebrow?: string;
   heading: string;
   subheading?: string;
   metrics: ImpactMetric[];

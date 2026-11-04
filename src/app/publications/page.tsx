@@ -1,193 +1,49 @@
 import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/ui/PageHero";
+import { StoryCard } from "@/components/publications/StoryCard";
 import { getOurStoriesMetadata } from "@/domains/seo/metadata";
 import { getStories } from "@/services/stories";
-import { getPbImageUrl, StoryRecord } from "@/lib/pocketbase";
 
 export const metadata: Metadata = getOurStoriesMetadata();
 
 export const dynamic = "force-dynamic";
 
-export default async function OurStoryPage() {
+export default async function PublicationsPage() {
   const stories = await getStories();
+  const [featured, ...rest] = stories;
 
   return (
-    <section
-      style={{ paddingTop: "100px" }}
-      className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 py-16 md:py-24"
-    >
-      <Container>
-        <div className="mx-auto max-w-7xl">
-          {/* Header Section */}
-          <div className="mb-16 text-center">
-            <span
-              className="inline-block rounded-full bg-[#00a54f]/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#00a54f] mb-6"
-              style={{
-                fontFamily: "Gilroy, sans-serif",
-                letterSpacing: "0.15em",
-              }}
-            >
-              Publications
-            </span>
-            <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
-              style={{
-                fontFamily: "Gilroy, sans-serif",
-                letterSpacing: "-0.02em",
-              }}
-            >Our Publications
-            </h1>
-            <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
-            <p
-              className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
-              style={{
-                fontFamily: "Gilroy, sans-serif",
-              }}
-            >
-              Technical reports, blogs, and insights shaping our journey
-            </p>
- 
-            </div>
-         </div>
+    <>
+      <PageHero
+        eyebrow="Publications"
+        title="News, reports and insights"
+        lead="Technical reports, blogs, and insights shaping our journey."
+      />
 
-          {stories.length === 0 ? (
-            <div className="text-center py-20 bg-white rounded-3xl shadow-sm ring-1 ring-gray-100">
-              <p className="text-gray-500 mb-4 text-lg">No stories found at the moment.</p>
-              <p className="text-sm text-gray-400">Please check the PocketBase admin panel to add stories.</p>
+      <section className="bg-white py-16 md:py-24">
+        <Container>
+          {!featured ? (
+            <div className="rounded-[1.5rem] bg-mist px-6 py-20 text-center">
+              <p className="text-lg font-semibold text-ink">No publications yet.</p>
+              <p className="mt-2 text-gray-600">New reports and stories will appear here soon.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-              {stories.map((story) => (
-                <StoryCard key={story.id} story={story} />
-              ))}
-            </div>
+            <>
+              <StoryCard story={featured} featured />
+              {rest.length > 0 && (
+                <ul className="mt-20 grid gap-x-8 gap-y-14 border-t border-line pt-16 md:grid-cols-2 lg:grid-cols-3">
+                  {rest.map((s) => (
+                    <li key={s.id}>
+                      <StoryCard story={s} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
           )}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function StoryCard({ story }: { story: StoryRecord }) {
-  // PocketBase returns file fields as string
-  const imageUrl = story.cover_image
-    ? getPbImageUrl(story.collectionId, story.id, story.cover_image)
-    : null;
-  const linkHref = `/publications/${story.slug}`;
-
-  return (
-    <Link href={linkHref} className="group">
-      <article className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-gray-100 transition-all duration-300 hover:shadow-2xl hover:ring-[#00a54f]/20 hover:-translate-y-1">
-        {/* Image */}
-        {imageUrl && (
-          <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
-            <Image
-              src={imageUrl}
-              alt={story.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={false}
-              unoptimized
-            />
-            {story.category && (
-              <div className="absolute top-4 left-4">
-                <span
-                  className="inline-block rounded-full bg-white/95 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#00a54f] shadow-sm"
-                  style={{
-                    fontFamily: "Gilroy, sans-serif",
-                    letterSpacing: "0.08em",
-                  }}
-                >
-                  {story.category}
-                </span>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Content */}
-        <div className="flex flex-1 flex-col p-6 lg:p-7">
-          {/* Date and Author */}
-          <div className="mb-3 flex items-center gap-2 text-xs text-gray-500">
-            <time dateTime={story.published_date}>
-              {new Date(story.published_date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric'
-              })}
-            </time>
-            {story.author && (
-              <>
-                <span className="text-gray-300">•</span>
-                <span>{story.author}</span>
-              </>
-            )}
-          </div>
-
-          {/* Title */}
-          <h3
-            className="mb-3 font-bold leading-tight text-gray-900 transition-colors group-hover:text-[#00a54f] line-clamp-2"
-            style={{
-              fontFamily: "Gilroy, sans-serif",
-              letterSpacing: "-0.01em",
-              fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)",
-            }}
-          >
-            {story.title}
-          </h3>
-
-          {/* Excerpt */}
-          <p
-            className="mb-4 flex-1 text-[13px] leading-relaxed text-gray-600 line-clamp-6"
-            style={{
-              fontFamily: "Gilroy, sans-serif",
-            }}
-          >
-            {story.excerpt}
-          </p>
-
-          {/* Read More Link */}
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-sm font-semibold text-[#00a54f] transition-all group-hover:gap-3">
-              <span
-                style={{
-                  fontFamily: "Gilroy, sans-serif",
-                }}
-              >
-                Read More
-              </span>
-              <svg
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </div>
-
-            {story.documents && story.documents.length > 0 && (
-              <span
-                className="flex items-center gap-1 text-xs font-medium text-gray-400"
-                title={`${story.documents.length} attached document${story.documents.length > 1 ? "s" : ""}`}
-              >
-                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 10-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                </svg>
-                {story.documents.length}
-              </span>
-            )}
-          </div>
-        </div>
-      </article>
-    </Link>
+        </Container>
+      </section>
+    </>
   );
 }

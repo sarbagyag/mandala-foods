@@ -1,8 +1,8 @@
-"use client";
-
 import React from "react";
-import { Container } from "@/components/ui/Container";
+import Image from "next/image";
 import { Linkedin } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { SectionHeader } from "@/components/ui/Section";
 
 export function StaffBoardSection() {
   const boardMembers = [
@@ -123,289 +123,107 @@ export function StaffBoardSection() {
   ];
 
   return (
-    <>
-      <section
-        style={{ paddingTop: "100px" }}
-        id="staff-board"
-        className="relative overflow-hidden bg-white py-20 md:py-28"
-      >
-        {/* Subtle Background */}
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-gray-50/50 via-white to-gray-50/30"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-[0.015]"
-          aria-hidden="true"
+    <section id="staff-board" className="bg-white py-20 md:py-28">
+      <Container>
+        <SectionHeader
+          eyebrow="Our team"
+          title="Leadership & expertise"
+          lead="The people building a circular food economy that transforms waste into nourishment."
         />
 
-        <Container>
-          <div className="relative mx-auto max-w-7xl">
-            {/* Section Header */}
-            <div className="mb-20 text-center">
-              <div className="mb-6 inline-block">
-                <div className="rounded-full border border-[#e5790e]/20 bg-white px-6 py-2.5 shadow-sm">
-                  <span
-                    className="text-xs font-bold uppercase tracking-[0.2em] text-[#e5790e]"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Our Team
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="mb-6 text-4xl font-black leading-tight tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
-                style={{
-                  fontFamily: "Gilroy, sans-serif",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Leadership & Expertise
-              </h2>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <p
-                  className="mx-auto max-w-3xl text-lg font-light leading-relaxed text-gray-600 md:text-xl"
-                  style={{
-                    fontFamily: "Gilroy, sans-serif",
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  Meet the visionaries, innovators, and experts building a
-                  circular food economy that transforms waste into nourishment.
-                </p>
-              </div>
-            </div>
+        <TeamGroup title="Founders">
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {boardMembers.map((m) => (
+              <li key={m.name}>
+                <PersonCard name={m.name} role={m.role} image={m.image} linkedIn={m.linkedIn} size="lg" />
+              </li>
+            ))}
+          </ul>
+        </TeamGroup>
 
-            {/* Board of Directors Section */}
-            <div className="mb-24">
-              <div className="mb-10 flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-[#e5790e]/10 to-[#c85a00]/10 blur-xl" />
-                  <h3
-                    className="relative text-3xl font-black text-gray-900 md:text-4xl"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Founders
-                  </h3>
-                </div>
-              </div>
+        <TeamGroup title="Our team">
+          <ul className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
+            {staff.map((m) => (
+              <li key={m.name}>
+                <PersonCard name={m.name} role={m.role} image={m.image} linkedIn={m.linkedIn} />
+              </li>
+            ))}
+          </ul>
+        </TeamGroup>
 
-              <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
-                {boardMembers.map((member, index) => (
-                  <div key={index} className="group relative h-full">
-                    {/* Hover glow effect */}
-                    <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#e5790e]/20 to-[#c85a00]/20 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100" />
+        <TeamGroup title="Expert advisors" last>
+          <ul className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
+            {experts.map((m) => (
+              <li key={m.name}>
+                <PersonCard name={m.name} role={m.role} organization={m.organization} image={m.image} />
+              </li>
+            ))}
+          </ul>
+        </TeamGroup>
+      </Container>
+    </section>
+  );
+}
 
-                    {/* Card */}
-                    <div className="relative flex h-full min-h-[380px] flex-col items-center justify-start overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-500 group-hover:shadow-2xl md:p-8">
-                      {/* Image */}
-                      <div className="mb-6 flex-shrink-0 overflow-hidden rounded-full border-4 border-gray-100 shadow-xl transition-all duration-500 group-hover:border-[#e5790e]/30 group-hover:shadow-2xl">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="h-32 w-32 object-cover transition-transform duration-500 group-hover:scale-110 md:h-40 md:w-40"
-                        />
-                      </div>
+function TeamGroup({ title, children, last }: { title: string; children: React.ReactNode; last?: boolean }) {
+  return (
+    <div className={last ? "" : "mb-20 md:mb-24"}>
+      <h3 className="mb-8 border-b border-line pb-4 text-sm font-bold uppercase tracking-[0.2em] text-gray-500">
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
 
-                      {/* Info */}
-                      <div className="flex flex-1 flex-col items-center justify-start text-center">
-                        <h4
-                          className="mb-2 text-2xl font-black leading-tight text-gray-900 md:text-3xl"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          {member.name}
-                        </h4>
-                        <p
-                          className="text-base font-semibold leading-relaxed text-[#e5790e] md:text-lg"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          {member.role}
-                        </p>
-                      </div>
-
-                      {/* LinkedIn Button */}
-                      <div className="mt-4">
-                        {member.linkedIn ? (
-                          <a
-                            href={member.linkedIn}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center rounded-full bg-[#0077b5] p-2 text-white transition-all duration-300 hover:bg-[#005582] hover:shadow-lg"
-                          >
-                            <Linkedin size={20} />
-                          </a>
-                        ) : (
-                          <button
-                            disabled
-                            className="flex cursor-not-allowed items-center justify-center rounded-full bg-gray-300 p-2 text-gray-500 opacity-50"
-                          >
-                            <Linkedin size={20} />
-                          </button>
-                        )}
-                      </div>
-
-                      {/* Decorative corner accent */}
-                      <div className="absolute right-4 top-4 h-3 w-3 rounded-full bg-[#e5790e] opacity-20" />
-                      <div className="absolute left-4 bottom-4 h-2 w-2 rounded-full bg-[#00a54f] opacity-20" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="mb-24 flex items-center justify-center">
-              <div className="h-px w-64 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-            </div>
-
-            {/* Staff Section */}
-            <div className="mb-24">
-              <div className="mb-10 flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-[#00a54f]/10 to-[#1acf1b]/10 blur-xl" />
-                  <h3
-                    className="relative text-3xl font-black text-gray-900 md:text-4xl"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Our Team
-                  </h3>
-                </div>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {staff.map((member, index) => (
-                  <div key={index} className="group relative h-full">
-                    {/* Hover effect */}
-                    <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-[#00a54f]/20 to-[#1acf1b]/20 opacity-0 blur-lg transition-all duration-500 group-hover:opacity-100" />
-
-                    {/* Card */}
-                    <div className="relative flex h-full min-h-[280px] flex-col items-center justify-start overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-md transition-all duration-500 group-hover:shadow-xl">
-                      {/* Image */}
-                      <div className="mb-5 flex-shrink-0 overflow-hidden rounded-full border-2 border-gray-100 shadow-lg transition-all duration-500 group-hover:border-[#00a54f]/30">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="h-32 w-32 object-cover transition-transform duration-500 group-hover:scale-110 md:h-36 md:w-36"
-                        />
-                      </div>
-
-                      {/* Info */}
-                      <div className="flex flex-1 flex-col items-center justify-start text-center">
-                        <h4
-                          className="mb-1 text-sm font-bold leading-tight text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          {member.name}
-                        </h4>
-                        <p
-                          className="text-xs font-medium leading-relaxed text-gray-600"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          {member.role}
-                        </p>
-                      </div>
-
-                      {/* LinkedIn Button */}
-                      <div className="mt-3">
-                        {member.linkedIn ? (
-                          <a
-                            href={member.linkedIn}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center rounded-full bg-[#0077b5] p-2 text-white transition-all duration-300 hover:bg-[#005582] hover:shadow-lg"
-                          >
-                            <Linkedin size={18} />
-                          </a>
-                        ) : (
-                          <button
-                            disabled
-                            className="flex cursor-not-allowed items-center justify-center rounded-full bg-gray-300 p-2 text-gray-500 opacity-50"
-                          >
-                            <Linkedin size={18} />
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="mb-24 flex items-center justify-center">
-              <div className="h-px w-64 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-            </div>
-
-            {/* Expert Advisors Section */}
-            <div className="mb-16">
-              <div className="mb-10 flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-[#1acf1b]/10 to-[#00a54f]/10 blur-xl" />
-                  <h3
-                    className="relative text-3xl font-black text-gray-900 md:text-4xl"
-                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                  >
-                    Expert Advisors
-                  </h3>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap", // allow multiple rows
-                  justifyContent: "center",
-                  gap: "30px",
-                }}
-                className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-              >
-                {experts.map((expert, index) => (
-                  <div key={index} className="group relative h-full">
-                    {/* Hover effect */}
-                    <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-gray-200/50 to-gray-100/50 opacity-0 blur-lg transition-all duration-500 group-hover:opacity-100" />
-
-                    {/* Card */}
-                    <div className="relative flex h-full min-h-[260px] flex-col items-center justify-start overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-md transition-all duration-500 group-hover:shadow-xl">
-                      {/* Image */}
-                      <div className="mb-4 flex-shrink-0 overflow-hidden rounded-full border-2 border-gray-100 shadow-lg transition-all duration-500 group-hover:border-gray-300">
-                        <img
-                          src={expert.image}
-                          alt={expert.name}
-                          className="h-28 w-28 object-cover transition-transform duration-500 group-hover:scale-110 md:h-32 md:w-32"
-                        />
-                      </div>
-
-                      {/* Info */}
-                      <div className="flex flex-1 flex-col items-center justify-start text-center">
-                        <h4
-                          className="mb-1 text-sm font-bold leading-tight text-gray-900"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          {expert.name}
-                        </h4>
-                        <p
-                          className="mb-0.5 text-xs font-semibold leading-relaxed text-gray-700"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          {expert.role}
-                        </p>
-                        <p
-                          className="text-[10px] leading-relaxed text-gray-500"
-                          style={{ fontFamily: "Gilroy, sans-serif" }}
-                        >
-                          {expert.organization}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Bottom Message */}
-          </div>
-        </Container>
-      </section>
-    </>
+function PersonCard({
+  name,
+  role,
+  organization,
+  image,
+  linkedIn,
+  size = "md",
+}: {
+  name: string;
+  role: string;
+  organization?: string;
+  image: string;
+  linkedIn?: string;
+  size?: "md" | "lg";
+}) {
+  return (
+    <article className="group">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] bg-mist">
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className="object-cover object-top transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.03]"
+          sizes={size === "lg" ? "(max-width: 640px) 100vw, 33vw" : "(max-width: 768px) 50vw, 25vw"}
+        />
+      </div>
+      <div className="mt-4 flex items-start justify-between gap-3">
+        <div>
+          <h4 className={size === "lg" ? "text-xl font-bold tracking-[-0.02em] text-ink" : "text-base font-bold leading-snug text-ink"}>
+            {name}
+          </h4>
+          <p className={size === "lg" ? "mt-1 text-[0.95rem] font-semibold text-accent" : "mt-1 text-sm leading-snug text-gray-600"}>
+            {role}
+          </p>
+          {organization && <p className="mt-1 text-xs text-gray-500">{organization}</p>}
+        </div>
+        {linkedIn && (
+          <a
+            href={linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${name} on LinkedIn`}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-gray-500 transition-colors hover:border-[#0a66c2] hover:bg-[#0a66c2] hover:text-white"
+          >
+            <Linkedin className="h-4 w-4" />
+          </a>
+        )}
+      </div>
+    </article>
   );
 }

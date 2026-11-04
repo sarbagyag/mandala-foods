@@ -43,12 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/idea2impact`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+    // /idea2impact is hidden for now (unlisted and noindex) — re-add here when it returns.
     {
       url: `${baseUrl}/products`,
       lastModified: currentDate,

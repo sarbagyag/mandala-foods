@@ -1,677 +1,313 @@
 import { Metadata } from "next";
+import Image from "next/image";
+import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Heading";
-import { Text } from "@/components/ui/Text";
-import { Card, CardContent } from "@/components/ui/Card";
+import { PageHero } from "@/components/ui/PageHero";
+import { Eyebrow, SectionHeader } from "@/components/ui/Section";
+import { CTABand } from "@/components/ui/CTABand";
 import { getOurApproachMetadata } from "@/domains/seo/metadata";
 
 export const metadata: Metadata = getOurApproachMetadata();
 
+const jumpLinks = [
+  { href: "#why-it-matters", label: "Why it matters" },
+  { href: "#circular-model", label: "Circular model" },
+  { href: "#what-makes-us-different", label: "What makes us different" },
+  { href: "#real-outcomes-real-impact", label: "Impact targets" },
+  { href: "#evidence-based-field-tested", label: "Evidence" },
+  { href: "#built-for-scale", label: "Built for scale" },
+];
+
+const challenges = [
+  "High post-harvest food loss",
+  "Low consumption of nutritious foods",
+  "Rising environmental pressure from waste",
+];
+
+const steps = [
+  {
+    title: "Preserve",
+    subtitle: "Extend shelf life at the source",
+    details: [
+      "MAP bags to slow spoilage",
+      "Ethylene absorbers to delay ripening",
+      "Thermal pallet covers to prevent heat stress",
+    ],
+    outcome: "Improves quality, reduces early-stage loss, increases farmer incomes",
+  },
+  {
+    title: "Upcycle",
+    subtitle: "Transform surplus into value",
+    details: [
+      "Nutritious, shelf-stable products",
+      "Fruit-based spreads and snack ingredients",
+      "Affordable local alternatives to costly imports",
+    ],
+    outcome: "All with no or limited added preservatives",
+  },
+  {
+    title: "Redistribute",
+    subtitle: "Deliver nutrition at scale",
+    details: [
+      "Nutritious food for children and families",
+      "Real, whole fruit alternative for every community",
+      "Healthier snack options for families with NCDs",
+    ],
+    outcome: "Market access for local producers, affordable nutrition for rural communities",
+  },
+];
+
+const pillars = [
+  {
+    badge: "Innovation",
+    title: "Localized innovations, global insight",
+    description: "First in Nepal to adapt solutions like passive MAP bags for fragmented rural markets",
+  },
+  {
+    badge: "Impact",
+    title: "Behavior change built in",
+    description: "Our products drive nutrition awareness, demand, and dietary transformation",
+  },
+  {
+    badge: "Reach",
+    title: "School-first scalability",
+    description: "Schools serve as anchor markets to reach children at scale",
+  },
+  {
+    badge: "Sustainability",
+    title: "Designed for climate & equity",
+    description: "Reduces food waste, and centers women across the value chain",
+  },
+];
+
+const targets = [
+  { value: "269 MT", label: "Surplus fruit rescued annually" },
+  { value: "147,000+", label: "Children nourished each year" },
+  { value: "1,000+", label: "Women employed", subtext: "In sourcing, processing, and sales" },
+  { value: "30–40%", label: "More income for farmers" },
+  { value: "$8.85 → $3.21", label: "Cost per child" },
+  { value: "3x", label: "More children nourished", subtext: "In just 5 years" },
+];
+
+const evidence = [
+  { finding: "Better post-harvest handling", result: "Less loss, better prices" },
+  {
+    finding: "Locally made, shelf-stable, fruit product",
+    result: "Improved vitamin A, zinc, magnesium, and iron intake",
+  },
+  { finding: "School meals", result: "Higher attendance and long-term learning outcomes" },
+];
+
+const future = [
+  { target: "2M children", description: "Nourished nationwide by 2035" },
+  { target: "Rural economies", description: "Thrive through upcycled value chains" },
+  { target: "Circular model", description: "A regenerative approach to food systems" },
+  { target: "New standard for the Global South", description: "Affordable, nutritious food at scale" },
+];
+
 export default function OurApproachPage() {
   return (
     <>
-      {/* Hero Section - Premium Storytelling */}
-      <section
-        style={{ paddingTop: "100px" }}
-        id="unique-approach"
-        className="relative overflow-hidden bg-gradient-to-br from-white via-primary/5 to-accent/5 pb-20 pt-32 md:pb-24 md:pt-40"
-      >
-        <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
+      <div id="unique-approach">
+        <PageHero
+          eyebrow="Our approach"
+          title="Circular food. Local innovation. Lasting nutritional impact."
+          lead="We're redefining how food moves through Nepal — from farm to table, and back into the community. Our approach is grounded in circular food innovation: a system that preserves surplus, upcycles waste, and redistributes nutrition — ensuring no nourishing food is left behind."
+        >
+          <nav aria-label="On this page">
+            <ul className="flex flex-wrap gap-2">
+              {jumpLinks.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    className="inline-flex h-10 items-center rounded-full border border-line px-4 text-sm font-semibold text-ink transition-colors hover:border-ink"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </PageHero>
+      </div>
+
+      {/* Why it matters */}
+      <section id="why-it-matters" className="bg-white py-20 md:py-28">
         <Container>
-          <div className="relative z-10 mx-auto max-w-5xl">
-            <div className="mb-6 inline-block rounded-full border border-accent/30 bg-gradient-to-r from-accent/10 to-primary/10 px-5 py-2.5">
-              <Text className="text-xs font-bold tracking-widest text-accent">
-                CIRCULAR INNOVATION
-              </Text>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
+            <div>
+              <SectionHeader
+                eyebrow="Why it matters"
+                title="Nepal faces a triple food challenge"
+                className="mb-10 md:mb-10"
+              />
+              <ol className="divide-y divide-line border-y border-line">
+                {challenges.map((c, i) => (
+                  <li key={c} className="flex items-baseline gap-6 py-6">
+                    <span className="w-8 shrink-0 text-sm font-bold tabular-nums text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-xl font-semibold leading-snug tracking-[-0.015em] text-ink">{c}</span>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-10 text-lg leading-relaxed text-gray-600">
+                While global supply chains use advanced tools to reduce loss and extend shelf life, these solutions
+                have often been missing — or misapplied — in Nepal.{" "}
+                <strong className="font-semibold text-ink">That&apos;s where Mandala Foods steps in.</strong>
+              </p>
             </div>
-            <Heading
-              level={1}
-              className="mb-8 text-balance bg-gradient-to-r from-primary via-accent to-primary bg-clip-text font-extrabold leading-tight text-transparent"
-            >
-              Our Approach
-            </Heading>
-            <div className="mb-10 h-1 w-24 bg-gradient-to-r from-accent via-primary to-accent"></div>
-            <Text
-              variant="lead"
-              className="mb-8 max-w-4xl text-balance text-3xl font-semibold leading-tight text-foreground md:text-4xl"
-            >
-              Circular Food. Local Innovation. Lasting Nutritional Impact.
-            </Text>
-            <Text className="max-w-3xl text-lg leading-relaxed text-muted md:text-xl">
-              We&apos;re redefining how food moves through Nepal—from farm to
-              table, and back into the community. Our approach is grounded in
-              circular food innovation: a system that preserves surplus,
-              upcycles waste, and redistributes nutrition—ensuring no nourishing
-              food is left behind.
-            </Text>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-mist">
+              <Image
+                src="/images/our-story/nepal_food_waste.png"
+                alt="Spoiled produce by a mountain road in Nepal"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* Why It Matters - The Challenge */}
-      <section
-        style={{ paddingTop: "100px" }}
-        id="why-it-matters"
-        className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
-      >
+      {/* Circular model */}
+      <section id="circular-model" className="bg-mist py-20 md:py-28">
         <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6 font-extrabold">
-                Why It Matters
-              </Heading>
-              <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent to-primary"></div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
-                  Nepal faces a triple food challenge that demands innovative
-                  solutions
-                </Text>
-              </div>
-            </div>
+          <SectionHeader
+            eyebrow="Our circular model"
+            title="Preserve. Upcycle. Redistribute."
+            lead="We integrate low-cost, high-impact solutions to reimagine the fresh produce value chain."
+          />
+          <ol className="grid gap-6 lg:grid-cols-3">
+            {steps.map((s, i) => (
+              <li key={s.title} className="relative flex flex-col rounded-[1.5rem] bg-white p-8 md:p-10">
+                <div className="flex items-center justify-between">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {i < steps.length - 1 && (
+                    <ArrowRight className="hidden h-5 w-5 text-gray-300 lg:block" aria-hidden="true" />
+                  )}
+                </div>
+                <h3 className="mt-8 text-2xl font-bold tracking-[-0.025em] text-ink">{s.title}</h3>
+                <p className="mt-1 text-[0.95rem] font-semibold text-gray-500">{s.subtitle}</p>
+                <ul className="mt-6 flex-1 space-y-3">
+                  {s.details.map((d) => (
+                    <li key={d} className="flex gap-3 text-[0.95rem] leading-relaxed text-gray-700">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} aria-hidden="true" />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-8 border-t border-line pt-6 text-sm font-semibold leading-relaxed text-ink">
+                  {s.outcome}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
 
-            <div className="mb-16 grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  challenge: "High post-harvest food loss",
-                  number: "01",
-                },
-                {
-                  challenge: "Low consumption of nutritious foods",
-                  number: "02",
-                },
-                {
-                  challenge: "Rising environmental pressure from waste",
-                  number: "03",
-                },
-              ].map((item, index) => (
-                <div key={index} className="group relative h-full">
-                  <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-accent to-primary opacity-0 blur transition duration-500 group-hover:opacity-30"></div>
-                  <Card
-                    padding="lg"
-                    className="relative flex h-full flex-col border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
-                  >
-                    <CardContent className="flex h-full flex-col">
-                      <div className="mb-6 text-7xl font-extrabold bg-gradient-to-br from-accent/30 to-primary/30 bg-clip-text text-transparent">
-                        {item.number}
-                      </div>
-                      <Text className="flex-1 text-lg font-semibold leading-relaxed text-foreground">
-                        {item.challenge}
-                      </Text>
-                      <div className="mt-6 h-1 w-12 bg-gradient-to-r from-accent to-primary transition-all duration-300 group-hover:w-full"></div>
-                    </CardContent>
-                  </Card>
+      {/* What makes us different */}
+      <section id="what-makes-us-different" className="bg-white py-20 md:py-28">
+        <Container>
+          <SectionHeader
+            eyebrow="What makes us different"
+            title="Four pillars of innovation that set us apart"
+          />
+          <div className="grid border-t border-line md:grid-cols-2">
+            {pillars.map((p, i) => (
+              <div
+                key={p.title}
+                className={`border-b border-line py-10 md:px-10 ${i % 2 === 0 ? "md:border-r md:pl-0" : "md:pr-0"}`}
+              >
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">{p.badge}</p>
+                <h3 className="mt-4 text-2xl font-bold tracking-[-0.025em] text-ink">{p.title}</h3>
+                <p className="mt-3 max-w-md text-lg leading-relaxed text-gray-600">{p.description}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Targets */}
+      <section id="real-outcomes-real-impact" className="bg-forest py-20 md:py-28">
+        <Container>
+          <SectionHeader
+            tone="light"
+            eyebrow="Our targets"
+            title="Real outcomes, real impact"
+            lead="Our targets include measurable results that transform lives and communities."
+          />
+          <dl className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {targets.map((t) => (
+              <div key={t.label} className="border-t border-white/15 pt-6">
+                <dd className="text-[2.75rem] font-bold leading-none tracking-[-0.04em] text-white md:text-[3.25rem]">
+                  {t.value}
+                </dd>
+                <dt className="mt-4 text-lg font-semibold text-white/90">{t.label}</dt>
+                {t.subtext && <dd className="mt-1 text-sm text-white/60">{t.subtext}</dd>}
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </section>
+
+      {/* Evidence */}
+      <section id="evidence-based-field-tested" className="bg-white py-20 md:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+            <SectionHeader
+              eyebrow="Evidence-based, field-tested"
+              title="Our approach combines global research and local pilot data"
+              className="mb-0 md:mb-0"
+            />
+            <div className="border-t border-line">
+              <div className="hidden grid-cols-2 gap-8 border-b border-line py-4 text-xs font-bold uppercase tracking-[0.18em] text-gray-400 sm:grid">
+                <span>Intervention</span>
+                <span>Result</span>
+              </div>
+              {evidence.map((e) => (
+                <div key={e.finding} className="grid gap-2 border-b border-line py-7 sm:grid-cols-2 sm:gap-8">
+                  <p className="text-lg font-semibold leading-snug text-ink">{e.finding}</p>
+                  <p className="flex gap-3 text-lg leading-snug text-gray-600">
+                    <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                    {e.result}
+                  </p>
                 </div>
               ))}
             </div>
-
-            <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-r from-accent/5 via-primary/5 to-accent/5 p-10 md:p-14">
-              <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-accent/20 blur-3xl"></div>
-              <div className="relative z-10">
-                <Text className="text-center text-lg font-medium leading-relaxed text-foreground md:text-xl">
-                  While global supply chains use advanced tools to reduce loss
-                  and extend shelf life, these solutions have often been
-                  missing—or misapplied—in Nepal.{" "}
-                  <span className="font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                    That&apos;s where Mandala Foods steps in.
-                  </span>
-                </Text>
-              </div>
-            </div>
           </div>
         </Container>
       </section>
 
-      {/* Our Circular Model - The Solution */}
-      <section style={{ paddingTop: "100px" }} id="circular-model" className="relative bg-white py-20 md:py-28">
+      {/* Built for scale */}
+      <section id="built-for-scale" className="bg-mist py-20 md:py-28">
         <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-20 text-center">
-              <Heading level={2} className="mb-6 font-extrabold">
-                Our Circular Model
-              </Heading>
-              <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-primary to-accent"></div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "1rem",
-                }}
-              >
-                <Text className="mx-auto mb-6 max-w-2xl text-2xl font-semibold leading-tight text-foreground md:text-3xl">
-                  Preserve → Upcycle → Redistribute
-                </Text>
-                <Text className="mx-auto max-w-3xl text-lg text-muted">
-                  We integrate low-cost, high-impact solutions to reimagine the
-                  fresh produce value chain
-                </Text>
-              </div>
-            </div>
-
-            <div className="grid gap-6 lg:grid-cols-3">
-              {[
-                {
-                  number: "01",
-                  title: "Preserve",
-                  subtitle: "Extend shelf life at the source",
-                  details: [
-                    "MAP bags to slow spoilage",
-                    "Ethylene absorbers to delay ripening",
-                    "Thermal pallet covers to prevent heat stress",
-                  ],
-                  outcome:
-                    "Improves quality, reduces early-stage loss, increases farmer incomes",
-                },
-                {
-                  number: "02",
-                  title: "Upcycle",
-                  subtitle: "Transform surplus into value",
-                  details: [
-                    "Nutritious, shelf-stable products",
-                    "Fruit-based spreads and snack ingredients",
-                    "Affordable local alternatives to costly imports",
-                  ],
-                  outcome: "All with no or limited added preservatives",
-                },
-                {
-                  number: "03",
-                  title: "Redistribute",
-                  subtitle: "Deliver nutrition at scale",
-                  details: [
-                    "Nutritious food for children and families",
-                    "Real, whole fruit alternative for every community",
-                    "Healthier snack options for families with NCDs",
-                  ],
-                  outcome:
-                    "Market access for local producers, affordable nutrition for rural communities",
-                },
-              ].map((step, index) => {
-                const colors = [
-                  {
-                    bg: "bg-gradient-to-br from-accent to-accent-hover",
-                    border: "border-accent",
-                    text: "text-accent",
-                  },
-                  {
-                    bg: "bg-gradient-to-br from-primary to-primary-hover",
-                    border: "border-primary",
-                    text: "text-primary",
-                  },
-                  {
-                    bg: "bg-gradient-to-br from-accent to-primary",
-                    border: "border-accent",
-                    text: "text-accent",
-                  },
-                ];
-                const color = colors[index];
-                return (
-                  <div
-                    key={index}
-                    className="group relative flex h-full flex-col bg-gray-50 p-8 transition-all duration-300 hover:bg-white hover:shadow-2xl lg:p-10"
-                  >
-                    <div
-                      className={`absolute left-0 top-0 h-full w-1.5 ${color.bg} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
-                    ></div>
-                    <div className="mb-6 flex-shrink-0">
-                      <div
-                        className={`mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl ${color.bg} text-2xl font-bold text-white shadow-lg`}
-                      >
-                        {step.number}
-                      </div>
-                      <Heading
-                        level={3}
-                        className="mb-2 text-2xl font-bold text-foreground"
-                      >
-                        {step.title}
-                      </Heading>
-                      <Text className="text-base font-semibold text-muted">
-                        {step.subtitle}
-                      </Text>
-                    </div>
-                    <ul
-                      className={`mb-6 flex-1 space-y-3 border-l-2 ${color.border}/30 pl-5`}
-                    >
-                      {step.details.map((detail, i) => (
-                        <li
-                          key={i}
-                          className="text-base leading-relaxed text-muted"
-                        >
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className={`border-t ${color.border}/10 pt-6`}>
-                      <Text
-                        className={`text-sm font-semibold leading-relaxed ${color.text}`}
-                      >
-                        {step.outcome}
-                      </Text>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          <div className="max-w-3xl">
+            <Eyebrow>Built for scale</Eyebrow>
+            <h2 className="text-balance text-[2rem] font-bold leading-[1.1] tracking-[-0.03em] text-ink md:text-[2.75rem]">
+              Our circular model isn&apos;t just working — it&apos;s gaining momentum.
+            </h2>
+            <p className="mt-5 text-lg text-gray-600">We&apos;re building toward a future where:</p>
           </div>
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {future.map((f) => (
+              <li key={f.target} className="rounded-[1.5rem] bg-white p-8">
+                <h3 className="text-xl font-bold leading-snug tracking-[-0.02em] text-ink">{f.target}</h3>
+                <p className="mt-3 text-[0.95rem] leading-relaxed text-gray-600">{f.description}</p>
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
-      {/* What Makes Us Different - Differentiation */}
-      <section
-        style={{ paddingTop: "100px" }}
-        id="what-makes-us-different"
-        className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
-      >
-        <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6 font-extrabold">
-                What Makes Us Different
-              </Heading>
-              <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent via-primary to-accent"></div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
-                  Four pillars of innovation that set us apart
-                </Text>
-              </div>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              {[
-                {
-                  title: "Localized Innovations, Global Insight",
-                  description:
-                    "First in Nepal to adapt solutions like passive MAP bags for fragmented rural markets",
-                  badge: "INNOVATION",
-                },
-                {
-                  title: "Behavior Change Built In",
-                  description:
-                    "Our products drive nutrition awareness, demand, and dietary transformation",
-                  badge: "IMPACT",
-                },
-                {
-                  title: "School-First Scalability",
-                  description:
-                    "Schools serve as anchor markets to reach children at scale",
-                  badge: "REACH",
-                },
-                {
-                  title: "Designed for Climate & Equity",
-                  description:
-                    "Reduces food waste, and centers women across the value chain",
-                  badge: "SUSTAINABILITY",
-                },
-              ].map((pillar, index) => {
-                const badgeColors = [
-                  {
-                    bg: "bg-accent/10",
-                    text: "text-accent",
-                    glow: "from-accent/20 to-accent/10",
-                  },
-                  {
-                    bg: "bg-primary/10",
-                    text: "text-primary",
-                    glow: "from-primary/20 to-primary/10",
-                  },
-                  {
-                    bg: "bg-accent/10",
-                    text: "text-accent",
-                    glow: "from-accent/20 to-primary/10",
-                  },
-                  {
-                    bg: "bg-primary/10",
-                    text: "text-primary",
-                    glow: "from-primary/20 to-accent/10",
-                  },
-                ];
-                const badgeColor = badgeColors[index];
-                return (
-                  <div key={index} className="group relative h-full">
-                    <div
-                      className={`absolute -inset-1 rounded-2xl bg-gradient-to-r ${badgeColor.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}
-                    ></div>
-                    <div className="relative flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-accent/30 hover:shadow-xl">
-                      <div
-                        className={`mb-5 inline-block self-start rounded-full ${badgeColor.bg} px-4 py-2`}
-                      >
-                        <Text
-                          className={`text-xs font-bold tracking-widest ${badgeColor.text}`}
-                        >
-                          {pillar.badge}
-                        </Text>
-                      </div>
-                      <Heading level={3} className="mb-4 text-xl font-bold">
-                        {pillar.title}
-                      </Heading>
-                      <div className="mb-5 h-1 w-12 bg-gradient-to-r from-accent to-primary"></div>
-                      <Text className="flex-1 leading-relaxed text-muted">
-                        {pillar.description}
-                      </Text>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Real Outcomes, Real Impact - Results */}
-      <section
-        style={{ paddingTop: "100px" }}
-        id="real-outcomes-real-impact"
-        className="relative overflow-hidden bg-white py-20 md:py-28"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-white to-primary/5"></div>
-        <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl"></div>
-        <Container>
-          <div className="relative z-10 mx-auto max-w-7xl">
-            <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6 font-extrabold">
-                Real Outcomes, Real Impact
-              </Heading>
-              <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent via-primary to-accent"></div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
-                  Our target include measurable results that transform lives and
-                  communities
-                </Text>
-              </div>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  value: "269 MT",
-                  label: "Surplus fruit rescued annually",
-                  subtext: "",
-                },
-                {
-                  value: "147,000+",
-                  label: "Children nourished each year",
-                  subtext: "",
-                },
-                {
-                  value: "1,000+",
-                  label: "Women employed",
-                  subtext: "In sourcing, processing, and sales",
-                },
-                {
-                  value: "30-40%",
-                  label: "More income for farmers",
-                  subtext: "",
-                },
-                {
-                  value: "$8.85 → $3.21",
-                  label: "Cost per child",
-                  subtext: "",
-                },
-                {
-                  value: "3x",
-                  label: "More children nourished",
-                  subtext: "In just 5 years",
-                },
-              ].map((metric, index) => {
-                const colors = [
-                  {
-                    gradient: "from-accent to-primary",
-                    text: "text-accent",
-                    line: "bg-accent",
-                  },
-                  {
-                    gradient: "from-primary to-accent",
-                    text: "text-primary",
-                    line: "bg-primary",
-                  },
-                  {
-                    gradient: "from-accent to-accent-hover",
-                    text: "text-accent",
-                    line: "bg-gradient-to-r from-accent to-primary",
-                  },
-                  {
-                    gradient: "from-primary to-primary-hover",
-                    text: "text-primary",
-                    line: "bg-gradient-to-r from-primary to-accent",
-                  },
-                  {
-                    gradient: "from-accent to-primary",
-                    text: "text-accent",
-                    line: "bg-accent",
-                  },
-                  {
-                    gradient: "from-primary to-secondary",
-                    text: "text-primary",
-                    line: "bg-primary",
-                  },
-                ];
-                const color = colors[index];
-                return (
-                  <div key={index} className="group relative h-full">
-                    <div
-                      className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-r ${color.gradient} opacity-0 blur transition duration-500 group-hover:opacity-30`}
-                    ></div>
-                    <div className="relative flex h-full min-h-[240px] flex-col justify-center rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-lg transition-all duration-300 hover:shadow-2xl">
-                      <div
-                        className={`mb-5 text-4xl font-extrabold ${color.text}`}
-                      >
-                        {metric.value}
-                      </div>
-                      <div
-                        className={`mx-auto mb-4 h-1 w-12 ${color.line}`}
-                      ></div>
-                      <Text className="mb-2 font-semibold text-foreground">
-                        {metric.label}
-                      </Text>
-                      {metric.subtext && (
-                        <Text className="text-sm text-muted">
-                          {metric.subtext}
-                        </Text>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Evidence-Based, Field-Tested - Validation */}
-      <section
-        style={{ paddingTop: "100px" }}
-        id="evidence-based-field-tested"
-        className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-28"
-      >
-        <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6 font-extrabold">
-                Evidence-Based, Field-Tested
-              </Heading>
-              <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-primary via-accent to-primary"></div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Text className="mx-auto max-w-3xl text-lg text-muted md:text-xl">
-                  Our approach combines global research and local pilot data
-                </Text>
-              </div>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  finding: "Better post-harvest handling",
-                  result: "Less loss, better prices",
-                },
-                {
-                  finding: "Locally made, shelf-stable, fruit product",
-                  result:
-                    "Improved vitamin A, zinc, magnesium, and iron intake",
-                },
-                {
-                  finding: "School meals",
-                  result: "Higher attendance and long-term learning outcomes",
-                },
-              ].map((item, index) => {
-                const colors = [
-                  {
-                    bg: "bg-gradient-to-br from-accent to-accent-hover",
-                    line: "bg-gradient-to-r from-accent to-primary",
-                    text: "text-accent",
-                    glow: "from-accent/10 to-accent/5",
-                  },
-                  {
-                    bg: "bg-gradient-to-br from-primary to-primary-hover",
-                    line: "bg-gradient-to-r from-primary to-accent",
-                    text: "text-primary",
-                    glow: "from-primary/10 to-primary/5",
-                  },
-                  {
-                    bg: "bg-gradient-to-br from-accent to-primary",
-                    line: "bg-gradient-to-r from-accent to-primary",
-                    text: "text-accent",
-                    glow: "from-accent/10 to-primary/5",
-                  },
-                ];
-                const color = colors[index];
-                return (
-                  <div key={index} className="group relative h-full">
-                    <div
-                      className={`absolute -inset-0.5 rounded-2xl bg-gradient-to-b ${color.glow} opacity-0 transition duration-300 group-hover:opacity-100`}
-                    ></div>
-                    <div className="relative flex h-full min-h-[280px] flex-col rounded-2xl border border-gray-200 bg-white p-8 text-center transition-all duration-300 hover:shadow-xl">
-                      <div
-                        className={`mx-auto mb-6 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full ${color.bg} text-2xl font-bold text-white shadow-lg`}
-                      >
-                        ✓
-                      </div>
-                      <Text className="mb-5 flex-1 text-lg font-semibold text-foreground">
-                        {item.finding}
-                      </Text>
-                      <div
-                        className={`mx-auto mb-5 h-1 w-16 ${color.line}`}
-                      ></div>
-                      <Text className={`font-semibold ${color.text}`}>
-                        {item.result}
-                      </Text>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Built for Scale - Vision */}
-      <section
-        style={{ paddingTop: "100px" }}
-        id="built-for-scale"
-        className="relative overflow-hidden bg-white py-20 md:py-28"
-      >
-        <Container>
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-16 text-center">
-              <Heading level={2} className="mb-6 font-extrabold">
-                Built for Scale
-              </Heading>
-              <div className="mx-auto mb-8 h-1 w-20 bg-gradient-to-r from-accent to-primary"></div>
-              <Text className="mb-6 text-xl font-medium leading-relaxed text-foreground">
-                Our circular model isn&apos;t just working—it&apos;s gaining
-                momentum.
-              </Text>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Text className="mx-auto max-w-3xl text-lg text-muted">
-                  We&apos;re building toward a future where:
-                </Text>
-              </div>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  target: "2M children",
-                  description: "Nourished nationwide by 2035",
-                },
-                {
-                  target: "Rural economies",
-                  description: "Thrive through upcycled value chains",
-                },
-                {
-                  target: "Circular Model",
-                  description: "A regenerative approach to food systems",
-                },
-                {
-                  target: "New standard for global south",
-                  description: "Affordable, nutritious food at scale",
-                },
-              ].map((vision, index) => {
-                const colors = [
-                  {
-                    bg: "bg-gradient-to-br from-accent to-primary",
-                    border: "hover:border-accent",
-                    text: "text-accent",
-                    glow: "from-accent/20 to-primary/20",
-                    line: "bg-gradient-to-r from-accent to-primary",
-                  },
-                  {
-                    bg: "bg-gradient-to-br from-primary to-accent",
-                    border: "hover:border-primary",
-                    text: "text-primary",
-                    glow: "from-primary/20 to-accent/20",
-                    line: "bg-gradient-to-r from-primary to-accent",
-                  },
-                  {
-                    bg: "bg-gradient-to-br from-accent via-primary to-accent",
-                    border: "hover:border-accent",
-                    text: "text-accent",
-                    glow: "from-accent/20 to-accent/10",
-                    line: "bg-gradient-to-r from-accent to-primary",
-                  },
-                  {
-                    bg: "bg-gradient-to-br from-primary to-primary-hover",
-                    border: "hover:border-primary",
-                    text: "text-primary",
-                    glow: "from-primary/20 to-primary/10",
-                    line: "bg-gradient-to-r from-primary to-accent",
-                  },
-                ];
-                const color = colors[index];
-                return (
-                  <div key={index} className="group relative h-full">
-                    <div
-                      className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${color.glow} opacity-0 blur-xl transition duration-500 group-hover:opacity-100`}
-                    ></div>
-                    <div
-                      className={`relative flex h-full min-h-[280px] flex-col rounded-2xl border-2 border-gray-200 bg-white p-8 text-center transition-all duration-300 ${color.border} hover:shadow-2xl`}
-                    >
-                      <div
-                        className={`mx-auto mb-5 inline-flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full ${color.bg} text-3xl font-bold text-white shadow-lg`}
-                      >
-                        {index + 1}
-                      </div>
-                      <Heading
-                        level={3}
-                        className={`mb-4 flex-1 text-xl font-bold ${color.text}`}
-                      >
-                        {vision.target}
-                      </Heading>
-                      <div
-                        className={`mx-auto mb-5 h-1 w-12 ${color.line}`}
-                      ></div>
-                      <Text className="leading-relaxed text-muted">
-                        {vision.description}
-                      </Text>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
-      </section>
+      <CTABand
+        eyebrow="See it in practice"
+        title="Our approach, in every jar and pouch."
+        primary={{ text: "Explore products", href: "/products" }}
+        secondary={{ text: "School nutrition", href: "/reimagining-nutrition" }}
+      />
     </>
   );
 }

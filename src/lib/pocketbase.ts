@@ -2,7 +2,7 @@ import PocketBase from 'pocketbase';
 
 // Initialize the PocketBase client
 // You can change the URL to your production URL when deploying
-export const pb = new PocketBase('https://cms.mandalafoods.co');
+export const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://cms.mandalafoods.co');
 
 
 // Disable auto-cancellation to avoid issues with React Strict Mode in dev

@@ -1,104 +1,56 @@
 import { NavigationConfig } from "@/domains/navigation/types";
 
+export const AGRIFRESH_URL = "https://www.linkedin.com/company/mandalaagrifresh/posts/";
+
+/*
+ * The top bar stays short (product first); the detailed section links that
+ * used to live in dropdowns now sit in the footer.
+ * Idea2Impact is intentionally not linked anywhere for now.
+ */
 export const navigationConfig: NavigationConfig = {
   mainNav: [
+    { title: "Products", href: "/products" },
+    { title: "Our Story", href: "/who-we-are" },
+    { title: "Our Approach", href: "/our-approach" },
+    { title: "School Nutrition", href: "/reimagining-nutrition" },
+    { title: "Publications", href: "/publications" },
+  ],
+  footerNav: [
     {
-      title: "Who we are",
-      href: "/who-we-are",
+      title: "Products",
       items: [
-        {
-          title: "Our Journey",
-          href: "/who-we-are#our-journey",
-          // description: "From overlooked harvests to reimagined nutrition",
-        },
-        {
-          title: "Mission & Vision",
-          href: "/who-we-are#mission-vision",
-          // description: "Our belief, mission, and vision for the future",
-        },
-        {
-          title: "Staff & Board",
-          href: "/who-we-are#staff-board",
-          // description: "Meet the team turning waste into worth",
-        },
-        {
-          title: "Publications",
-          href: "/publications",
-        },
+        { title: "All products", href: "/products" },
+        { title: "Spreads", href: "/products#spread" },
+        { title: "Smash", href: "/products#smash" },
+        { title: "Splash", href: "/products#splash" },
+        { title: "Innovation", href: "/products#innovation" },
       ],
     },
     {
-      title: "Products",
-      href: "/products",
-      external: false,
-    },
-    {
-      title: "Recipe Corner",
-      href: "/",
-      disabled: true,
+      title: "Company",
       items: [
-        // {
-        //   title: "Recipes for Home",
-        //   href: "/recipe-corner#home-recipes",
-        //   description: "Delicious recipes for everyday cooking",
-        // },
-        // {
-        //   title: "Recipes for Foodservice",
-        //   href: "/recipe-corner#foodservice-recipes",
-        //   description: "Professional recipes for restaurants and cafes",
-        // },
+        { title: "Our journey", href: "/who-we-are#our-journey" },
+        { title: "Mission & vision", href: "/who-we-are#mission-vision" },
+        { title: "Leadership & team", href: "/who-we-are#staff-board" },
+        { title: "Publications", href: "/publications" },
       ],
     },
     {
       title: "Our Approach",
-      href: "/our-approach",
       items: [
-          {
-          title: "Idea to Impact (I2I)",
-          href: "/idea2impact",
-          // description: "Our governance platform for circular food enterprises",
-        },
-        {
-          title: "Our Unique Approach",
-          href: "/our-approach#unique-approach",
-          // description: "What makes us different",
-        },
-        {
-          title: "Why it matters?",
-          href: "/our-approach#why-it-matters",
-          // description: "The food challenges we address",
-        },
-        {
-          title: "Our Circular Model",
-          href: "/our-approach#circular-model",
-          // description: "Measuring our circular impact",
-        },
-        {
-          title: "What makes us different?",
-          href: "/our-approach#what-makes-us-different",
-          // description: "What sets our approach apart",
-        },
-        {
-          title: "Real Outcomes, Real Impact",
-          href: "/our-approach#real-outcomes-real-impact",
-          // description: "The difference we are making",
-        },
-        {
-          title: "Evidence-Based, Field-Tested",
-          href: "/our-approach#evidence-based-field-tested",
-          // description: "Proven strategies driving success",
-        },
-        {
-          title: "Built for Scale",
-          href: "/our-approach#built-for-scale",
-          // description: "Scaling solutions for greater reach",
-        },
-      
+        { title: "Why it matters", href: "/our-approach#why-it-matters" },
+        { title: "Our circular model", href: "/our-approach#circular-model" },
+        { title: "What makes us different", href: "/our-approach#what-makes-us-different" },
+        { title: "Impact targets", href: "/our-approach#real-outcomes-real-impact" },
+        { title: "School nutrition", href: "/reimagining-nutrition" },
       ],
     },
     {
-      title: "Reimagining Nutrition",
-      href: "/reimagining-nutrition",
+      title: "Mandala Group",
+      items: [
+        { title: "Mandala Foods", href: "/" },
+        { title: "Mandala Agrifresh", href: AGRIFRESH_URL, external: true },
+      ],
     },
   ],
 };

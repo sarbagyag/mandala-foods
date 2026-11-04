@@ -1,114 +1,126 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { NavDropdown } from "./NavDropdown";
+import { usePathname } from "next/navigation";
+import { Menu } from "lucide-react";
 import { MobileNav } from "./MobileNav";
 import { navigationConfig } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+  // Only the homepage has a full-bleed hero the bar can sit on transparently.
+  const overHero = pathname === "/" && !isScrolled;
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
       <header
         className={cn(
-          "fixed h-22 top-0 z-40 w-full transition-all duration-300",
-          isScrolled
-            ? "bg-white/95 shadow-md backdrop-blur-sm"
-            : "bg-transparent"
+          "fixed inset-x-0 top-0 z-40 transition-[background-color,border-color,box-shadow] duration-300",
+          overHero
+            ? "border-b border-transparent bg-transparent"
+            : "border-b border-line bg-white/95 backdrop-blur-md"
         )}
       >
         <nav
-          className="flex h-28 items-center justify-between px-6 md:px-12 lg:px-16"
+          className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
           aria-label="Main navigation"
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="relative flex h-14 w-[70px] shrink-0 items-center" aria-label="Mandala Foods home">
+            {/* Colour logo on white; white knockout over the homepage video */}
             <Image
-              src="/images/logo-mandala-foods.png"
+              src="/images/logo-mandala-foods-trim.png"
               alt="Mandala Foods"
-              width={300}
-              height={100}
-              className="h-24 w-auto object-contain"
+              width={721}
+              height={575}
+              className={cn("absolute inset-0 h-14 w-auto transition-opacity duration-300", overHero ? "opacity-0" : "opacity-100")}
+              priority
+            />
+            <Image
+              src="/images/logo-mandala-foods-white.png"
+              alt=""
+              aria-hidden="true"
+              width={721}
+              height={575}
+              className={cn("absolute inset-0 h-14 w-auto transition-opacity duration-300", overHero ? "opacity-100" : "opacity-0")}
               priority
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden items-center gap-2 lg:flex">
-            {navigationConfig.mainNav.map((item) =>
-              item.external ? (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    "px-5 py-2 text-base font-semibold transition-colors",
-                    isScrolled
-                      ? "text-gray-900 hover:text-primary"
-                      : "text-white hover:text-white/80"
-                  )}
-                >
-                  {item.title}
-                </a>
-              ) : (
-                <NavDropdown
-                  key={item.title}
-                  item={item}
-                  isScrolled={isScrolled}
-                />
-              )
-            )}
+          <div className="hidden items-center gap-1 lg:flex">
+            {navigationConfig.mainNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={cn(
+                  "relative rounded-full px-4 py-2 text-[0.95rem] font-semibold transition-colors",
+                  overHero ? "text-white/90 hover:text-white" : "text-ink/80 hover:text-ink",
+                  isActive(item.href) && (overHero ? "text-white" : "text-ink")
+                )}
+              >
+                {item.title}
+                {isActive(item.href) && (
+                  <span
+                    className={cn(
+                      "absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full",
+                      overHero ? "bg-white" : "bg-primary"
+                    )}
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+            ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className={cn(
-              "rounded-md p-2 transition-colors lg:hidden",
-              isScrolled
-                ? "text-gray-900 hover:bg-gray-100"
-                : "text-white hover:bg-white/10"
-            )}
-            aria-label="Open menu"
-            aria-expanded={isMobileMenuOpen}
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div className="flex items-center gap-2">
+            <a
+              href="#contact"
+              className={cn(
+                "hidden h-11 items-center rounded-full px-5 text-[0.95rem] font-semibold transition-colors sm:inline-flex",
+                overHero
+                  ? "bg-white text-ink hover:bg-white/90"
+                  : "bg-primary text-white hover:bg-primary-hover"
+              )}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              Contact us
+            </a>
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(true)}
+              className={cn(
+                "inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors lg:hidden",
+                overHero ? "text-white hover:bg-white/10" : "text-ink hover:bg-mist"
+              )}
+              aria-label="Open menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
         </nav>
       </header>
 
-      {/* Mobile Navigation */}
       <MobileNav
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         items={navigationConfig.mainNav}
+        isActive={isActive}
       />
     </>
   );

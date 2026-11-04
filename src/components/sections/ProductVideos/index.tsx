@@ -404,7 +404,7 @@ export function ProductVideos({ videos }: ProductVideosProps) {
     <section
       ref={sectionRef}
       aria-labelledby="product-videos-heading"
-      className="overflow-hidden bg-white pb-24 pt-4 md:pb-32"
+      className="overflow-hidden bg-white py-20 md:py-28"
     >
       <Container>
         <div ref={alignRef} className="mx-auto max-w-7xl">

@@ -1,39 +1,33 @@
-import Link from "next/link";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { Eyebrow } from "@/components/ui/Section";
 
+/*
+ * Every single-segment URL (e.g. /some-typo) is handled by the Digital ID
+ * route, so this is also the page most mistyped links land on.
+ */
 export default function IdentityNotFound() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
-      <div className="text-center">
-        <div className="mb-8">
-          <h1
-            className="mb-4 text-8xl font-black text-gray-300"
-            style={{ fontFamily: "Gilroy, sans-serif" }}
-          >
-            404
+    <section className="flex min-h-[80vh] items-center bg-white pb-20 pt-32">
+      <Container>
+        <div className="max-w-2xl">
+          <Eyebrow>Error 404</Eyebrow>
+          <h1 className="text-balance text-[2.5rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink md:text-6xl">
+            We couldn&apos;t find that page.
           </h1>
-          <h2
-            className="mb-4 text-4xl font-black text-gray-800"
-            style={{ fontFamily: "Gilroy, sans-serif" }}
-          >
-            Digital ID Not Found
-          </h2>
-          <p
-            className="mx-auto max-w-md text-lg text-gray-600"
-            style={{ fontFamily: "Gilroy, sans-serif" }}
-          >
-            The digital identity you&apos;re looking for doesn&apos;t exist or
-            has been deactivated.
+          <p className="mt-6 text-lg leading-relaxed text-gray-600">
+            The page or digital ID you&apos;re looking for doesn&apos;t exist or has been deactivated.
           </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Button href="/" size="lg" arrow>
+              Go to homepage
+            </Button>
+            <Button href="/products" variant="outline" size="lg">
+              Our products
+            </Button>
+          </div>
         </div>
-
-        <Link
-          href="/"
-          className="inline-block rounded-full bg-gradient-to-r from-[#1d6f8f] to-[#00a54f] px-8 py-4 font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-          style={{ fontFamily: "Gilroy, sans-serif" }}
-        >
-          Return to Home
-        </Link>
-      </div>
-    </div>
+      </Container>
+    </section>
   );
 }

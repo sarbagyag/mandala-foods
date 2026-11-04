@@ -1,291 +1,174 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Check } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/ui/PageHero";
+import { Eyebrow } from "@/components/ui/Section";
+import { CTABand } from "@/components/ui/CTABand";
+import { ProductVideos } from "@/components/sections/ProductVideos";
+import { productAccent, productImageUrl } from "@/components/products/ProductTile";
 import { getProducts } from "@/services/products";
 import { getProductVideos } from "@/services/product-videos";
-import { ProductVideos } from "@/components/sections/ProductVideos";
-import { getPbImageUrl, ProductRecord } from "@/lib/pocketbase";
+import { ProductRecord } from "@/lib/pocketbase";
+import { siteConfig } from "@/config/site";
 import { getProductsMetadata } from "@/domains/seo/metadata";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = getProductsMetadata();
 
 export const dynamic = "force-dynamic";
 
-// Helper to group sorted products by category
-// Since the API returns them sorted by category_order, we can just iterate.
-type CategoryGroup = {
-  category: string;
-  categoryTag: string; // Display name like "Premium Spread"
-  themeColor: string; 
-  products: ProductRecord[];
-};
+type CategoryGroup = { category: string; label: string; products: ProductRecord[] };
 
+const titleCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1).replace(/-/g, " ");
+
+/** Products arrive sorted by category_order, so consecutive runs form the groups. */
 function groupProducts(products: ProductRecord[]): CategoryGroup[] {
   const groups: CategoryGroup[] = [];
-  
-  products.forEach((product) => {
-    // Current group is the last one
-    const lastGroup = groups[groups.length - 1];
-    
-    // Normalize category for comparison
-    const currentCategory = product.category || "Other";
-    
-    if (lastGroup && lastGroup.category === currentCategory) {
-      lastGroup.products.push(product);
-    } else {
-      groups.push({
-        category: currentCategory,
-        // Use the tag from the first product, or fallback to the category name
-        categoryTag: product.category_tag || currentCategory,
-        // Fallback or use product's theme color
-        themeColor: product.theme_color?.startsWith("#") ? product.theme_color : "#00a54f",
-        products: [product],
-      });
-    }
-  });
-
+  for (const product of products) {
+    const category = product.category || "other";
+    const last = groups[groups.length - 1];
+    if (last && last.category === category) last.products.push(product);
+    else groups.push({ category, label: titleCase(category), products: [product] });
+  }
   return groups;
 }
 
+function ProductFeature({ product, flip }: { product: ProductRecord; flip: boolean }) {
+  const accent = productAccent(product);
+  const img = productImageUrl(product);
+
+  return (
+    <article className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
+      <div
+        className={cn("relative aspect-[4/5] overflow-hidden rounded-[2rem] sm:aspect-square lg:aspect-[4/5]", flip && "lg:order-2")}
+        style={{ backgroundColor: `${accent}14` }}
+      >
+        {img && (
+          <Image
+            src={img}
+            alt={`${product.name} — ${product.one_liner}`}
+            fill
+            unoptimized
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        )}
+      </div>
+
+      <div className={cn(flip && "lg:order-1")}>
+        {product.category_tag && <Eyebrow tone="orange">{product.category_tag}</Eyebrow>}
+        <h3 className="text-balance text-[2.25rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink md:text-5xl">
+          {product.name}
+        </h3>
+        {product.one_liner && (
+          <p className="mt-4 text-xl font-semibold leading-snug tracking-[-0.01em] text-ink/80">
+            {product.one_liner}
+          </p>
+        )}
+        {product.excerpt && <p className="mt-5 max-w-xl text-lg leading-relaxed text-gray-600">{product.excerpt}</p>}
+
+        {product.features?.length > 0 && (
+          <ul className="mt-9 grid gap-x-8 gap-y-6 border-t border-line pt-8 sm:grid-cols-2">
+            {product.features.map((f, i) => (
+              <li key={i} className="flex gap-3">
+                <span
+                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                  style={{ backgroundColor: `${accent}1f`, color: accent }}
+                >
+                  <Check className="h-3.5 w-3.5" strokeWidth={3} aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="text-[0.95rem] font-bold leading-snug text-ink">{f.title}</p>
+                  {f.subtitle && <p className="mt-1 text-sm leading-snug text-gray-600">{f.subtitle}</p>}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </article>
+  );
+}
+
 export default async function ProductsPage() {
-  const [products, videos] = await Promise.all([
-    getProducts(),
-    getProductVideos(),
-  ]);
-  const groupedProducts = groupProducts(products);
+  const [products, videos] = await Promise.all([getProducts(), getProductVideos()]);
+  const groups = groupProducts(products);
+  // Alternate image side across the whole page, not per category
+  const flipped = new Set(products.filter((_, i) => i % 2 === 1).map((p) => p.id));
 
   return (
     <>
-      {/* Hero Section */}
-      <section
-        style={{ paddingTop: "100px" }}
-        className="bg-white py-24 md:py-32"
+      <PageHero
+        eyebrow="Our products"
+        title="Nutrition made easy, crafted for everyday life."
+        lead="We turn local Nepali fruits — the ones markets overlook but nature made perfect — into delicious, fruit-based foods. Made from real fruit, sourced directly from farmers, minimally processed and packed with natural goodness."
       >
-        <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <h1
-              className="mb-6 text-5xl text-gray-900 md:text-6xl"
-              style={{ fontFamily: "Gilroy, sans-serif" }}
-            >
-              Real Fruit. <span className="text-[#00a54f]">Real Goodness.</span>
-            </h1>
-            <p
-              className="mb-6 text-2xl text-gray-700 md:text-3xl"
-              style={{ fontFamily: "Gilroy, sans-serif" }}
-            >
-              Nutrition Made Easy — crafted for everyday life.
-            </p>
-            <p
-              className="text-lg text-gray-600 md:text-xl"
-              style={{ fontFamily: "Gilroy, sans-serif" }}
-            >
-              At Mandala Foods, we turn local Nepali fruits — the ones markets
-              overlook but nature made perfect — into delicious, fruit-based
-              foods. Made from real fruit and sourced directly from farmers, our
-              products are minimally processed and packed with natural goodness.
-            </p>
-          </div>
-        </Container>
-      </section>
+        {groups.length > 1 && (
+          <nav aria-label="Product categories">
+            <ul className="flex flex-wrap gap-2">
+              {groups.map((g) => (
+                <li key={g.category}>
+                  <a
+                    href={`#${g.category}`}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-ink transition-colors hover:border-ink"
+                  >
+                    {g.label}
+                    <span className="text-xs font-bold tabular-nums text-gray-400">{g.products.length}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </PageHero>
 
-      {/* Product Videos — hidden when the CMS has none */}
       <ProductVideos videos={videos} />
 
-      {/* Dynamic Category Sections */}
-      {groupedProducts.map((group, groupIndex) => {
-        // Use the group's theme color for the badge/section accents
-        const categoryColor = group.themeColor;
-        
-        // Alternate background colors for sections for visual separation
-        const isSectionEven = groupIndex % 2 === 0;
-        const sectionBgClass = isSectionEven ? "bg-gray-50" : "bg-white";
-
-        return (
+      {groups.length === 0 ? (
+        <section className="bg-white py-24">
+          <Container>
+            <p className="text-center text-lg text-gray-600">Our product range is being updated. Please check back soon.</p>
+          </Container>
+        </section>
+      ) : (
+        groups.map((group, gi) => (
           <section
-            key={group.category + groupIndex}
-            className={`${sectionBgClass} py-24`}
+            key={group.category}
+            id={group.category}
+            aria-labelledby={`${group.category}-heading`}
+            className={cn("py-20 md:py-28", gi % 2 === 0 ? "bg-mist" : "bg-white")}
           >
             <Container>
-              <div className="mx-auto max-w-7xl">
-                {/* Category Header */}
-                <div className="mb-16 flex flex-col items-center">
-                   <span
-                      className="rounded-full px-8 py-3 text-sm font-bold uppercase tracking-widest shadow-sm"
-                      style={{
-                        fontFamily: "Gilroy, sans-serif",
-                        backgroundColor: `${categoryColor}15`, // 15% opacity
-                        color: categoryColor,
-                        border: `1px solid ${categoryColor}30`
-                      }}
-                    >
-                      {group.category.toUpperCase().replace("-", " ")}
-                    </span>
-                </div>
-
-                {/* Products Grid - 2 Column or Centered Single */}
-                <div 
-                  className={
-                    group.products.length === 1 
-                      ? "flex justify-center" 
-                      : "grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16"
-                  }
+              <header className="mb-14 flex items-baseline justify-between gap-6 border-b border-ink/10 pb-6 md:mb-20">
+                <h2
+                  id={`${group.category}-heading`}
+                  className="text-[2rem] font-bold tracking-[-0.03em] text-ink md:text-[2.75rem]"
                 >
-                  {group.products.map((product) => {
-                     const imageUrl = getPbImageUrl(
-                        product.collectionId,
-                        product.id,
-                        product.product_image
-                      );
-                      const accentColor = 
-                        product.theme_color && product.theme_color.startsWith("#") 
-                          ? product.theme_color 
-                          : "#00a54f";
-
-                    return (
-                      <div 
-                        key={product.id} 
-                        className={`flex flex-col gap-8 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-xl md:p-10 ${
-                          group.products.length === 1 ? "w-full max-w-2xl" : ""
-                        }`}
-                      >
-                         {/* Image Area - Card Style */}
-                         <div 
-                           className="relative overflow-hidden rounded-2xl p-10 md:p-12"
-                           style={{
-                               // Dynamic gradient based on accent color
-                               background: `linear-gradient(135deg, ${accentColor}1A 0%, ${accentColor}05 100%)`,
-                           }}
-                         >
-                            {/* Category Tag Badge Overlay */}
-                            <div className="absolute top-2 left-4 z-10">
-                              <span
-                                className="inline-block rounded-sm px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md"
-                                style={{
-                                  fontFamily: "Gilroy, sans-serif",
-                                  // backgroundColor: "#ffeee0", // Premium Creamy Orange
-                                  color: "#c2410c", // Deep Burnt Orange for contrast/legibility
-                                  // border: "1px solid #fed7aa" // Subtle border
-                                }}
-                              >
-                                {product.category_tag}
-                              </span>
-                            </div>
-
-                            <div className="relative aspect-square w-full">
-                                {imageUrl && (
-                                  <Image
-                                    src={imageUrl}
-                                    alt={`${product.name} - ${product.one_liner}`}
-                                    fill
-                                    className="object-contain transition-transform duration-500 hover:scale-105"
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
-                                    unoptimized
-                                  />
-                                )}
-                            </div>
-                         </div>
-
-                         {/* Content Area */}
-                         <div className="flex flex-1 flex-col">
-                            <div className="mb-4">
-                                <h3 
-                                    className="text-3xl font-bold text-gray-900 md:text-4xl"
-                                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                                >
-                                    {product.name}
-                                </h3>
-                                <p 
-                                    className="mt-2 text-xl font-medium text-gray-600"
-                                    style={{ fontFamily: "Gilroy, sans-serif" }}
-                                >
-                                    {product.one_liner}
-                                </p>
-                            </div>
-
-                            <p 
-                                className="mb-8 text-gray-600 leading-relaxed"
-                                style={{ fontFamily: "Gilroy, sans-serif" }}
-                            >
-                                {product.excerpt}
-                            </p>
-
-                            {/* Features List */}
-                            <div className="mt-4 space-y-4">
-                                {product.features?.map((feature, idx) => (
-                                    <div key={idx} className="flex items-start gap-3 rounded-xl bg-gray-50 p-4">
-                                        <div 
-                                            className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                                            style={{ backgroundColor: `${accentColor}20` }}
-                                        >
-                                            <svg
-                                                className="h-3 w-3"
-                                                style={{ color: accentColor }}
-                                                fill="currentColor"
-                                                viewBox="0 0 20 20"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                    clipRule="evenodd"
-                                                />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p className="font-semibold text-gray-900 text-sm">
-                                                {feature.title}
-                                            </p>
-                                            <p className="text-sm text-gray-500">
-                                                {feature.subtitle}
-                                            </p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                  {group.label}
+                </h2>
+                <span className="text-sm font-semibold text-gray-500">
+                  {group.products.length} {group.products.length === 1 ? "product" : "products"}
+                </span>
+              </header>
+              <div className="space-y-24 md:space-y-32">
+                {group.products.map((p) => (
+                  <ProductFeature key={p.id} product={p} flip={flipped.has(p.id)} />
+                ))}
               </div>
             </Container>
           </section>
-        );
-      })}
+        ))
+      )}
 
-      {/* Call to Action */}
-      <section
-        style={{ paddingTop: "100px" }}
-        className="bg-[#00a54f] py-20 text-white md:py-24"
-      >
-        <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <h2
-              className="mb-6 text-4xl text-white md:text-5xl"
-              style={{ fontFamily: "Gilroy, sans-serif", color: "white" }}
-            >
-              Thick, Delicious, and Guilt-Free
-            </h2>
-            <p
-              className="mb-12 text-lg text-white md:text-xl"
-              style={{ fontFamily: "Gilroy, sans-serif", color: "white" }}
-            >
-              Fruit that does more — supporting Nepali farmers, reducing food
-              waste, and bringing honest nutrition to every home.
-            </p>
-            <div className="mt-1 flex flex-wrap justify-center gap-6">
-              <Link
-                href="/our-approach"
-                className="inline-block rounded-full border-2 border-white px-10 py-4 text-lg text-white transition-all hover:bg-white/10"
-                style={{ fontFamily: "Gilroy, sans-serif" }}
-              >
-                Our Approach
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <CTABand
+        eyebrow="Stockists & partners"
+        title="Interested in stocking Mandala Foods?"
+        lead="We supply schools, retailers and institutions across Nepal. Tell us what you need and we'll get back to you."
+        primary={{ text: "Contact us", href: `mailto:${siteConfig.contact.email}` }}
+        secondary={{ text: "School nutrition", href: "/reimagining-nutrition" }}
+      />
     </>
   );
 }
