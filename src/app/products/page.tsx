@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
 import { getProducts } from "@/services/products";
+import { getProductVideos } from "@/services/product-videos";
+import { ProductVideos } from "@/components/sections/ProductVideos";
 import { getPbImageUrl, ProductRecord } from "@/lib/pocketbase";
 import { getProductsMetadata } from "@/domains/seo/metadata";
 
@@ -48,7 +50,10 @@ function groupProducts(products: ProductRecord[]): CategoryGroup[] {
 }
 
 export default async function ProductsPage() {
-  const products = await getProducts();
+  const [products, videos] = await Promise.all([
+    getProducts(),
+    getProductVideos(),
+  ]);
   const groupedProducts = groupProducts(products);
 
   return (
@@ -245,6 +250,9 @@ export default async function ProductsPage() {
           </section>
         );
       })}
+
+      {/* Product Videos — hidden when the CMS has none */}
+      <ProductVideos videos={videos} />
 
       {/* Call to Action */}
       <section

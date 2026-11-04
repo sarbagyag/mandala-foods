@@ -118,3 +118,21 @@ export interface IdentityRecord {
     contact_number?: string;
     email?: string;
 }
+
+/**
+ * Type definition for a Product Video record (videos shown on the Products page)
+ */
+export interface ProductVideoRecord {
+    id: string;
+    collectionId: string;
+    collectionName: string;
+    created: string;
+    updated: string;
+    title: string;
+    description?: string;
+    video_file: string; // single file field — mp4/webm
+    thumbnail?: string; // optional poster image
+    product?: string[]; // multi-relation to `products`; empty = page-wide video
+    order?: number;
+    is_active?: boolean;
+}
