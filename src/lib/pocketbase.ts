@@ -67,7 +67,7 @@ export interface ProductRecord {
     category_tag: string;
     one_liner: string;
     excerpt: string;
-    product_image: string;
+    product_image: string | string[]; // multi-file: [product photo, nutrition facts]
     theme_color: string;
     bg_color_class?: string;
     features: ProductFeature[];

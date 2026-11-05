@@ -22,6 +22,13 @@ type CategoryGroup = {
   products: ProductRecord[];
 };
 
+/** PocketBase returns a string for single-file fields and an array once multiple files are allowed. */
+function productImageFiles(product: ProductRecord): string[] {
+  const value = product.product_image as string | string[] | undefined;
+  if (!value) return [];
+  return Array.isArray(value) ? value : [value];
+}
+
 function groupProducts(products: ProductRecord[]): CategoryGroup[] {
   const groups: CategoryGroup[] = [];
   
@@ -133,11 +140,11 @@ export default async function ProductsPage() {
                   }
                 >
                   {group.products.map((product) => {
-                     const imageUrl = getPbImageUrl(
-                        product.collectionId,
-                        product.id,
-                        product.product_image
-                      );
+                      // product_image holds the product photo first, then (optionally) the nutrition facts
+                      const imageUrls = productImageFiles(product)
+                        .map((file) => getPbImageUrl(product.collectionId, product.id, file))
+                        .filter((url): url is string => Boolean(url));
+                      const [imageUrl, nutritionUrl] = imageUrls;
                       const accentColor = 
                         product.theme_color && product.theme_color.startsWith("#") 
                           ? product.theme_color 
@@ -147,7 +154,7 @@ export default async function ProductsPage() {
                       <div 
                         key={product.id} 
                         className={`flex flex-col gap-8 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-xl md:p-10 ${
-                          group.products.length === 1 ? "w-full max-w-2xl" : ""
+                          group.products.length === 1 ? (nutritionUrl ? "w-full max-w-5xl" : "w-full max-w-2xl") : ""
                         }`}
                       >
                          {/* Image Area - Card Style */}
@@ -159,6 +166,7 @@ export default async function ProductsPage() {
                            }}
                          >
                             {/* Category Tag Badge Overlay */}
+                            {product.category_tag && (
                             <div className="absolute top-2 left-4 z-10">
                               <span
                                 className="inline-block rounded-sm px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md"
@@ -172,18 +180,52 @@ export default async function ProductsPage() {
                                 {product.category_tag}
                               </span>
                             </div>
+                            )}
 
-                            <div className="relative aspect-square w-full">
-                                {imageUrl && (
-                                  <Image
-                                    src={imageUrl}
-                                    alt={`${product.name} - ${product.one_liner}`}
-                                    fill
-                                    className="object-contain transition-transform duration-500 hover:scale-105"
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
-                                    unoptimized
-                                  />
-                                )}
+                            {/* Product photo and nutrition facts side by side */}
+                            <div className={nutritionUrl ? "grid grid-cols-1 gap-6 sm:grid-cols-2" : ""}>
+                              {imageUrl && (
+                                <figure className="m-0">
+                                  <div className="relative aspect-square w-full">
+                                    <Image
+                                      src={imageUrl}
+                                      alt={`${product.name} - ${product.one_liner}`}
+                                      fill
+                                      className="object-contain transition-transform duration-500 hover:scale-105"
+                                      sizes={nutritionUrl ? "(max-width: 640px) 100vw, 40vw" : "(max-width: 1024px) 100vw, 50vw"}
+                                      unoptimized
+                                    />
+                                  </div>
+                                  {nutritionUrl && (
+                                    <figcaption className="mt-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-gray-500">
+                                      Product
+                                    </figcaption>
+                                  )}
+                                </figure>
+                              )}
+                              {nutritionUrl && (
+                                <figure className="m-0">
+                                  <a
+                                    href={nutritionUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative block aspect-square w-full overflow-hidden rounded-xl bg-white ring-1 ring-gray-200"
+                                    aria-label={`Open ${product.name} nutrition facts in full size`}
+                                  >
+                                    <Image
+                                      src={nutritionUrl}
+                                      alt={`${product.name} nutrition facts`}
+                                      fill
+                                      className="object-contain p-2"
+                                      sizes="(max-width: 640px) 100vw, 40vw"
+                                      unoptimized
+                                    />
+                                  </a>
+                                  <figcaption className="mt-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-gray-500">
+                                    Nutrition facts
+                                  </figcaption>
+                                </figure>
+                              )}
                             </div>
                          </div>
 
