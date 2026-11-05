@@ -196,11 +196,6 @@ export default async function ProductsPage() {
                                       unoptimized
                                     />
                                   </div>
-                                  {nutritionUrl && (
-                                    <figcaption className="mt-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-gray-500">
-                                      Product
-                                    </figcaption>
-                                  )}
                                 </figure>
                               )}
                               {nutritionUrl && (
@@ -221,9 +216,6 @@ export default async function ProductsPage() {
                                       unoptimized
                                     />
                                   </a>
-                                  <figcaption className="mt-3 text-center text-xs font-bold uppercase tracking-[0.18em] text-gray-500">
-                                    Nutrition facts
-                                  </figcaption>
                                 </figure>
                               )}
                             </div>
